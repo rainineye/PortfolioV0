@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trillion DeFi · Full Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=PT+Sans:wght@400&family=Public+Sans:ital,wght@0,200;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text-primary: #1a1a1a;
+      --text-gray: #797979;
+      --text-badge: #393939;
+      --border-subtle: rgba(89,89,89,0.25);
+      --bg-badge: #f3f3f3;
+      --bg-green: #e1ffd6;
+      --bg-ia: #2b2f29;
+      --accent-green: #a0ff80;
+      --border-green: #ecffe6;
+      --border-card: #d0ffc0;
+      --ux-solutions-header: #1b2d15;
+      --grid-unit: 7.369px; /* ~7.37px base grid */
+      --pad-x: 36.844px;
+      --pad-y: 44.213px;
+      --gap-lg: 88.426px;
+      --gap-md: 44.213px;
+      --gap-sm: 14.738px;
+      --gap-xs: 11.053px;
+      --radius-modal: 44.213px;
+      --radius-card: 14.738px;
+      --radius-ia: 24px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow-x: hidden; }
+    body {
+      font-family: 'Public Sans', sans-serif;
+      background: white;
+      color: var(--text-primary);
+    }
+
+    .story-trillion {
+      background: white;
+      overflow-x: hidden;
+      overflow-y: auto;
+      border-radius: var(--radius-modal) var(--radius-modal) 0 0;
+      width: 100%;
+      max-width: 1728px;
+      margin: 0 auto;
+      position: relative;
+      min-height: 100%;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 45px;
+      right: calc(8.33% + 63px);
+      width: 33px;
+      height: 33px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .close-btn svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--text-primary);
+    }
+
+    .trillion-page {
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+      width: 1728px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Trillion Pre-project section */
+    .trillion-pre {
+      display: flex;
+      flex-direction: column;
+      gap: 133px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .trillion-story {
+      display: flex;
+      flex-direction: column;
+      gap: 44px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .title-image-section {
+      height: 628px;
+      overflow: hidden;
+      width: 100%;
+    }
+    .title-image-section img {
+      width: 100%;
+      height: 761px;
+      object-fit: cover;
+      object-position: center -133px;
+      border-radius: var(--radius-modal) var(--radius-modal) 0 0;
+    }
+
+    .title-text-section {
+      display: flex;
+      flex-direction: column;
+      gap: 29px;
+      padding: 0 9px;
+      width: 100%;
+      max-width: 1397px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-badge);
+      border-radius: 4px;
+      padding: 4px 7px;
+      width: fit-content;
+    }
+    .badge span {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 19.343px;
+      font-weight: 500;
+      color: var(--text-badge);
+      line-height: normal;
+    }
+
+    .project-intro {
+      display: flex;
+      flex-direction: column;
+      gap: 77px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .intro-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+      gap: var(--pad-x);
+    }
+
+    .intro-left {
+      flex: 0 0 685px;
+    }
+    .intro-title {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 52px;
+      font-weight: 400;
+      line-height: 1.45;
+      color: black;
+      letter-spacing: -3.64px;
+    }
+
+    .intro-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 45px;
+      width: 408px;
+    }
+    .meta-block {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .meta-label {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 16.58px;
+      font-weight: 600;
+      color: var(--text-gray);
+    }
+    .meta-value {
+      font-family: 'PT Sans', sans-serif;
+      font-size: 16.58px;
+      font-weight: 400;
+      color: black;
+      line-height: 1.45;
+    }
+
+    .section-label {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 16.58px;
+      font-weight: 600;
+      color: var(--text-gray);
+      height: 44.213px;
+      display: flex;
+      align-items: center;
+    }
+
+    .section-body {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 19.343px;
+      font-weight: 400;
+      color: black;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    /* Process Section - Figma 373:1951 autolayout: 3 cols, gap 7.369px, items-end */
+    .trillion-process {
+      border-top: 0.921px solid var(--border-subtle);
+      padding-top: 58.951px;
+      padding-left: 36.844px;
+      padding-right: 36.844px;
+      width: 100%;
+      max-width: 1728px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      gap: 7.369px;
+      align-items: flex-end;
+    }
+    .trillion-process .process-spacer-left {
+      flex: 0 0 546.217px;
+      height: 100%;
+    }
+    .trillion-process .process-main {
+      flex: 0 0 963.48px;
+    }
+    .trillion-process .process-spacer-right {
+      flex: 0 0 130.797px;
+      height: 100%;
+    }
+    @media (max-width: 1650px) {
+      .trillion-process { flex-wrap: wrap; }
+      .trillion-process .process-spacer-left,
+      .trillion-process .process-spacer-right { display: none; }
+      .trillion-process .process-main { flex: 1 1 100%; }
+    }
+
+    .process-main {
+      display: flex;
+      flex-direction: column;
+      gap: 88.426px;
+      align-items: flex-start;
+    }
+
+    /* Target Users - Figma 373:1945, w 546.217px, gap 44.213px */
+    .target-users {
+      display: flex;
+      flex-direction: column;
+      gap: 44.213px;
+      width: 546.217px;
+    }
+
+    /* User block - Figma 373:1942/1943, gap 135.403px, items-center */
+    .user-block {
+      display: flex;
+      gap: 135.403px;
+      align-items: center;
+    }
+    .user-text {
+      display: flex;
+      flex-direction: column;
+      gap: 14.738px;
+      width: 270.806px;
+    }
+    .user-title {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 22.107px;
+      font-weight: 600;
+      color: black;
+      line-height: 1.2;
+    }
+    .user-title span {
+      font-size: 16.58px;
+      font-weight: 400;
+    }
+    .user-desc {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 16.58px;
+      font-weight: 300;
+      color: black;
+      line-height: 1.45;
+    }
+    .user-icon {
+      width: 138.166px;
+      height: 138.166px;
+      flex-shrink: 0;
+    }
+    .user-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .user-icon-box {
+      width: 138.166px;
+      height: 138.166px;
+      background: var(--bg-green);
+      border-radius: var(--radius-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .user-icon-box {
+      position: relative;
+    }
+    /* Figma 467:2412: ml 16%, mt 31%, w 63.296px, h 77.373px */
+    .user-icon-box .icon-main {
+      position: absolute;
+      left: 16%;
+      top: 31%;
+      width: 63.296px;
+      height: 77.373px;
+      object-fit: contain;
+    }
+    /* Figma 467:2479: ml 48.67%, mt 9.67%, w 58.951px, h 36.445px */
+    .user-icon-box .icon-badge {
+      position: absolute;
+      left: 48.67%;
+      top: 9.67%;
+      width: 58.951px;
+      height: 36.445px;
+      object-fit: contain;
+    }
+
+    /* Scaling into Product Complexity - Figma 337:2615, pt 66.32px */
+    .scaling-section {
+      border-top: 0.921px solid var(--border-subtle);
+      padding-top: 66.32px;
+      display: flex;
+      flex-direction: column;
+      gap: 58.951px;
+      align-items: flex-end;
+      width: 100%;
+    }
+
+    /* Img 1 - Figma 398:2409: image 547.139px + text flex-1 */
+    .img-text-row {
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+    }
+    .img-col {
+      flex: 0 0 547.139px;
+      display: flex;
+      flex-direction: column;
+      gap: 11.053px;
+      align-items: flex-end;
+    }
+    /* Img 2 - Figma 398:2417: w 695.437px, justify-between */
+    .img-row-two {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 695.437px;
+    }
+    .img-col-small {
+      flex: 0 0 269.885px;
+      display: flex;
+      flex-direction: column;
+      gap: 11.053px;
+      align-items: flex-end;
+    }
+    .img-caption {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 12.896px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-primary);
+      text-align: right;
+    }
+    /* Text col - Figma 398:2414/2421: p 9.211px, inner px 29.475px */
+    .text-col {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      padding: 9.211px;
+    }
+    .text-col-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 29.475px;
+      padding-right: 29.475px;
+      min-width: 0;
+    }
+    .text-col p,
+    .text-col-inner p {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 19.343px;
+      font-weight: 400;
+      color: black;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    /* IA box - Figma 432:2965: 547.139×493.389px, inner left 23.35px top 20.76px */
+    .ia-box {
+      background: var(--bg-ia);
+      border: 0.371px solid rgba(0,0,0,0.1);
+      border-radius: var(--radius-ia);
+      overflow: hidden;
+      width: 547.139px;
+      height: 493.389px;
+      padding: 20.76px 0 0 23.35px;
+    }
+    .ia-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18.535px;
+      width: 499.69px;
+      font-family: 'Inter', sans-serif;
+    }
+    .ia-box-title {
+      font-size: 13.34px;
+      font-weight: 500;
+      color: var(--accent-green);
+    }
+    .ia-box-hint {
+      font-size: 11.86px;
+      color: rgba(219,242,212,0.7);
+    }
+    .ia-scroll-area {
+      background: #141414;
+      border-radius: var(--radius-ia);
+      overflow-x: auto;
+      overflow-y: hidden;
+      height: 416.656px;
+      width: 499.69px;
+    }
+    .ia-scroll-area img {
+      height: 100%;
+      width: auto;
+      min-width: 100%;
+      object-fit: cover;
+    }
+
+    .img-rounded {
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+    .img-rounded img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .img-supercharge { width: 239.488px; height: 240.02px; }
+    .img-supercharge img { width: 100%; height: 100%; }
+
+
+    /* Problem Statement section */
+    .trillion-ps {
+      border-top: 0.921px solid var(--border-subtle);
+      border-bottom: 0.921px solid var(--border-subtle);
+      padding: 66px var(--pad-x);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 424px;
+    }
+    .ps-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      width: 811px;
+    }
+    .ps-body {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 19.343px;
+      font-weight: 400;
+      color: black;
+      line-height: 1.5;
+      text-align: center;
+      padding: 0 44px;
+    }
+    .ps-body strong {
+      font-weight: 700;
+    }
+
+    /* UX Solutions section */
+    .ux-solutions {
+      display: flex;
+      flex-direction: column;
+      gap: 66px;
+      align-items: center;
+      width: 100%;
+      padding: 0 var(--pad-x);
+    }
+
+    .ux-header {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 16.58px;
+      font-weight: 600;
+      color: var(--ux-solutions-header);
+      width: 1101px;
+      max-width: 100%;
+    }
+
+    .ux-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-lg);
+      width: 1101px;
+      max-width: 100%;
+    }
+
+    .ux-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--pad-x);
+    }
+    .ux-imgs {
+      flex: 0 0 684px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      align-items: center;
+    }
+    .ux-imgs img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+    .ux-imgs .caption {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 12.896px;
+      font-style: italic;
+      color: var(--text-primary);
+      text-align: center;
+    }
+    .ux-card-tooltip-wrap {
+      position: relative;
+      width: 353px;
+      height: 259px;
+      margin-top: 50px;
+    }
+    .ux-card-tooltip-wrap .ux-card-img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 353px;
+      height: 259px;
+      border: 0.728px solid var(--border-card);
+      border-radius: 11.65px;
+      object-fit: cover;
+    }
+    .ux-card-tooltip-wrap .ux-tooltip-img {
+      position: absolute;
+      left: 80px;
+      top: -4px;
+      width: 255px;
+      height: 146px;
+      object-fit: contain;
+    }
+    .ux-text {
+      flex: 1;
+      padding: 0 29px;
+      font-family: 'Public Sans', sans-serif;
+      font-size: 19.343px;
+      font-weight: 400;
+      color: black;
+      line-height: 1.5;
+    }
+    .ux-text strong {
+      font-weight: 700;
+    }
+
+    .ux-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-md);
+    }
+    .ux-block img {
+      width: 100%;
+      border-radius: var(--radius-card);
+    }
+    .ux-block .caption {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 12.896px;
+      font-style: italic;
+      color: var(--text-primary);
+      text-align: center;
+    }
+    .ux-block .text {
+      padding: 0 29px;
+      font-family: 'Public Sans', sans-serif;
+      font-size: 19.343px;
+      font-weight: 400;
+      color: black;
+      line-height: 1.5;
+    }
+    .ux-block .text strong {
+      font-weight: 700;
+    }
+
+    /* Key flows section */
+    .key-flows {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-lg);
+      align-items: center;
+      width: 100%;
+      padding: 0 var(--pad-x);
+    }
+    .key-flows-inner {
+      width: 1378px;
+      max-width: 100%;
+    }
+    .key-flows-title {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 19.343px;
+      font-weight: 700;
+      color: black;
+      margin-bottom: var(--gap-md);
+    }
+    .flow-items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-lg);
+    }
+    .flow-item {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+    .flow-item img {
+      width: 100%;
+      border: 0.461px solid var(--border-green);
+      border-radius: var(--radius-card);
+    }
+    .flow-item .caption {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 12.896px;
+      font-style: italic;
+      color: var(--text-primary);
+      text-align: center;
+    }
+    .flow-two-col {
+      display: flex;
+      gap: 7px;
+      justify-content: center;
+    }
+    .flow-two-col .flow-item {
+      width: 459px;
+    }
+    .flow-two-col .flow-item img {
+      width: 100%;
+      aspect-ratio: 2530/3028;
+      object-fit: cover;
+    }
+
+    .concept-text {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 19.343px;
+      font-weight: 400;
+      color: black;
+      line-height: 1.5;
+    }
+    .concept-text strong {
+      font-weight: 700;
+    }
+    .concept-text .lead {
+      font-size: 22.107px;
+    }
+
+    /* Mockup section */
+    .mockup-section {
+      background: var(--accent-green);
+      height: 964px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+    .mockup-section img {
+      position: absolute;
+      left: 0;
+      top: -78px;
+      width: 1728px;
+      height: 1296px;
+      object-fit: cover;
+      max-width: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="story-trillion" data-name="Story Trillion">
+    <button class="close-btn" id="closeBtn" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <div class="trillion-page">
+      <div class="trillion-pre">
+        <div class="trillion-story">
+          <div class="title-image-section">
+            <img src="assets/trillion/hero.webp" alt="Trillion DeFi hero" width="1728" height="761" loading="eager" decoding="async">
+          </div>
+          <div class="title-text-section">
+            <div class="badge"><span>Trillion DeFi</span></div>
+            <div class="project-intro">
+              <div class="intro-row">
+                <div class="intro-left">
+                  <h1 class="intro-title">Redefining a trader-centered omni-chain lending & borrowing experience</h1>
+                </div>
+                <div class="intro-meta">
+                  <div class="meta-block">
+                    <p class="meta-label">Design Scope</p>
+                    <p class="meta-value">IA, Lending&Borrowing Key Flows, PNL Dashboard<br>Design System, Hi-fi Hand-off</p>
+                  </div>
+                  <div class="meta-block">
+                    <p class="meta-label">Team</p>
+                    <p class="meta-value">1 UX Lead + 1 Head of Product + 1 Senior UI designer + Engineering Team</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="section-label">// Project Background</p>
+                <p class="section-body">Trillion is a chain-agnostic money market built on Entangle's interoperable infrastructure. It allows users to supply assets for passive yield or borrow against their collateral across multiple blockchain networks through a single, unified interface.
+
+As the protocol expanded from simple supply staking into borrowing and Supercharged (leveraged) strategies, the product needed an interface that could support varying levels of user proficiency and risk appetite while staying clear, intuitive, and consistent within an inherently omnichain environment.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trillion-process">
+          <div class="process-spacer-left"></div>
+          <div class="process-main">
+            <div class="target-users">
+              <p class="section-label">// Target Users</p>
+              <div class="user-block">
+                <div class="user-text">
+                  <p class="user-title">Passive Earn Users<br><span>(Novice to Intermediate)</span></p>
+                  <p class="user-desc">Users who primarily supply assets for yield, prefer low-risk strategies, and need a clear, simplified interface without dealing with liquidation.</p>
+                </div>
+                <div class="user-icon"><img src="assets/trillion/icon-passive.webp" alt="" width="138" height="138" loading="lazy" decoding="async" style="object-fit:contain"></div>
+              </div>
+              <div class="user-block">
+                <div class="user-text">
+                  <p class="user-title">Advanced DeFi Users<br><span>(Borrowing & Leverage Strategies)</span></p>
+                  <p class="user-desc">Experienced users who actively borrow, manage collateral, and utilize leveraged positions (Supercharge). They require detailed metrics, transparent PnL, risk indicators, and pro-level controls.</p>
+                </div>
+                <div class="user-icon-box"><img src="assets/trillion/icon-advanced-1.webp" alt="" class="icon-main" width="63" height="77" loading="lazy" decoding="async"><img src="assets/trillion/icon-advanced-2.webp" alt="" class="icon-badge" width="59" height="36" loading="lazy" decoding="async"></div>
+              </div>
+            </div>
+            <div class="scaling-section">
+              <p class="section-label">// Scaling into Product Complexity</p>
+              <div class="img-text-row">
+                <div class="img-col">
+                  <div class="ia-box">
+                    <div class="ia-box-header">
+                      <span class="ia-box-title">Trillion v2.0 Features</span>
+                      <span class="ia-box-hint">slide to view →</span>
+                    </div>
+                    <div class="ia-scroll-area">
+                      <img src="assets/trillion/ia.webp" alt="Information Architecture" loading="lazy" decoding="async">
+                    </div>
+                  </div>
+                  <p class="img-caption">1. New Information Architecture</p>
+                </div>
+                <div class="text-col">
+                  <div class="text-col-inner">
+                    <p>When I joined Trillion, the protocol had already gone through several design iterations.
+
+My first step was to reorganize the information architecture around user goals and the roadmap of upcoming features. While V0 primarily supported staking-based supply, it was clear that once borrowing and Supercharge (leveraged positions) were enabled in V1, the interface would need to accommodate users with very different risk profiles and levels of proficiency.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="img-row-two">
+                <div class="img-col img-col-small">
+                  <div class="img-rounded img-supercharge"><img src="assets/trillion/supercharge.webp" alt="Supercharge toggle" width="239" height="240" loading="lazy" decoding="async"></div>
+                  <p class="img-caption">2.Toggling Modes</p>
+                </div>
+                <div class="text-col">
+                  <div class="text-col-inner">
+                    <p>To manage this spectrum, I introduced a mode toggle that separates a simplified view for novice users from a pro setup for advanced users: As novice users see only the Earn opportunities staying spot, pro users gain full access to leverage-specific features upon a series of tutorials and knowledge check for liquidation risks.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="process-spacer-right"></div>
+        </div>
+
+        <div class="trillion-ps">
+          <div class="ps-inner">
+            <p class="section-label">// Problem Statement</p>
+            <p class="ps-body">At the time, most DeFi protocols showed supplied positions "as is," mixing yield and price effects in a way that made real profitability hard to understand. The challenge was to separate these signals, reduce cognitive load, and maintain cross-chain clarity while surfacing only the <strong>metrics that genuinely inform decisions</strong>.
+
+In short, the interface needed to give users <strong>clear, contextual, and transparent performance insights</strong> without requiring further calculation or guesswork.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ux-solutions">
+        <p class="ux-header">// UX Solutions</p>
+        <div class="ux-content">
+          <div class="ux-row">
+            <div class="ux-imgs">
+              <img src="assets/trillion/pool-card.webp" alt="Pool cards" width="929" height="458" loading="lazy" decoding="async" style="aspect-ratio:929/458;">
+              <p class="caption">3a. Pool cards for single asset and liquidity supply</p>
+              <div class="ux-card-tooltip-wrap">
+                <img src="assets/trillion/card.webp" alt="Net APR" class="ux-card-img" width="353" height="259" loading="lazy" decoding="async">
+                <img src="assets/trillion/tooltip.webp" alt="Tooltip" class="ux-tooltip-img" width="255" height="146" loading="lazy" decoding="async">
+              </div>
+              <p class="caption">3b. Net APR with clear breakdown on click</p>
+            </div>
+            <div class="ux-text">
+              <p><strong>1. Decision-Ready Pool Cards</strong></p>
+              <p>Each pool card surfaces the metrics that matter most to user decision-making: <strong>net APR, borrowing utilization (as a proxy for withdrawal risk), native TVL, and incentive rewards</strong>.</p>
+              <p>Network information is available when relevant to reinforce Trillion's chain-agnostic experience.</p>
+            </div>
+          </div>
+          <div class="ux-block">
+            <img src="assets/trillion/position-cards.webp" alt="Position cards" width="1875" height="520" loading="lazy" decoding="async" style="aspect-ratio:1875/520;">
+            <p class="caption">4. Position cards with USD/Token-denominated PnL, list/card view</p>
+            <div class="text">
+              <p><strong>2. Performance-Focused Position Cards</strong></p>
+              <p>For positions, the two variables that truly impact performance are <strong>price movement and yield generation</strong>. In many existing protocols, real PnL is difficult to track—whether intentionally or not—which forces users to calculate profitability outside the interface. Improving this <strong>transparency became a central UX priority</strong>.</p>
+              <p>Drawing inspiration from CEX perpetuals, I redesigned position displays to place <strong>net PnL at the highest visual hierarchy</strong>, supported by expanded yield-specific metrics.</p>
+              <p>A toggle allows users to switch between <strong>token-denominated and USD-denominated views</strong>, giving both native and dollar-based users clarity on performance. To support different trading mental models, Trillion provides both <strong>card view (DEX-like) and list view (CEX-like)</strong> layouts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="key-flows">
+        <div class="key-flows-inner">
+          <p class="key-flows-title">3. Key flows & feature UX in Lo-fi</p>
+          <div class="flow-items">
+            <div class="flow-item">
+              <img src="assets/trillion/staking-flow.webp" alt="Staking Flow" width="1400" height="478" loading="lazy" decoding="async" style="aspect-ratio:4096/1398;">
+              <p class="caption">1. Staking Flow: Approve → Stake → Staking → Success + Show Balance (V0)</p>
+            </div>
+            <div class="flow-item">
+              <img src="assets/trillion/manage-flow.webp" alt="Manage Flow" width="1400" height="517" loading="lazy" decoding="async" style="aspect-ratio:4096/1514;">
+              <p class="caption">2. Manage Positions: Supply / Withdraw → Approve → Supplying / Withdrawing → Success + Realized PnL (V0)</p>
+            </div>
+            <div class="flow-two-col">
+              <div class="flow-item">
+                <img src="assets/trillion/add-liquidity.webp" alt="Add Liquidity" loading="lazy" decoding="async">
+                <p class="caption">3. Add Liquidity: 1:1, Zap or with Custom Range (V1)</p>
+              </div>
+              <div class="flow-item">
+                <img src="assets/trillion/wallet.webp" alt="Wallet" loading="lazy" decoding="async">
+                <p class="caption">4. Wallet dropdown: Multi-asset Management (V1)</p>
+              </div>
+            </div>
+          </div>
+          <p class="concept-text" style="margin-top:var(--gap-md);">
+            <span class="lead">4. Conceptual Feature Proposal</span><br><br>
+            For Supercharged positions, I proposed <strong>introducing TP/SL (Take Profit / Stop Loss) automation</strong> - another UX aligned to CEX catered to traders. In leveraged farming, cascading liquidations often occur in a few blocks and it is nearly impossible for users to exit manually, making automated protection especially valuable.<br><br>
+            The concept was well-received by engineering and leadership and added to the product backlog.
+          </p>
+        </div>
+        <div class="mockup-section">
+          <img src="assets/trillion/dashboard.webp" alt="Trillion Dashboard" width="1728" height="1296" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('closeBtn').addEventListener('click', function() {
+      if (window.parent !== window) {
+        window.parent.postMessage({ type: 'closeTrillionOverlay' }, '*');
+      } else {
+        window.history.back();
+      }
+    });
+  </script>
+</body>
+</html>

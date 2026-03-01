@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18.5" height="20" viewBox="0 0 18.5 20" fill="none" aria-hidden="true">
+  <!-- Isometric cube -->
+  <path d="M9.25 2L2 6.5v7L9.25 18l7.25-4.5v-7L9.25 2z" stroke="#82A8A4" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+  <path d="M2 6.5l7.25 4.5 7.25-4.5M9.25 18v-7" stroke="#82A8A4" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

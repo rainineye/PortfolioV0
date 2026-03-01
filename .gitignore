@@ -1,0 +1,21 @@
+# Dependencies & local dev
+node_modules/
+package-lock.json
+package.json
+
+# Editor / IDE
+.cursor/
+.vscode/
+*.log
+
+# MCP / tooling (not needed for deploy)
+mcps/
+scripts/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
