@@ -14,6 +14,9 @@
   --hero-color-width: calc(2 * var(--layout-col-width) + var(--layout-col-gutter));
   --hero-color-height: calc(var(--hero-color-width) * 110 / 225);
   --hero-font-size: calc(var(--hero-color-height) * 0.484);
+  /* Hero vertical spacing (Figma 279-1002): 122px nav→hero at 1728px, scale with viewport */
+  --hero-row-gap: clamp(32px, 7.06vw, 122px);
+  --hero-inner-gap: clamp(32px, 7.41vw, 128px);
   /* Card: image gaps and green/white gap – Figma 310-1536 default 8px */
   --card-gap: 8px;
   --scroll-duration: 50;
@@ -75,7 +78,7 @@ body {
 .hero-inner {
   display: flex;
   flex-direction: column;
-  gap: 128px;
+  gap: var(--hero-inner-gap);
   padding-top: 24px;
   padding-bottom: 64px;
   width: 100%;
@@ -97,7 +100,7 @@ body {
   grid-template-columns: 1fr 12px 1fr;
   grid-template-rows: auto auto;
   gap: 0 0;
-  row-gap: 122px;
+  row-gap: var(--hero-row-gap);
   width: 100%;
 }
 
@@ -108,7 +111,7 @@ body {
   grid-column: 1;
   grid-row: 1;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   height: 80px;
   min-height: 80px;
 }
@@ -132,9 +135,8 @@ body {
   grid-column: 3;
   grid-row: 1;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: 24px;
   min-width: 0;
   height: 80px;
   min-height: 80px;
@@ -142,25 +144,27 @@ body {
 .tabs {
   display: flex;
   gap: 2px;
-
-  align-items: baseline;
+  align-items: center;
 }
 .tab-sep {
   font-family: "PT Serif", serif;
   font-size: 16px;
-  line-height: 1.2;
+  line-height: 1.325;
   color: var(--text-secondary);
+  /* shift comma down to sit on text baseline while row stays center-aligned */
+  padding-top: 4px;
 }
 .tab {
   font-family: "PT Serif", serif;
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.325;
   color: var(--text-secondary);
-  padding-bottom: 5px;
+  padding-bottom: 2px;
   cursor: pointer;
-  display: inline-block;
-  border-bottom: 3px solid transparent;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid transparent;
   box-sizing: border-box;
 }
 .tab:hover {
@@ -846,14 +850,6 @@ body {
     background: rgba(255, 255, 255, 0.9);
   }
 
-  .tabs-row {
-    gap: 32px;
-  }
-
-  .tabs {
-    gap: 8px;
-  }
-
   .contact-fullscreen {
     gap: 26px;
   }
@@ -869,7 +865,7 @@ body {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -3px;
+    bottom: -2px;
     height: 2px;
     width: 0;
     background: #a8efe3;
@@ -881,9 +877,8 @@ body {
     width: 100%;
   }
 
-  /* Desktop hero spacing and typography */
+  /* Desktop hero spacing (still uses --hero-inner-gap, scales with viewport) */
   .hero-inner {
-    gap: 160px;
     padding-bottom: 96px;
   }
 
