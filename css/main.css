@@ -1,7 +1,7 @@
 :root {
-  /* 12-col grid: width 1728, margin 160 L/R, gutter 12 */
+  /* 12-col grid: width 1728, margin scales from 160px at 1728px viewport */
   --layout-width: 1728px;
-  --layout-margin-h: 160px;
+  --layout-margin-h: min(160px, 9.26vw);
   --layout-margin-v: 40px;
   --layout-content-width: 1408px;
   --layout-col-gutter: 12px;
@@ -174,7 +174,7 @@ body {
 .contact-fullscreen {
   display: flex;
   gap: 26px;
-  align-items: baseline;
+  align-items: center;
 }
 .contact-link {
   font-family: "PT Serif", serif;
@@ -187,15 +187,16 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 0;
 }
 .fullscreen-btn__icon {
   display: block;
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
 }
 
 .hero-msg-section {
@@ -829,8 +830,8 @@ body {
 /* xl: large desktop – wider horizontal padding */
 @media (min-width: 1280px) {
   .portfolio-site {
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: var(--layout-margin-h);
+    padding-right: var(--layout-margin-h);
   }
 }
 
