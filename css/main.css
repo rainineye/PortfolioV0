@@ -1,7 +1,7 @@
 :root {
-  /* 12-col grid: width 1728, margin scales from 160px at 1728px viewport */
+  /* 12-col grid: 16" fullscreen proportion – 160px at 1728px, scale with viewport */
   --layout-width: 1728px;
-  --layout-margin-h: min(160px, 9.26vw);
+  --layout-margin-h: clamp(24px, 9.26vw, 160px);
   --layout-margin-v: 40px;
   --layout-content-width: 1408px;
   --layout-col-gutter: 12px;
@@ -79,8 +79,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--hero-inner-gap);
-  padding-top: 24px;
-  padding-bottom: 64px;
+  padding-top: 0;
+  padding-bottom: 56px;
   width: 100%;
   max-width: var(--layout-width);
   margin: 0 auto;
@@ -264,7 +264,7 @@ body {
   width: 100%;
   max-width: var(--layout-content-width);
   margin: 0 auto;
-  height: 307.6px;
+  height: 309px;
   overflow: hidden;
   padding: 0;
 }
@@ -275,7 +275,7 @@ body {
 }
 .project-list {
   display: flex;
-  gap: var(--layout-col-gutter);
+  gap: 14px;
   align-items: center;
   width: max-content;
   padding-bottom: 8px;
@@ -877,9 +877,9 @@ body {
     width: 100%;
   }
 
-  /* Desktop hero spacing (still uses --hero-inner-gap, scales with viewport) */
+  /* 16" fullscreen: slightly more space below cards */
   .hero-inner {
-    padding-bottom: 96px;
+    padding-bottom: 64px;
   }
 
   .hero-message {
