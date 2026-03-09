@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +10,8 @@
       href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:wght@400&family=PT+Serif+Caption:ital@1&family=Public+Sans:ital,wght@0,100;0,200;0,400;0,500;0,600;1,400&family=Roboto+Condensed:wght@400&family=Roboto+Flex:opsz,wght@8..144,400..700&family=Tomorrow:wght@400&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="assets/optimized/project-card-thumb.png" />
+    <link rel="preload" as="image" href="assets/optimized/01-savvy-defi-1.png" />
     <style>
       :root {
         /* 12-col grid: width 1728, margin 160 L/R, gutter 12 */
@@ -188,6 +190,9 @@
         cursor: pointer;
         padding: 4px;
       }
+      .fullscreen-btn.is-fullscreen {
+        opacity: 0.6;
+      }
 
       .hero-msg-section {
         display: flex;
@@ -283,6 +288,11 @@
           transform: translateX(-50%);
         }
       }
+      @media (prefers-reduced-motion: reduce) {
+        .project-list {
+          animation: none;
+        }
+      }
 
       .project-item {
         display: flex;
@@ -334,6 +344,9 @@
         background-size: cover;
         background-position: center;
         filter: grayscale(100%);
+      }
+      .project-card-bg--thumb {
+        background-image: url('assets/optimized/project-card-thumb.png');
       }
       .project-item:hover .project-card-bg {
         filter: none;
@@ -717,6 +730,11 @@
       .project-card-redirect-item:hover {
         color: var(--label-text);
       }
+      .project-card-redirect-item[data-coming-soon] {
+        opacity: 0.4;
+        cursor: default;
+        pointer-events: none;
+      }
       .project-card-redirect-item .redirect-icon {
         flex-shrink: 0;
         display: block;
@@ -803,20 +821,16 @@
     </style>
   </head>
   <body>
-    <div class="portfolio-site" data-node-id="279:810">
+    <div class="portfolio-site">
       <div
         class="hero-section"
-        data-name="Portfolio Site - Hero Section"
-        data-node-id="279:998"
       >
-        <div class="hero-inner" data-node-id="910:3433">
-          <div class="hero-content" data-node-id="279:1003">
-            <div class="hero-top" data-node-id="279:1004">
-              <nav class="nav-row" data-node-id="279:1005">
+        <div class="hero-inner">
+          <div class="hero-content">
+            <div class="hero-top">
+              <nav class="nav-row">
                 <div
                   class="nav-hello"
-                  data-name="Hello"
-                  data-node-id="279:1006"
                 >
                   <p class="hello-text">
                     Hi! It's <span class="name">Mian</span>,
@@ -825,8 +839,8 @@
                     ><span class="role">UX Lead</span>
                   </p>
                 </div>
-                <div class="tabs-row" data-name="Tabs" data-node-id="279:1011">
-                  <div class="tabs" role="tablist" data-node-id="279:1012">
+                <div class="tabs-row">
+                  <div class="tabs" role="tablist">
                     <span
                       class="tab active"
                       role="tab"
@@ -853,8 +867,6 @@
                   </div>
                   <div
                     class="contact-fullscreen"
-                    data-name="Contact / Full Screen"
-                    data-node-id="279:1027"
                   >
                     <a
                       href="mailto:rainineyeweb3@gmail.com"
@@ -874,23 +886,15 @@
               </nav>
               <div
                 class="hero-msg-section"
-                data-name="Hero Msg Section"
-                data-node-id="902:2247"
               >
                 <div
                   class="hero-msg-left"
-                  data-name="Div Box_Hero Msg_left"
-                  data-node-id="902:2246"
                 ></div>
                 <div
                   class="hero-msg-right"
-                  data-name="Div Box_Hero Msg_right"
-                  data-node-id="902:2242"
                 >
                   <div
                     class="hero-message"
-                    data-name="Hero Message"
-                    data-node-id="902:2243"
                   >
                     <span class="curious">Curious soul</span>
                     <span class="over">over</span>
@@ -902,8 +906,6 @@
                   </div>
                   <div
                     class="hero-color-area"
-                    data-name="Hero Color Area"
-                    data-node-id="902:2245"
                   ></div>
                 </div>
               </div>
@@ -912,23 +914,16 @@
 
           <div
             class="project-list-section"
-            data-name="Div Box_Project List"
-            data-node-id="279:1034"
           >
             <div class="project-list-wrapper">
               <div
                 class="project-list"
-                data-name="Project List"
-                data-node-id="279:1035"
               >
                 <div class="project-item" data-project="01">
                   <div class="project-number-badge"><span>01</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label"><span>Auto-paying Lending</span></div>
                     <div class="desc">
@@ -944,10 +939,7 @@
                   <div class="project-number-badge"><span>02</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="labels-wrap">
                       <div class="label"><span>Layer 1</span></div>
@@ -966,10 +958,7 @@
                   <div class="project-number-badge"><span>03</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="labels-wrap">
                       <div class="label"><span>DID</span></div>
@@ -988,10 +977,7 @@
                   <div class="project-number-badge"><span>04</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label"><span>Data Feeds</span></div>
                     <div class="desc">
@@ -1007,10 +993,7 @@
                   <div class="project-number-badge"><span>05</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label"><span>Token Launch</span></div>
                     <div class="desc">
@@ -1030,10 +1013,7 @@
                   <div class="project-number-badge"><span>06</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label">
                       <span>Omni-chain Money Market</span>
@@ -1051,10 +1031,7 @@
                   <div class="project-number-badge"><span>07</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label">
                       <span>POS Staking, Bridge & Explorer</span>
@@ -1072,10 +1049,7 @@
                   <div class="project-number-badge"><span>08</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="labels-wrap">
                       <div class="label"><span>AI Agent</span></div>
@@ -1094,10 +1068,7 @@
                   <div class="project-number-badge"><span>09</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label">
                       <span>On-chain Federated Learning</span>
@@ -1115,10 +1086,7 @@
                   <div class="project-number-badge"><span>10</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label"><span>ERC-7527</span></div>
                     <div class="desc">
@@ -1134,10 +1102,7 @@
                   <div class="project-number-badge"><span>11</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label"><span>UIUX Audit</span></div>
                     <div class="desc">
@@ -1153,10 +1118,7 @@
                   <div class="project-number-badge"><span>01</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label"><span>Auto-paying Lending</span></div>
                     <div class="desc">
@@ -1172,10 +1134,7 @@
                   <div class="project-number-badge"><span>02</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="labels-wrap">
                       <div class="label"><span>Layer 1</span></div>
@@ -1194,10 +1153,7 @@
                   <div class="project-number-badge"><span>03</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="labels-wrap">
                       <div class="label"><span>DID</span></div>
@@ -1216,10 +1172,7 @@
                   <div class="project-number-badge"><span>04</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label"><span>Data Feeds</span></div>
                     <div class="desc">
@@ -1235,10 +1188,7 @@
                   <div class="project-number-badge"><span>05</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label"><span>Token Launch</span></div>
                     <div class="desc">
@@ -1258,10 +1208,7 @@
                   <div class="project-number-badge"><span>06</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label">
                       <span>Omni-chain Money Market</span>
@@ -1279,10 +1226,7 @@
                   <div class="project-number-badge"><span>07</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label">
                       <span>POS Staking, Bridge & Explorer</span>
@@ -1300,10 +1244,7 @@
                   <div class="project-number-badge"><span>08</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="labels-wrap">
                       <div class="label"><span>AI Agent</span></div>
@@ -1322,10 +1263,7 @@
                   <div class="project-number-badge"><span>09</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label">
                       <span>On-chain Federated Learning</span>
@@ -1343,10 +1281,7 @@
                   <div class="project-number-badge"><span>10</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label"><span>ERC-7527</span></div>
                     <div class="desc">
@@ -1362,10 +1297,7 @@
                   <div class="project-number-badge"><span>11</span></div>
                   <div class="project-card-thumb">
                     <div
-                      class="project-card-bg"
-                      style="
-                        background-image: url('assets/optimized/project-card-thumb.png');
-                      "
+                      class="project-card-bg project-card-bg--thumb"
                     ></div>
                     <div class="label"><span>UIUX Audit</span></div>
                     <div class="desc">
@@ -1385,18 +1317,12 @@
 
       <div
         class="chronological-bleed"
-        data-name="Projects In Chronological"
-        data-node-id="907:2348"
       >
         <div
           class="chronological-title"
-          data-name="Chronological Title"
-          data-node-id="279:1036"
         >
           <div
             class="chronological-text"
-            data-name="Text"
-            data-node-id="279:1037"
           >
             <div class="chronological-line"></div>
             <span>In Chronological Order 2022 - 2025</span>
@@ -1405,7 +1331,7 @@
         </div>
         <div class="projects-chronological">
           <section class="project-section" id="project-01">
-            <div class="project-card" data-node-id="310-1536">
+            <div class="project-card">
               <div class="project-card-preview">
                 <div class="thumb-left">
                   <img
@@ -1463,7 +1389,7 @@
                     pegged to synthetic tokens.
                   </div>
                   <div class="project-card-redirect">
-                    <a href="#" class="project-card-redirect-item"
+                    <a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-full-story.svg"
                         alt=""
@@ -1537,7 +1463,7 @@
                     the Cosmos ecosystem.
                   </div>
                   <div class="project-card-redirect">
-                    <a href="#" class="project-card-redirect-item"
+                    <a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-full-story.svg"
                         alt=""
@@ -1609,7 +1535,7 @@
                     NFTs for trading.
                   </div>
                   <div class="project-card-redirect">
-                    <a href="#" class="project-card-redirect-item"
+                    <a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-full-story.svg"
                         alt=""
@@ -1617,7 +1543,7 @@
                         width="21"
                         height="20"
                       /><span class="redirect-text">Full Story</span></a
-                    ><a href="#" class="project-card-redirect-item"
+                    ><a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-product.svg"
                         alt=""
@@ -1688,7 +1614,7 @@
                     off-chain data to multi-chain dApps.
                   </div>
                   <div class="project-card-redirect">
-                    <a href="#" class="project-card-redirect-item"
+                    <a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-full-story.svg"
                         alt=""
@@ -1759,7 +1685,7 @@
                     omni-chain tokens.
                   </div>
                   <div class="project-card-redirect">
-                    <a href="#" class="project-card-redirect-item"
+                    <a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-full-story.svg"
                         alt=""
@@ -1767,7 +1693,7 @@
                         width="21"
                         height="20"
                       /><span class="redirect-text">Full Story</span></a
-                    ><a href="#" class="project-card-redirect-item"
+                    ><a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-product.svg"
                         alt=""
@@ -1913,7 +1839,7 @@
                     network activities.
                   </div>
                   <div class="project-card-redirect">
-                    <a href="#" class="project-card-redirect-item"
+                    <a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-full-story.svg"
                         alt=""
@@ -1985,7 +1911,7 @@
                     agent crew.
                   </div>
                   <div class="project-card-redirect">
-                    <a href="#" class="project-card-redirect-item"
+                    <a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-full-story.svg"
                         alt=""
@@ -2058,7 +1984,7 @@
                     privacy-preserving, self-sovereign AI.
                   </div>
                   <div class="project-card-redirect">
-                    <a href="#" class="project-card-redirect-item"
+                    <a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-full-story.svg"
                         alt=""
@@ -2066,7 +1992,7 @@
                         width="21"
                         height="20"
                       /><span class="redirect-text">Full Story</span></a
-                    ><a href="#" class="project-card-redirect-item"
+                    ><a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-whitepaper.svg"
                         alt=""
@@ -2137,7 +2063,7 @@
                     via Function Oracle AMM.
                   </div>
                   <div class="project-card-redirect">
-                    <a href="#" class="project-card-redirect-item"
+                    <a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-full-story.svg"
                         alt=""
@@ -2208,7 +2134,7 @@
                     pairs.
                   </div>
                   <div class="project-card-redirect">
-                    <a href="#" class="project-card-redirect-item"
+                    <a href="#" class="project-card-redirect-item" data-coming-soon aria-disabled="true"
                       ><img
                         src="assets/library/icon-full-story-lock.svg"
                         alt=""
@@ -2226,10 +2152,8 @@
         <footer
           class="footer"
           id="contact"
-          data-name="Footer"
-          data-node-id="907:3428"
         >
-          <div class="footer-inner" data-node-id="907:3429">
+          <div class="footer-inner">
             <span class="footer-text"
               >Vibe coded w/ Figma MCP & Cursor, All Rights Reserved</span
             >
@@ -2250,6 +2174,26 @@
     </div>
 
     <script>
+      (function () {
+        var btn = document.getElementById("fullscreenBtn");
+        if (btn) {
+          btn.addEventListener("click", function () {
+            if (!document.fullscreenElement) {
+              document.documentElement.requestFullscreen().catch(function () {});
+              btn.classList.add("is-fullscreen");
+            } else {
+              document.exitFullscreen().catch(function () {});
+              btn.classList.remove("is-fullscreen");
+            }
+          });
+          document.addEventListener("fullscreenchange", function () {
+            if (!document.fullscreenElement) {
+              btn.classList.remove("is-fullscreen");
+            }
+          });
+        }
+      })();
+
       (function () {
         var tabs = document.querySelectorAll(".tabs .tab[data-tab]");
         tabs.forEach(function (tab) {
@@ -2308,6 +2252,9 @@
         document.addEventListener("keydown", function (e) {
           if (e.key === "Escape" && overlay.classList.contains("active"))
             closeOverlay();
+        });
+        window.addEventListener("message", function (e) {
+          if (e.data && e.data.type === "closeTrillionOverlay") closeOverlay();
         });
       })();
     </script>

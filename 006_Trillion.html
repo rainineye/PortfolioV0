@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -670,6 +670,13 @@
       font-size: 22.107px;
     }
 
+    .user-icon img { object-fit: contain; }
+    .img-pool-card { aspect-ratio: 929/458; }
+    .img-position-cards { aspect-ratio: 1875/520; }
+    .img-staking-flow { aspect-ratio: 4096/1398; }
+    .img-manage-flow { aspect-ratio: 4096/1514; }
+    .concept-text--spaced { margin-top: var(--gap-md); }
+
     /* Mockup section */
     .mockup-section {
       background: var(--accent-green);
@@ -741,7 +748,7 @@ As the protocol expanded from simple supply staking into borrowing and Superchar
                   <p class="user-title">Passive Earn Users<br><span>(Novice to Intermediate)</span></p>
                   <p class="user-desc">Users who primarily supply assets for yield, prefer low-risk strategies, and need a clear, simplified interface without dealing with liquidation.</p>
                 </div>
-                <div class="user-icon"><img src="assets/trillion/icon-passive.webp" alt="" width="138" height="138" loading="lazy" decoding="async" style="object-fit:contain"></div>
+                <div class="user-icon"><img src="assets/trillion/icon-passive.webp" alt="" width="138" height="138" loading="lazy" decoding="async"></div>
               </div>
               <div class="user-block">
                 <div class="user-text">
@@ -805,7 +812,7 @@ In short, the interface needed to give users <strong>clear, contextual, and tran
         <div class="ux-content">
           <div class="ux-row">
             <div class="ux-imgs">
-              <img src="assets/trillion/pool-card.webp" alt="Pool cards" width="929" height="458" loading="lazy" decoding="async" style="aspect-ratio:929/458;">
+              <img src="assets/trillion/pool-card.webp" alt="Pool cards" width="929" height="458" loading="lazy" decoding="async" class="img-pool-card">
               <p class="caption">3a. Pool cards for single asset and liquidity supply</p>
               <div class="ux-card-tooltip-wrap">
                 <img src="assets/trillion/card.webp" alt="Net APR" class="ux-card-img" width="353" height="259" loading="lazy" decoding="async">
@@ -820,7 +827,7 @@ In short, the interface needed to give users <strong>clear, contextual, and tran
             </div>
           </div>
           <div class="ux-block">
-            <img src="assets/trillion/position-cards.webp" alt="Position cards" width="1875" height="520" loading="lazy" decoding="async" style="aspect-ratio:1875/520;">
+            <img src="assets/trillion/position-cards.webp" alt="Position cards" width="1875" height="520" loading="lazy" decoding="async" class="img-position-cards">
             <p class="caption">4. Position cards with USD/Token-denominated PnL, list/card view</p>
             <div class="text">
               <p><strong>2. Performance-Focused Position Cards</strong></p>
@@ -837,11 +844,11 @@ In short, the interface needed to give users <strong>clear, contextual, and tran
           <p class="key-flows-title">3. Key flows & feature UX in Lo-fi</p>
           <div class="flow-items">
             <div class="flow-item">
-              <img src="assets/trillion/staking-flow.webp" alt="Staking Flow" width="1400" height="478" loading="lazy" decoding="async" style="aspect-ratio:4096/1398;">
+              <img src="assets/trillion/staking-flow.webp" alt="Staking Flow" width="1400" height="478" loading="lazy" decoding="async" class="img-staking-flow">
               <p class="caption">1. Staking Flow: Approve → Stake → Staking → Success + Show Balance (V0)</p>
             </div>
             <div class="flow-item">
-              <img src="assets/trillion/manage-flow.webp" alt="Manage Flow" width="1400" height="517" loading="lazy" decoding="async" style="aspect-ratio:4096/1514;">
+              <img src="assets/trillion/manage-flow.webp" alt="Manage Flow" width="1400" height="517" loading="lazy" decoding="async" class="img-manage-flow">
               <p class="caption">2. Manage Positions: Supply / Withdraw → Approve → Supplying / Withdrawing → Success + Realized PnL (V0)</p>
             </div>
             <div class="flow-two-col">
@@ -855,7 +862,7 @@ In short, the interface needed to give users <strong>clear, contextual, and tran
               </div>
             </div>
           </div>
-          <p class="concept-text" style="margin-top:var(--gap-md);">
+          <p class="concept-text concept-text--spaced">
             <span class="lead">4. Conceptual Feature Proposal</span><br><br>
             For Supercharged positions, I proposed <strong>introducing TP/SL (Take Profit / Stop Loss) automation</strong> - another UX aligned to CEX catered to traders. In leveraged farming, cascading liquidations often occur in a few blocks and it is nearly impossible for users to exit manually, making automated protection especially valuable.<br><br>
             The concept was well-received by engineering and leadership and added to the product backlog.
