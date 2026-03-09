@@ -1,22 +1,44 @@
 // Fullscreen button
 (function () {
   var btn = document.getElementById("fullscreenBtn");
-  if (btn) {
-    btn.addEventListener("click", function () {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(function () {});
-        btn.classList.add("is-fullscreen");
-      } else {
-        document.exitFullscreen().catch(function () {});
-        btn.classList.remove("is-fullscreen");
-      }
-    });
-    document.addEventListener("fullscreenchange", function () {
-      if (!document.fullscreenElement) {
-        btn.classList.remove("is-fullscreen");
-      }
-    });
+  if (!btn) return;
+
+  var icon = btn.querySelector(".fullscreen-btn__icon");
+  var ICONS = {
+    noNormal:  "assets/icons/fullscreen--no--normal.svg",
+    noHover:   "assets/icons/fullscreen--no--hover.svg",
+    yesNormal: "assets/icons/fullscreen--yes--normal.svg",
+    yesHover:  "assets/icons/fullscreen--yes--hover.svg",
+  };
+
+  function isFs() { return !!document.fullscreenElement; }
+
+  function setIcon(fs, hover) {
+    if (!icon) return;
+    icon.src = fs
+      ? (hover ? ICONS.yesHover : ICONS.yesNormal)
+      : (hover ? ICONS.noHover  : ICONS.noNormal);
   }
+
+  function updateAria() {
+    btn.setAttribute("aria-label", isFs() ? "Exit fullscreen" : "Enter fullscreen");
+  }
+
+  btn.addEventListener("mouseenter", function () { setIcon(isFs(), true); });
+  btn.addEventListener("mouseleave", function () { setIcon(isFs(), false); });
+
+  btn.addEventListener("click", function () {
+    if (!isFs()) {
+      document.documentElement.requestFullscreen().catch(function () {});
+    } else {
+      document.exitFullscreen().catch(function () {});
+    }
+  });
+
+  document.addEventListener("fullscreenchange", function () {
+    setIcon(isFs(), false);
+    updateAria();
+  });
 })();
 
 // Tab navigation
