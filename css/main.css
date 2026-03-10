@@ -283,7 +283,7 @@ body {
   grid-row: 2;
   display: grid;
   grid-template-columns: 1fr 12px 1fr;
-  margin-top: clamp(8px, 4vw, 40px);
+  margin-top: clamp(12px, calc(4vw + 4px), 44px);
 }
 .hero-msg-left {
   grid-column: 1;
@@ -349,10 +349,10 @@ body {
   align-items: center;
   width: min(var(--layout-content-fluid), var(--carousel-base-width));
   max-width: 100%;
-  margin-top: clamp(96px, 18vh, 200px);
+  margin-top: clamp(112px, calc(18vh + 16px), 216px);
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 24px;
+  margin-bottom: 72px;
   overflow: hidden;
 }
 .project-list-wrapper {
@@ -561,7 +561,6 @@ body {
   width: calc(100% + 2 * var(--layout-margin-h));
   margin-left: calc(-1 * var(--layout-margin-h));
   margin-right: calc(-1 * var(--layout-margin-h));
-  margin-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -602,7 +601,7 @@ body {
   width: 100%;
   gap: 24px;
   background: var(--surface-brand-subtle);
-  padding: 0 var(--layout-margin-h) 48px;
+  padding: 12px var(--layout-margin-h) 48px;
   align-items: stretch;
 }
 .project-section {
@@ -876,20 +875,71 @@ body {
   width: auto;
   height: 30px;
 }
-/* Trillion: available — full opacity, no grey-out */
-.project-card-redirect-item--trillion {
+/* Full Story: available — full opacity, rolling text on hover */
+.project-card-redirect-item--full-story {
   opacity: 1;
+  color: var(--text-primary-muted);
 }
-/* Trillion hover: glyph turns bright green, text gains contrast */
-.project-card-redirect-item--trillion .redirect-icon__glyph,
-.project-card-redirect-item--trillion .redirect-icon__text {
-  transition: fill 0.2s ease;
+.project-card-redirect-item--full-story .redirect-icon--full-story {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  height: 30px;
+  white-space: nowrap;
 }
-.project-card-redirect-item--trillion:hover .redirect-icon__glyph {
-  fill: var(--text-brand-soft);
+.redirect-icon__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 30px;
+  color: var(--text-tertiary);
+  transition:
+    color 0.28s ease,
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.project-card-redirect-item--trillion:hover .redirect-icon__text {
-  fill: var(--text-primary);
+.redirect-icon__glyph svg {
+  display: block;
+  overflow: visible;
+}
+.redirect-icon__text-window {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  height: 30px;
+  overflow: hidden;
+}
+.redirect-icon__text-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.project-card-redirect-item--full-story .redirect-icon__text-line {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  font-family: "Tomorrow", sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.02em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.project-card-redirect-item--full-story:hover .redirect-icon__text-track,
+.project-card-redirect-item--full-story:focus-visible .redirect-icon__text-track {
+  transform: translateY(-30px);
+}
+.project-card-redirect-item--full-story:hover .redirect-icon__glyph,
+.project-card-redirect-item--full-story:focus-visible .redirect-icon__glyph {
+  color: var(--text-brand-medium);
+  transform: translateY(-1px);
+}
+.project-card-redirect-item--full-story:hover .redirect-icon__text-line,
+.project-card-redirect-item--full-story:focus-visible .redirect-icon__text-line {
+  color: var(--text-primary);
 }
 
 /* Footer */

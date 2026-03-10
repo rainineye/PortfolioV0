@@ -41,6 +41,17 @@
   });
 })();
 
+// Contact link — ensure mailto works (e.g. in embedded previews / restricted browsers)
+(function () {
+  var contactLink = document.querySelector("a.contact-link[href^='mailto:']");
+  if (contactLink) {
+    contactLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.location.href = this.getAttribute("href");
+    });
+  }
+})();
+
 // Tab navigation
 (function () {
   var tabs = document.querySelectorAll(".tabs .tab[data-tab]");
