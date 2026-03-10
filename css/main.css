@@ -174,12 +174,12 @@ body {
   cursor: pointer;
   display: flex;
   align-items: center;
-  border-bottom: 4px solid transparent;
+  border-bottom: 1px solid transparent;
   box-sizing: border-box;
 }
 .tab:hover {
   color: var(--text-primary);
-  border-bottom-color: #88a4a0;
+  border-bottom-color: #b0b8b6;
 }
 .tab.active {
   color: var(--text-primary);
@@ -384,6 +384,22 @@ body {
 .project-item:hover .project-card-bg {
   filter: none;
 }
+
+/* Per-card GIF/video: normal = monochrome, hover = color + paused (Figma 24-438) */
+.project-card-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  z-index: 0;
+  pointer-events: none;
+  filter: grayscale(100%);
+}
+.project-item:hover .project-card-media {
+  filter: none;
+}
 .project-card-thumb::before {
   content: "";
   position: absolute;
@@ -456,33 +472,30 @@ body {
   color: #a8efe3;
 }
 
-/* --- Desc panel (hover only, sits between label and title) --- */
+/* --- Desc panel (hover only, centered on card with own padding – Figma 24-438) --- */
 .project-card-thumb .desc {
   display: none;
   position: absolute;
-  /* top: after label+padding, bottom: above title+padding */
-  top: calc(var(--card-scale) * (14.4 + 24.4 + 24));
-  left: calc(var(--card-scale) * 14.4px);
-  right: calc(var(--card-scale) * 14.4px);
-  bottom: calc(var(--card-scale) * (14.4 + 34.6 + 24));
+  inset: 0;
   z-index: 2;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   background: rgba(28, 34, 31, 0.87);
-  padding: 0 calc(var(--card-scale) * 16px);
-  border-radius: calc(var(--card-scale) * 8px) calc(var(--card-scale) * 8px) calc(var(--card-scale) * 8px) 0;
+  padding: calc(var(--card-scale) * 16px) calc(var(--card-scale) * 16px);
+  border-radius: calc(var(--card-scale) * 8px);
   overflow: hidden;
 }
 .project-item:hover .project-card-thumb .desc {
   display: flex;
-  align-items: center;
 }
 .project-card-thumb .desc span {
   font-family: "Tomorrow", sans-serif;
   font-size: calc(var(--card-scale) * 16px);
   color: #00f8a5;
-  text-align: left;
+  text-align: center;
   line-height: 1.3;
+  padding-top: calc(var(--card-scale) * 12px);
+  padding-bottom: calc(var(--card-scale) * 12px);
 }
 
 /* Chronological projects section */
@@ -893,9 +906,9 @@ body {
     position: absolute;
     left: 0;
     bottom: -2px;
-    height: 4px;
+    height: 1px;
     width: 0;
-    background: #88a4a0;
+    background: #b0b8b6;
     transition: width 0.2s ease;
   }
 
