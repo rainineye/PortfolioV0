@@ -722,7 +722,7 @@ body {
   min-height: 100%;
 }
 .thumb-agent-ball img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
 
