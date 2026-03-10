@@ -22,11 +22,11 @@
   --card-gap: 8px;
   /* Chronological card: green panel = 464/1408 of content width, min 320px */
   --card-green-w: max(320px, calc((100vw - 2 * var(--layout-margin-h)) * (464 / 1408)));
-  /* Project card: scale to always show exactly 5 across content width */
+  /* Project card (autoscroll): fixed Figma 79-713 size; visible peek shrinks at breakpoints */
   --card-item-gap: 14px;
-  --card-item-width: calc((100vw - 2 * var(--layout-margin-h) - 4 * var(--card-item-gap)) / 5);
-  /* Scale factor relative to Figma's 270px baseline */
-  --card-scale: calc(var(--card-item-width) / 270);
+  --card-item-width: 270px;
+  --card-scale: 1;
+  --visible-cards: 5;
   --scroll-duration: 50;
   --hero-color: #a5ffde;
   --section-bg: #d1f7f1;
@@ -87,7 +87,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding-top: 0;
-  padding-bottom: 0;
+  padding-bottom: clamp(32px, 5vw, 80px);
   width: 100%;
   max-width: var(--layout-width);
   margin: 0 auto;
@@ -130,12 +130,12 @@ body {
   line-height: 1.2;
   color: var(--text-secondary);
 }
-.hello-text .name,
-.hello-text .role {
-  font-weight: 700;
+.hello-text .name {
   color: var(--text-primary);
 }
 .hello-text .role {
+  font-weight: 700;
+  color: var(--text-primary);
   letter-spacing: 0.02em;
 }
 .hello-text .slash {
@@ -268,14 +268,19 @@ body {
   flex-shrink: 0;
 }
 
-/* Project carousel */
+/* Project carousel – Figma 79-713; card size fixed, peek shrinks at breakpoints */
 .project-list-section {
+  --card-item-width: 270px;
+  --card-scale: 1;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: 100%;
-  /* height: badge(scaled) + gap(scaled) + card(scaled) */
-  height: calc(var(--card-scale) * 24px + var(--card-scale) * 9px + var(--card-item-width) * (276 / 270));
+  width: calc(var(--visible-cards) * var(--card-item-width) + (var(--visible-cards) - 1) * var(--card-item-gap));
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  /* height: badge + gap + card (276/270 from Figma) */
+  height: calc(24px + 9px + var(--card-item-width) * (276 / 270));
   overflow: hidden;
   padding: 0;
   margin-bottom: 48px;
@@ -501,14 +506,13 @@ body {
   width: 100%;
   background: linear-gradient(to bottom, #ffffff 0%, var(--section-bg) 100%);
 }
+/* Full-bleed row: no max-width/padding so divider lines span full page (Figma 279-1037) */
 .chronological-text {
   display: flex;
   gap: 8px;
   align-items: center;
   width: 100%;
-  max-width: var(--layout-content-width);
-  margin: 0 auto;
-  padding: 0 var(--layout-margin-h);
+  padding: 0;
   color: #88a4a0;
 }
 .chronological-line {
@@ -529,7 +533,7 @@ body {
   width: 100%;
   gap: 24px;
   background: var(--section-bg);
-  padding: 0 var(--layout-margin-h);
+  padding: 0 var(--layout-margin-h) 48px;
   align-items: stretch;
 }
 .project-section {
@@ -759,6 +763,11 @@ body {
   width: auto;
   height: 30px;
 }
+/* Trillion: on hover, only the arrow glyph turns peppermint green; text stays black */
+.project-card-redirect-item--trillion:hover .redirect-icon__glyph {
+  fill: #a8efe3;
+  transition: fill 0.2s ease;
+}
 
 /* Footer */
 .footer {
@@ -824,6 +833,23 @@ body {
     padding: 0 var(--layout-margin-h);
   }
   /* No padding on .chronological-text so divider line spans full page (Figma 279-1037) */
+}
+
+/* Autoscroll: fewer cards visible (smaller peek) as viewport shrinks; card size stays 270px */
+@media (max-width: 1280px) {
+  .project-list-section {
+    --visible-cards: 4;
+  }
+}
+@media (max-width: 1024px) {
+  .project-list-section {
+    --visible-cards: 3;
+  }
+}
+@media (max-width: 768px) {
+  .project-list-section {
+    --visible-cards: 2;
+  }
 }
 
 
@@ -941,7 +967,7 @@ body {
   }
 }
 
-/* Small screens: allow project list to scroll horizontally; cards keep green+white on one row */
+/* Small screens: allow project list to scroll horizontally; card size unchanged (270px), peek = 2 cards */
 @media (max-width: 767px) {
   .project-list {
     animation: none;
@@ -951,12 +977,7 @@ body {
     overflow-x: auto;
   }
 
-  :root {
-    --card-item-width: 220px;
-    --card-scale: calc(220 / 270);
-  }
-
   .project-list-section {
-    height: calc(var(--card-scale) * 24px + var(--card-scale) * 9px + var(--card-item-width) * (276 / 270));
+    height: calc(24px + 9px + var(--card-item-width) * (276 / 270));
   }
 }
