@@ -80,17 +80,17 @@ body {
 /* Hero */
 .hero-section {
   width: 100%;
-  overflow: hidden;
 }
 .hero-inner {
   display: flex;
   flex-direction: column;
-  gap: var(--hero-inner-gap);
+  justify-content: space-between;
   padding-top: 0;
-  padding-bottom: 56px;
+  padding-bottom: 0;
   width: 100%;
   max-width: var(--layout-width);
   margin: 0 auto;
+  min-height: 100dvh;
 }
 .hero-content {
   display: flex;
@@ -273,6 +273,7 @@ body {
   height: calc(var(--card-scale) * 24px + var(--card-scale) * 9px + var(--card-item-width) * (276 / 270));
   overflow: hidden;
   padding: 0;
+  margin-bottom: 48px;
 }
 .project-list-wrapper {
   overflow: hidden;
@@ -861,11 +862,6 @@ body {
 
   .tab.active::after {
     display: none;
-  }
-
-  /* 16" fullscreen: slightly more space below cards */
-  .hero-inner {
-    padding-bottom: 64px;
   }
 
   .hero-message {
