@@ -723,14 +723,14 @@ body {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  opacity: 1;
+  opacity: 0.45;
   transition: opacity 0.2s ease;
 }
 .project-card-redirect-item:hover {
-  opacity: 0.7;
+  opacity: 1;
 }
 .project-card-redirect-item[data-coming-soon] {
-  opacity: 0.4;
+  opacity: 0.25;
   cursor: default;
   pointer-events: none;
 }
@@ -738,7 +738,7 @@ body {
   flex-shrink: 0;
   display: block;
   width: auto;
-  height: 22px;
+  height: 30px;
 }
 
 /* Footer */
