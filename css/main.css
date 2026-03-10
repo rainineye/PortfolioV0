@@ -15,8 +15,8 @@
   --hero-color-height: calc(var(--hero-color-width) * 110 / 225);
   /* Font size: derived from color block height, rounded up to whole px via ceil approximation */
   --hero-font-size: calc(var(--hero-color-height) * 0.54);
-  /* Hero vertical spacing: text aligns to row-2 top of 8 equal rows below nav (80px) */
-  --hero-row-gap: calc((100dvh - 80px) / 8);
+  /* Hero vertical spacing: text aligns to row-2 top of 8 equal rows below nav (64px) */
+  --hero-row-gap: clamp(8px, 1.8vw, 32px);
   --hero-inner-gap: clamp(32px, 7.41vw, 128px);
   /* Card: image gaps and green/white gap – Figma 310-1536 default 8px */
   --card-gap: 8px;
@@ -120,12 +120,12 @@ body {
   grid-row: 1;
   display: flex;
   align-items: center;
-  height: 80px;
-  min-height: 80px;
+  height: 64px;
+  min-height: 64px;
 }
 .hello-text {
   font-family: "PT Sans", sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.2;
   color: var(--text-secondary);
@@ -134,6 +134,9 @@ body {
 .hello-text .role {
   font-weight: 700;
   color: var(--text-primary);
+}
+.hello-text .role {
+  letter-spacing: 0.02em;
 }
 .hello-text .slash {
   color: var(--text-secondary);
@@ -146,8 +149,8 @@ body {
   align-items: center;
   justify-content: space-between;
   min-width: 0;
-  height: 80px;
-  min-height: 80px;
+  height: 64px;
+  min-height: 64px;
 }
 .tabs {
   display: flex;
@@ -156,26 +159,27 @@ body {
 }
 .tab-sep {
   font-family: "PT Serif", serif;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.325;
   color: var(--text-secondary);
-  padding-bottom: 2px;
+  padding-bottom: 1px;
 }
 .tab {
   font-family: "PT Serif", serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.325;
   color: var(--text-secondary);
-  padding-bottom: 2px;
+  padding-bottom: 1px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid transparent;
+  border-bottom: 4px solid transparent;
   box-sizing: border-box;
 }
 .tab:hover {
   color: var(--text-primary);
+  border-bottom-color: #88a4a0;
 }
 .tab.active {
   color: var(--text-primary);
@@ -189,7 +193,7 @@ body {
 }
 .contact-link {
   font-family: "PT Serif", serif;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.2;
   color: var(--text-primary);
   text-decoration: none;
@@ -361,6 +365,17 @@ body {
 .project-card-bg--thumb {
   background-image: url("../assets/optimized/project-card-thumb.png");
 }
+.project-item[data-project="01"] .project-card-bg { background-image: url("../assets/optimized/01-savvy-defi-1.png"); }
+.project-item[data-project="02"] .project-card-bg { background-image: url("../assets/optimized/02-evmos-1.png"); }
+.project-item[data-project="03"] .project-card-bg { background-image: url("../assets/optimized/03-namefi-1.png"); }
+.project-item[data-project="04"] .project-card-bg { background-image: url("../assets/optimized/04-entangle-udf-1.png"); }
+.project-item[data-project="05"] .project-card-bg { background-image: url("../assets/optimized/05-entangle-uts-1.png"); }
+.project-item[data-project="06"] .project-card-bg { background-image: url("../assets/optimized/06-trillion-defi-1.png"); }
+.project-item[data-project="07"] .project-card-bg { background-image: url("../assets/optimized/07-entangle-hub-1.png"); }
+.project-item[data-project="08"] .project-card-bg { background-image: url("../assets/optimized/08-aladdin-1.png"); }
+.project-item[data-project="09"] .project-card-bg { background-image: url("../assets/optimized/09-din-systems-1.png"); }
+.project-item[data-project="10"] .project-card-bg { background-image: url("../assets/optimized/10-agent-ball-1.png"); }
+.project-item[data-project="11"] .project-card-bg { background-image: url("../assets/optimized/11-cede-hub-1.png"); }
 .project-item:hover .project-card-bg {
   filter: none;
 }
@@ -412,14 +427,14 @@ body {
   font-family: "Roboto Condensed", sans-serif;
   font-size: calc(var(--card-scale) * 14px);
   color: #d6d6d6;
-  letter-spacing: calc(var(--card-scale) * 0.056em);
+  letter-spacing: calc(var(--card-scale) * 0.56px);
 }
 .project-item:hover .project-card-thumb .label span {
   color: #c6f2eb;
 }
 .project-card-thumb .labels-wrap {
   display: flex;
-  gap: calc(var(--card-scale) * 6px);
+  gap: calc(var(--card-scale) * 4.8px);
   flex-wrap: wrap;
 }
 
@@ -467,8 +482,11 @@ body {
 
 /* Chronological projects section */
 .chronological-bleed {
+  position: relative;
+  left: 50%;
   width: 100vw;
-  margin-left: calc(50% - 50vw);
+  margin-left: -50vw;
+  margin-right: -50vw;
   margin-top: 48px;
   display: flex;
   flex-direction: column;
@@ -749,7 +767,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px 0;
+  padding: 40px 0 24px;
   flex-shrink: 0;
 }
 .footer-inner {
@@ -758,7 +776,7 @@ body {
   align-items: center;
   justify-content: center;
   font-family: "Public Sans", sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   color: #88a4a0;
   letter-spacing: -0.6px;
   line-height: 1.5;
@@ -805,9 +823,7 @@ body {
   .projects-chronological {
     padding: 0 var(--layout-margin-h);
   }
-  .chronological-text {
-    padding: 0 var(--layout-margin-h);
-  }
+  /* No padding on .chronological-text so divider line spans full page (Figma 279-1037) */
 }
 
 
@@ -851,9 +867,9 @@ body {
     position: absolute;
     left: 0;
     bottom: -2px;
-    height: 2px;
+    height: 4px;
     width: 0;
-    background: #b0b8b6;
+    background: #88a4a0;
     transition: width 0.2s ease;
   }
 
