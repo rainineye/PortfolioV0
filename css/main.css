@@ -681,15 +681,16 @@ body {
   gap: 6px;
   flex-wrap: wrap;
 }
+/* Label & badge sized to Figma 310-1679, 310-1553: smaller than title (24px) for clear hierarchy */
 .project-card-label {
   background: var(--section-bg);
-  border: 0.896px solid var(--label-border);
+  border: 0.75px solid var(--label-border);
   border-radius: 89.626px;
-  padding: 4.2px 9.6px;
+  padding: 3.6px 8px;
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   color: var(--label-text);
-  letter-spacing: 0.56px;
+  letter-spacing: 0.48px;
 }
 .project-card-date-role {
   display: flex;
@@ -718,15 +719,15 @@ body {
 }
 .project-card-badge {
   flex-shrink: 0;
-  width: 24.4px;
-  height: 24.4px;
+  width: 21px;
+  height: 21px;
   background: var(--project-number-bg);
-  border-radius: 2.033px;
+  border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Roboto Flex", sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--project-number-color);
 }
@@ -776,10 +777,20 @@ body {
   width: auto;
   height: 30px;
 }
-/* Trillion: on hover, only the arrow glyph turns peppermint green; text stays black */
-.project-card-redirect-item--trillion:hover .redirect-icon__glyph {
-  fill: #a8efe3;
+/* Trillion: available — full opacity, no grey-out */
+.project-card-redirect-item--trillion {
+  opacity: 1;
+}
+/* Trillion hover: glyph turns bright green, text gains contrast */
+.project-card-redirect-item--trillion .redirect-icon__glyph,
+.project-card-redirect-item--trillion .redirect-icon__text {
   transition: fill 0.2s ease;
+}
+.project-card-redirect-item--trillion:hover .redirect-icon__glyph {
+  fill: #00f8a5;
+}
+.project-card-redirect-item--trillion:hover .redirect-icon__text {
+  fill: #1a1a1a;
 }
 
 /* Footer */
