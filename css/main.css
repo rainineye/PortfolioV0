@@ -19,6 +19,8 @@
   --hero-inner-gap: clamp(32px, 7.41vw, 128px);
   /* Card: image gaps and green/white gap – Figma 310-1536 default 8px */
   --card-gap: 8px;
+  /* Chronological card: green panel = 464/1408 of content width, min 320px */
+  --card-green-w: max(320px, calc((100vw - 2 * var(--layout-margin-h)) * (464 / 1408)));
   /* Project card: 5 cards fill the full content width at any viewport */
   --card-item-gap: 14px;
   --card-item-width: calc((100vw - 2 * var(--layout-margin-h) - 4 * var(--card-item-gap)) / 5);
@@ -506,20 +508,17 @@ body {
   display: flex;
   justify-content: center;
 }
-/* Card grid: green aligns with first image right edge, white extends from gap to end */
+/* Card grid: green panel and first image share column 1, white extends right */
 .project-card {
   position: relative;
   width: 100%;
   max-width: var(--layout-content-width);
   flex-shrink: 0;
   display: grid;
-  grid-template-columns: 1fr var(--card-gap) 1fr var(--card-gap) 1fr;
+  grid-template-columns: var(--card-green-w) var(--card-gap) 1fr var(--card-gap) 1fr;
   grid-template-rows: auto auto;
   border-radius: 16px;
   transition: box-shadow 0.25s ease;
-}
-.project-card:has(.project-card-preview.thumb-left-fixed) {
-  grid-template-columns: 464px var(--card-gap) 1fr var(--card-gap) 1fr;
 }
 .project-card:hover {
   box-shadow:
@@ -617,6 +616,7 @@ body {
   min-width: 0;
   display: flex;
   flex-direction: column;
+  flex: 1;
   overflow: hidden;
 }
 .project-card-title-inner {
@@ -624,13 +624,13 @@ body {
   gap: 24px;
   align-items: flex-start;
   width: 100%;
-  flex: 1 0 0;
+  height: 100%;
   min-height: 0;
 }
 .project-card-title-left {
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  justify-content: space-between;
   flex: 1 0 0;
   min-width: 0;
 }
