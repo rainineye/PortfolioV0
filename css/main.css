@@ -359,45 +359,17 @@ body {
   position: relative;
   overflow: hidden;
 }
+/* Scrolling cards: single GIF from Figma (24-438 Projectcard BKG), normal = monochrome, hover = color */
 .project-card-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   background-size: cover;
   background-position: center;
+  background-image: url("../assets/autoscroll/project-card-bkg.gif");
   filter: grayscale(100%);
 }
-.project-card-bg--thumb {
-  background-image: url("../assets/optimized/project-card-thumb.png");
-}
-.project-item[data-project="01"] .project-card-bg { background-image: url("../assets/optimized/01-savvy-defi-1.png"); }
-.project-item[data-project="02"] .project-card-bg { background-image: url("../assets/optimized/02-evmos-1.png"); }
-.project-item[data-project="03"] .project-card-bg { background-image: url("../assets/optimized/03-namefi-1.png"); }
-.project-item[data-project="04"] .project-card-bg { background-image: url("../assets/optimized/04-entangle-udf-1.png"); }
-.project-item[data-project="05"] .project-card-bg { background-image: url("../assets/optimized/05-entangle-uts-1.png"); }
-.project-item[data-project="06"] .project-card-bg { background-image: url("../assets/optimized/06-trillion-defi-1.png"); }
-.project-item[data-project="07"] .project-card-bg { background-image: url("../assets/optimized/07-entangle-hub-1.png"); }
-.project-item[data-project="08"] .project-card-bg { background-image: url("../assets/optimized/08-aladdin-1.png"); }
-.project-item[data-project="09"] .project-card-bg { background-image: url("../assets/optimized/09-din-systems-1.png"); }
-.project-item[data-project="10"] .project-card-bg { background-image: url("../assets/optimized/10-agent-ball-1.png"); }
-.project-item[data-project="11"] .project-card-bg { background-image: url("../assets/optimized/11-cede-hub-1.png"); }
 .project-item:hover .project-card-bg {
-  filter: none;
-}
-
-/* Per-card GIF/video: normal = monochrome, hover = color + paused (Figma 24-438) */
-.project-card-media {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
-  z-index: 0;
-  pointer-events: none;
-  filter: grayscale(100%);
-}
-.project-item:hover .project-card-media {
   filter: none;
 }
 .project-card-thumb::before {
@@ -787,7 +759,7 @@ body {
   transition: fill 0.2s ease;
 }
 .project-card-redirect-item--trillion:hover .redirect-icon__glyph {
-  fill: #00f8a5;
+  fill: #a5ffde;
 }
 .project-card-redirect-item--trillion:hover .redirect-icon__text {
   fill: #1a1a1a;
