@@ -4,46 +4,96 @@
   --layout-margin-h: clamp(24px, 9.26vw, 160px);
   --layout-margin-v: 40px;
   --layout-content-width: 1408px;
+  --layout-content-fluid: min(
+    var(--layout-content-width),
+    calc(100vw - 2 * var(--layout-margin-h))
+  );
   --layout-col-gutter: 12px;
   --layout-col-width: calc(
     (var(--layout-content-width) - 11 * var(--layout-col-gutter)) / 12
   );
-  /* Hero message = 5 columns (Figma 279-467): 5 column widths only */
-  --hero-msg-width: calc(5 * var(--layout-col-width));
-  /* Hero: block = 1.7 columns wide (slightly smaller than before), proportions kept */
-  --hero-color-width: calc(1.7 * var(--layout-col-width));
+  --layout-col-width-fluid: calc(
+    (var(--layout-content-fluid) - 11 * var(--layout-col-gutter)) / 12
+  );
+  /* Hero message = 5 columns, wraps when exceeds; font from color block height */
+  --hero-msg-width: calc(5 * var(--layout-col-width-fluid) + 4 * var(--layout-col-gutter));
+  --hero-font-size: calc(var(--hero-color-height) * 0.42);
+  /* Hero: green block = 2 columns wide, height from 110:225 ratio; fluid for smooth scaling */
+  --hero-color-width: clamp(80px, calc(2 * var(--layout-col-width-fluid)), 225px);
   --hero-color-height: calc(var(--hero-color-width) * 110 / 225);
-  /* Font size: derived from color block height, rounded up to whole px via ceil approximation */
-  --hero-font-size: calc(var(--hero-color-height) * 0.54);
   /* Hero vertical spacing: text aligns to row-2 top of 8 equal rows below nav (64px) */
   --hero-row-gap: clamp(8px, 1.8vw, 32px);
   --hero-inner-gap: clamp(32px, 7.41vw, 128px);
   /* Card: image gaps and green/white gap – Figma 310-1536 default 8px */
-  --card-gap: 8px;
-  /* Chronological card: green panel = 464/1408 of content width, min 320px */
-  --card-green-w: max(320px, calc((100vw - 2 * var(--layout-margin-h)) * (464 / 1408)));
-  /* Project card (autoscroll): fixed Figma 79-713 size; visible peek shrinks at breakpoints */
-  --card-item-gap: 14px;
-  --card-item-width: 270px;
+  --card-gap: clamp(4px, calc(var(--layout-content-fluid) * (6 / 1408)), 6px);
+  /* Chronological card: first image/title panel width scales down to 320px minimum */
+  --card-green-w: clamp(320px, calc(var(--layout-content-fluid) * (464 / 1408)), 464px);
+/* Project card (autoscroll): fixed Figma 79-713 size; visible peek shrinks at breakpoints */
+  --card-item-gap-base: 12px;
+  --card-item-width-base: 252px;
+  --card-item-gap: calc(var(--card-item-gap-base) * var(--card-scale));
+  --card-item-width: calc(var(--card-item-width-base) * var(--card-scale));
   --card-scale: 1;
   --visible-cards: 5;
   --scroll-duration: 50;
-  --hero-color: #a5ffde;
-  --section-bg: #d1f7f1;
-  --project-title-bg: #e8fffb;
-  --project-number-bg: #d4f2ed;
-  --project-number-color: #56b291;
-  --label-border: #a8efe3;
-  --label-text: #156347;
+  /* Color Scheme */
+  --surface-page-default: #ffffff;
+  --surface-brand-hero-bright: #a5ffde;
+  --surface-brand-subtle: #d1f7f1;
+  --surface-brand-muted: #e8fffb;
+  --surface-brand-badge: #d4f2ed;
+  --surface-neutral-subtle: #f3f3f3;
+  --surface-overlay-card: rgba(59, 62, 62, 0.9);
+  --surface-overlay-card-hover: rgba(47, 58, 56, 0.9);
+  --surface-overlay-panel: rgba(28, 34, 31, 0.87);
+  --surface-overlay-scrim: rgba(0, 0, 0, 0.5);
+  --surface-glass-nav: rgba(255, 255, 255, 0.9);
   --text-primary: #1a1a1a;
   --text-secondary: #818181;
-  --text-muted: #88a4a0;
-  --text-dark: #2f3a38;
-  --label-bkg-normal: rgba(59, 62, 62, 0.9);
-  --label-stroke-normal: #8c9190;
-  --label-text-overlay: #d6d6d6;
-  --card-number-bg: #f3f3f3;
-  --card-title: #f3f3f3;
+  --text-tertiary: #88a4a0;
+  --text-primary-muted: #2f3a38;
+  --text-inverse: #f3f3f3;
+  --text-inverse-muted: #d6d6d6;
+  --text-brand-default: #156347;
+  --text-brand-medium: #56b291;
+  --text-brand-soft: #a8efe3;
+  --text-brand-soft-hover: #c6f2eb;
+  --text-brand-bright: #00f8a5;
+  --border-brand-subtle: #a8efe3;
+  --border-neutral-medium: #8c9190;
+  --border-neutral-strong: #8b9190;
+  --border-brand-hover: #658580;
+  --border-neutral-subtle: #b0b8b6;
+  --focus-ring-default: #1a1a1a;
+  --shadow-color-soft: rgba(0, 0, 0, 0.06);
+  --shadow-color-subtle: rgba(0, 0, 0, 0.04);
+  --overlay-gradient-soft: rgba(0, 0, 0, 0.56);
+  --overlay-gradient-strong: rgba(0, 0, 0, 0.7);
+  --overlay-transparent: rgba(0, 0, 0, 0);
+  --skeleton-surface-base: #97b2ac;
+  --skeleton-surface-highlight: #aec1bc;
+  /* Spacing Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 48px;
+  --space-9: 64px;
+  /* Radius Scale */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 100px;
+  --radius-pill-soft: 89.626px;
+  /* Shadow Scale */
+  --shadow-card-rest:
+    0 4px 24px var(--shadow-color-soft),
+    0 2px 8px var(--shadow-color-subtle);
 }
 * {
   margin: 0;
@@ -62,13 +112,13 @@ html {
 }
 body {
   font-family: "PT Sans", sans-serif;
-  background: white;
+  background: var(--surface-page-default);
   color: var(--text-primary);
   overflow-x: hidden;
 }
 
 .portfolio-site {
-  background: white;
+  background: var(--surface-page-default);
   width: 100%;
   max-width: var(--layout-width);
   margin: 0 auto;
@@ -113,7 +163,10 @@ body {
 }
 
 .nav-row {
-  display: contents;
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 1fr 12px 1fr;
 }
 .nav-hello {
   grid-column: 1;
@@ -134,7 +187,7 @@ body {
   color: var(--text-primary);
 }
 .hello-text .role {
-  font-weight: 700;
+  font-weight: 400;
   color: var(--text-primary);
   letter-spacing: 0.02em;
 }
@@ -165,6 +218,9 @@ body {
   padding-bottom: 1px;
 }
 .tab {
+  appearance: none;
+  background: none;
+  border: 0;
   font-family: "PT Serif", serif;
   font-size: 15px;
   font-weight: 400;
@@ -174,16 +230,24 @@ body {
   cursor: pointer;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
   box-sizing: border-box;
+}
+.tab:focus-visible,
+.contact-link:focus-visible,
+.fullscreen-btn:focus-visible,
+.project-item:focus-visible,
+.project-card-redirect-item:focus-visible {
+  outline: 2px solid var(--focus-ring-default);
+  outline-offset: 3px;
 }
 .tab:hover {
   color: var(--text-primary);
-  border-bottom-color: #b0b8b6;
+  border-bottom-color: var(--border-neutral-subtle);
 }
 .tab.active {
   color: var(--text-primary);
-  border-bottom-color: #a8efe3;
+  border-bottom-color: var(--border-brand-subtle);
 }
 
 .contact-fullscreen {
@@ -215,7 +279,11 @@ body {
 }
 
 .hero-msg-section {
-  display: contents;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 1fr 12px 1fr;
+  margin-top: clamp(8px, 4vw, 40px);
 }
 .hero-msg-left {
   grid-column: 1;
@@ -223,13 +291,14 @@ body {
   min-width: 0;
   min-height: 349px;
 }
+/* Hero text ↔ color block spacing: 20px (Figma 902-2242) */
 .hero-msg-right {
   grid-column: 3;
   grid-row: 2;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 20px;
   padding-bottom: 12px;
   min-width: 0;
 }
@@ -237,7 +306,7 @@ body {
   font-family: "Public Sans", sans-serif;
   font-size: var(--hero-font-size);
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.4;
   letter-spacing: -0.07em;
   color: var(--text-primary);
   padding: 12px 0;
@@ -263,39 +332,44 @@ body {
 .hero-color-area {
   width: var(--hero-color-width);
   height: var(--hero-color-height);
-  background: var(--hero-color);
-  border-radius: 4px;
+  background: var(--surface-brand-hero-bright);
+  border-radius: var(--radius-sm);
   flex-shrink: 0;
 }
 
-/* Project carousel – Figma 79-713; card size fixed, peek shrinks at breakpoints */
+/* Project carousel – Figma 79-713; scale so 5 cards fit in (max screen width − margins) */
 .project-list-section {
-  --card-item-width: 270px;
-  --card-scale: 1;
+  --carousel-base-width: calc(
+    5 * var(--card-item-width-base) + 4 * var(--card-item-gap-base)
+  );
+  --card-scale: min(1, calc(var(--layout-content-fluid) / var(--carousel-base-width)));
+  --visible-cards: 5;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  width: calc(var(--visible-cards) * var(--card-item-width) + (var(--visible-cards) - 1) * var(--card-item-gap));
+  align-items: center;
+  width: min(var(--layout-content-fluid), var(--carousel-base-width));
   max-width: 100%;
+  margin-top: clamp(96px, 18vh, 200px);
   margin-left: auto;
   margin-right: auto;
-  /* height: badge + gap + card (276/270 from Figma) */
-  height: calc(24px + 9px + var(--card-item-width) * (276 / 270));
+  margin-bottom: 24px;
   overflow: hidden;
-  padding: 0;
-  margin-bottom: 48px;
 }
 .project-list-wrapper {
+  width: min(var(--layout-content-fluid), var(--carousel-base-width));
+  height: calc(
+    24px * var(--card-scale) +
+    9px * var(--card-scale) +
+    var(--card-item-width) * (276 / 270)
+  );
   overflow: hidden;
-  width: 100%;
-  height: 100%;
 }
 .project-list {
   display: flex;
   gap: var(--card-item-gap);
   align-items: center;
   width: max-content;
-  padding-bottom: 8px;
+  padding-bottom: var(--space-2);
   animation: project-list-scroll calc(var(--scroll-duration) * 1s) linear
     infinite;
 }
@@ -329,7 +403,7 @@ body {
 .project-number-badge {
   width: calc(var(--card-scale) * 24px);
   height: calc(var(--card-scale) * 24px);
-  background: var(--card-number-bg);
+  background: var(--surface-neutral-subtle);
   border-radius: calc(var(--card-scale) * 4px);
   display: flex;
   align-items: center;
@@ -339,13 +413,13 @@ body {
   font-family: "Roboto Flex", sans-serif;
   font-size: calc(var(--card-scale) * 14px);
   font-weight: 600;
-  color: var(--text-dark);
+  color: var(--text-primary-muted);
 }
 .project-item:hover .project-number-badge {
-  background: #e8fffb;
+  background: var(--surface-brand-muted);
 }
 .project-item:hover .project-number-badge span {
-  color: var(--project-number-color);
+  color: var(--text-brand-medium);
 }
 
 .project-card-thumb {
@@ -355,22 +429,34 @@ body {
   padding: calc(var(--card-scale) * 14.4px);
   display: flex;
   flex-direction: column;
+  gap: calc(var(--card-scale) * 24px);
   justify-content: space-between;
   position: relative;
   overflow: hidden;
 }
-/* Scrolling cards: single GIF from Figma (24-438 Projectcard BKG), normal = monochrome, hover = color */
+/* Scrolling cards: Figma 24-438 GIF (animated, monochrome); hover = 808-3727 static color */
 .project-card-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   background-size: cover;
   background-position: center;
-  background-image: url("../assets/autoscroll/project-card-bkg.gif");
+  background-image: url("../assets/library/project-card-bkg.gif");
   filter: grayscale(100%);
 }
-.project-item:hover .project-card-bg {
-  filter: none;
+.project-card-bg-hover {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../assets/library/project-card-bkg-hover.webp");
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.project-item:hover .project-card-bg-hover {
+  opacity: 1;
 }
 .project-card-thumb::before {
   content: "";
@@ -379,9 +465,9 @@ body {
   z-index: 1;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.56) 14.456%,
-    rgba(0, 0, 0, 0) 46.703%,
-    rgba(0, 0, 0, 0.56) 78.949%
+      var(--overlay-gradient-soft) 14.456%,
+      var(--overlay-transparent) 46.703%,
+      var(--overlay-gradient-soft) 78.949%
   );
   pointer-events: none;
   border-radius: 8px;
@@ -389,9 +475,9 @@ body {
 .project-item:hover .project-card-thumb::before {
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.7) 14.456%,
-    rgba(0, 0, 0, 0) 46.703%,
-    rgba(0, 0, 0, 0.7) 78.949%
+      var(--overlay-gradient-strong) 14.456%,
+      var(--overlay-transparent) 46.703%,
+      var(--overlay-gradient-strong) 78.949%
   );
 }
 /* All card content sits above the bg and gradient overlay */
@@ -404,26 +490,26 @@ body {
 
 /* --- Label --- */
 .project-card-thumb .label {
-  background: rgba(59, 62, 62, 0.9);
-  border: 1px solid #8b9190;
-  border-radius: 100px;
+  background: var(--surface-overlay-card);
+  border: 1px solid var(--border-neutral-strong);
+  border-radius: var(--radius-pill);
   padding: calc(var(--card-scale) * 4.2px) calc(var(--card-scale) * 9.6px);
   display: inline-flex;
   align-items: center;
   width: fit-content;
 }
 .project-item:hover .project-card-thumb .label {
-  background: rgba(47, 58, 56, 0.9);
-  border-color: #658580;
+  background: var(--surface-overlay-card-hover);
+  border-color: var(--border-brand-hover);
 }
 .project-card-thumb .label span {
   font-family: "Roboto Condensed", sans-serif;
   font-size: calc(var(--card-scale) * 14px);
-  color: #d6d6d6;
+  color: var(--text-inverse-muted);
   letter-spacing: calc(var(--card-scale) * 0.56px);
 }
 .project-item:hover .project-card-thumb .label span {
-  color: #c6f2eb;
+  color: var(--text-brand-soft-hover);
 }
 .project-card-thumb .labels-wrap {
   display: flex;
@@ -436,26 +522,26 @@ body {
   font-family: "Roboto Flex", sans-serif;
   font-size: calc(var(--card-scale) * 21px);
   font-weight: 500;
-  color: #f3f3f3;
+  color: var(--text-inverse);
   padding-bottom: calc(var(--card-scale) * 9.6px);
   padding-left: calc(var(--card-scale) * 7.2px);
 }
 .project-item:hover .project-card-thumb .title {
-  color: #a8efe3;
+  color: var(--text-brand-soft);
 }
 
-/* --- Desc panel (hover only, centered on card with own padding – Figma 24-438) --- */
+/* --- Desc panel (hover only, below label, left-align – Figma 808-3727) --- */
 .project-card-thumb .desc {
   display: none;
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  align-items: center;
+  flex: 1 1 0;
+  min-height: 0;
+  flex-direction: column;
   justify-content: center;
-  background: rgba(28, 34, 31, 0.87);
-  padding: calc(var(--card-scale) * 16px) calc(var(--card-scale) * 16px);
-  border-radius: calc(var(--card-scale) * 8px);
-  overflow: hidden;
+  align-items: flex-start;
+  padding: 0 calc(var(--card-scale) * 16px);
+  background: var(--surface-overlay-panel);
+  border-radius: calc(var(--card-scale) * 8px) calc(var(--card-scale) * 8px) calc(var(--card-scale) * 8px) 0;
+  z-index: 2;
 }
 .project-item:hover .project-card-thumb .desc {
   display: flex;
@@ -463,21 +549,19 @@ body {
 .project-card-thumb .desc span {
   font-family: "Tomorrow", sans-serif;
   font-size: calc(var(--card-scale) * 16px);
-  color: #00f8a5;
-  text-align: center;
+  color: var(--text-brand-bright);
+  text-align: left;
   line-height: 1.3;
-  padding-top: calc(var(--card-scale) * 12px);
-  padding-bottom: calc(var(--card-scale) * 12px);
 }
 
 /* Chronological projects section */
 .chronological-bleed {
   position: relative;
-  left: 50%;
-  width: 100vw;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  margin-top: 48px;
+  left: auto;
+  width: calc(100% + 2 * var(--layout-margin-h));
+  margin-left: calc(-1 * var(--layout-margin-h));
+  margin-right: calc(-1 * var(--layout-margin-h));
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -489,7 +573,7 @@ body {
   align-items: center;
   padding: 24px 0 36px;
   width: 100%;
-  background: linear-gradient(to bottom, #ffffff 0%, var(--section-bg) 100%);
+  background: linear-gradient(to bottom, var(--surface-page-default) 0%, var(--surface-brand-subtle) 100%);
 }
 /* Full-bleed row: no max-width/padding so divider lines span full page (Figma 279-1037) */
 .chronological-text {
@@ -498,7 +582,7 @@ body {
   align-items: center;
   width: 100%;
   padding: 0;
-  color: #88a4a0;
+  color: var(--text-tertiary);
 }
 .chronological-line {
   flex: 1;
@@ -517,7 +601,7 @@ body {
   flex-direction: column;
   width: 100%;
   gap: 24px;
-  background: var(--section-bg);
+  background: var(--surface-brand-subtle);
   padding: 0 var(--layout-margin-h) 48px;
   align-items: stretch;
 }
@@ -537,50 +621,82 @@ body {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   transition: box-shadow 0.25s ease;
 }
 .project-card:hover {
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.06),
-    0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-card-rest);
 }
 /* Preview: 3 equal images with 8px gap. Height = 268/1408 of card width.
    Figma: Preview TL=16 TR=16 BR=0 BL=0 */
 .project-card-preview {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: var(--card-green-w) minmax(0, 1fr) minmax(0, 1fr);
   gap: var(--card-gap);
-  background: white;
+  background: var(--surface-page-default);
   flex-shrink: 0;
-  border-radius: 16px 16px 0 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   overflow: hidden;
-  /* Height proportional: 268px at 1408px content width */
-  height: calc((100vw - 2 * var(--layout-margin-h)) * (268 / 1408));
+  aspect-ratio: 1408 / 268;
 }
 .project-card-preview .thumb-left,
 .project-card-preview .thumb-mid,
 .project-card-preview .thumb-right {
-  flex: 1;
   position: relative;
   overflow: hidden;
   min-width: 0;
 }
+.project-card-preview .thumb-left::before,
+.project-card-preview .thumb-mid::before,
+.project-card-preview .thumb-right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      100deg,
+      transparent 0%,
+      color-mix(in srgb, var(--skeleton-surface-highlight) 28%, transparent) 45%,
+      transparent 100%
+    ),
+    var(--skeleton-surface-base);
+  background-size: 220% 100%, 100% 100%;
+  background-position: 200% 0, 0 0;
+  animation: image-skeleton-shimmer 1.8s ease-in-out infinite;
+  transition: opacity 0.28s ease;
+  z-index: 1;
+}
+.project-card-preview .thumb-left.is-loaded::before,
+.project-card-preview .thumb-mid.is-loaded::before,
+.project-card-preview .thumb-right.is-loaded::before {
+  opacity: 0;
+}
 .project-card-preview .thumb-left {
-  background: var(--section-bg);
+  background: var(--surface-brand-subtle);
 }
 .project-card-preview img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
+  opacity: 0;
+  transition:
+    opacity 0.28s ease,
+    transform 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+.project-card-preview .thumb-left.is-loaded img,
+.project-card-preview .thumb-mid.is-loaded img,
+.project-card-preview .thumb-right.is-loaded img {
+  opacity: 1;
 }
 .project-card-preview .thumb-mid img,
 .project-card-preview .thumb-right img {
   filter: grayscale(100%);
   transition:
     filter 0.35s ease,
+    opacity 0.28s ease,
     transform 0.4s ease;
 }
 .project-card:hover .project-card-preview .thumb-mid img,
@@ -589,6 +705,14 @@ body {
 }
 .project-card-preview .thumb-left:hover img {
   transform: scale(1.03);
+}
+@keyframes image-skeleton-shimmer {
+  0% {
+    background-position: 200% 0, 0 0;
+  }
+  100% {
+    background-position: -40% 0, 0 0;
+  }
 }
 .thumb-overflow {
   overflow: hidden;
@@ -614,7 +738,7 @@ body {
   /* 464/1408 of content width, min 320px — matches left image above */
   flex: 0 0 var(--card-green-w);
   width: var(--card-green-w);
-  background: var(--project-title-bg);
+  background: var(--surface-brand-muted);
   padding: 18px 18px 24px;
   min-width: 0;
   display: flex;
@@ -655,13 +779,13 @@ body {
 }
 /* Label & badge sized to Figma 310-1679, 310-1553: smaller than title (24px) for clear hierarchy */
 .project-card-label {
-  background: var(--section-bg);
-  border: 0.75px solid var(--label-border);
-  border-radius: 89.626px;
+  background: var(--surface-brand-subtle);
+  border: 0.75px solid var(--border-brand-subtle);
+  border-radius: var(--radius-pill-soft);
   padding: 3.6px 8px;
   font-family: "Roboto Condensed", sans-serif;
   font-size: 12px;
-  color: var(--label-text);
+  color: var(--text-brand-default);
   letter-spacing: 0.48px;
 }
 .project-card-date-role {
@@ -693,20 +817,20 @@ body {
   flex-shrink: 0;
   width: 21px;
   height: 21px;
-  background: var(--project-number-bg);
-  border-radius: 2px;
+  background: var(--surface-brand-badge);
+  border-radius: var(--radius-xs);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Roboto Flex", sans-serif;
   font-size: 12px;
   font-weight: 600;
-  color: var(--project-number-color);
+  color: var(--text-brand-medium);
 }
 .project-card-desc {
   flex: 1;
   min-width: 0;
-  background: white;
+  background: var(--surface-page-default);
   padding: 24px 16px 24px 28px;
   display: flex;
   flex-direction: column;
@@ -729,6 +853,10 @@ body {
   align-items: center;
 }
 .project-card-redirect-item {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
   display: inline-flex;
   align-items: center;
   text-decoration: none;
@@ -740,8 +868,7 @@ body {
 }
 .project-card-redirect-item[data-coming-soon] {
   opacity: 0.25;
-  cursor: default;
-  pointer-events: none;
+  cursor: not-allowed;
 }
 .project-card-redirect-item .redirect-icon {
   flex-shrink: 0;
@@ -759,16 +886,16 @@ body {
   transition: fill 0.2s ease;
 }
 .project-card-redirect-item--trillion:hover .redirect-icon__glyph {
-  fill: #a5ffde;
+  fill: var(--text-brand-soft);
 }
 .project-card-redirect-item--trillion:hover .redirect-icon__text {
-  fill: #1a1a1a;
+  fill: var(--text-primary);
 }
 
 /* Footer */
 .footer {
   width: 100%;
-  background: var(--section-bg);
+  background: var(--surface-brand-subtle);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -782,7 +909,7 @@ body {
   justify-content: center;
   font-family: "Public Sans", sans-serif;
   font-size: 11px;
-  color: #88a4a0;
+  color: var(--text-tertiary);
   letter-spacing: -0.6px;
   line-height: 1.5;
 }
@@ -797,7 +924,7 @@ body {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--surface-overlay-scrim);
   z-index: 9999;
   display: none;
   align-items: center;
@@ -810,8 +937,8 @@ body {
   width: 90%;
   height: 90%;
   max-width: 1728px;
-  background: white;
-  border-radius: 24px;
+  background: var(--surface-page-default);
+  border-radius: var(--radius-xl);
   overflow: hidden;
 }
 .overlay-frame iframe {
@@ -849,13 +976,6 @@ body {
 }
 
 
-/* At full content width (1408px), cap preview height at exact Figma value */
-@media (min-width: 1728px) {
-  .project-card-preview {
-    height: 268px;
-  }
-}
-
 /* xl: large desktop – wider horizontal padding */
 @media (min-width: 1280px) {
   .portfolio-site {
@@ -872,14 +992,14 @@ body {
     top: 0;
     z-index: 20;
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--surface-glass-nav);
   }
 
   .contact-fullscreen {
     gap: 26px;
   }
 
-  /* Animated underline for tabs on hover */
+  /* Animated underline for tabs on hover: 2px to match Projects active green line */
   .tab {
     position: relative;
   }
@@ -888,11 +1008,15 @@ body {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -2px;
-    height: 1px;
+    bottom: 0;
+    height: 2px;
     width: 0;
-    background: #b0b8b6;
+    background: var(--border-neutral-subtle);
     transition: width 0.2s ease;
+  }
+
+  .tab:hover {
+    border-bottom-color: transparent; /* use ::after only, same 2px as active */
   }
 
   .tab:hover::after {
@@ -939,21 +1063,8 @@ body {
 }
 
 /* Card spacing: 6px between 600px–1024px, 4px below 600px */
-@media (max-width: 1024px) {
-  :root {
-    --card-gap: 6px;
-  }
-}
-
-/* Smallest screens: tighter card gap + smaller, centered hero message */
+/* Smallest screens: tighter card gap + centered hero message */
 @media (max-width: 599px) {
-  :root {
-    --card-gap: 4px;
-    /* Shrink hero color block on mobile; font-size scales from block height */
-    --hero-color-width: 140px;
-    --hero-color-height: calc(var(--hero-color-width) * 110 / 225);
-  }
-
   .hero-msg-right {
     align-items: center;
   }
@@ -974,6 +1085,10 @@ body {
   }
 
   .project-list-section {
-    height: calc(24px + 9px + var(--card-item-width) * (276 / 270));
+    height: calc(
+      24px * var(--card-scale) +
+      9px * var(--card-scale) +
+      var(--card-item-width) * (276 / 270)
+    );
   }
 }

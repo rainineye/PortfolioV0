@@ -48,10 +48,10 @@
     tab.addEventListener("click", function () {
       tabs.forEach(function (t) {
         t.classList.remove("active");
-        t.setAttribute("aria-selected", "false");
+        t.setAttribute("aria-pressed", "false");
       });
       this.classList.add("active");
-      this.setAttribute("aria-selected", "true");
+      this.setAttribute("aria-pressed", "true");
     });
   });
 })();
@@ -60,6 +60,13 @@
 (function () {
   var overlay = document.getElementById("trillionOverlay");
   var frame = document.getElementById("trillionFrame");
+  var projectItems = document.querySelectorAll(".project-item[data-project]");
+
+  projectItems.forEach(function (item) {
+    item.setAttribute("role", "link");
+    item.setAttribute("tabindex", "0");
+    item.setAttribute("aria-label", "Open project " + item.getAttribute("data-project"));
+  });
 
   function openOverlay(url) {
     frame.src = url;
@@ -88,6 +95,16 @@
         }
       }
     }
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+
+    var item = e.target.closest(".project-item");
+    if (!item) return;
+
+    e.preventDefault();
+    item.click();
   });
 
   // Open overlay for Trillion Full Story link
