@@ -10,12 +10,13 @@
   );
   /* Hero message = 5 columns (Figma 279-467): 5 column widths only */
   --hero-msg-width: calc(5 * var(--layout-col-width));
-  /* Hero: block = 2 columns, height from 225:110; font from block height (0xmian.com) */
-  --hero-color-width: calc(2 * var(--layout-col-width) + var(--layout-col-gutter));
+  /* Hero: block = 1.7 columns wide (slightly smaller than before), proportions kept */
+  --hero-color-width: calc(1.7 * var(--layout-col-width));
   --hero-color-height: calc(var(--hero-color-width) * 110 / 225);
-  --hero-font-size: calc(var(--hero-color-height) * 0.484);
-  /* Hero vertical spacing (Figma 279-1002): 122px nav→hero at 1728px, scale with viewport */
-  --hero-row-gap: clamp(32px, 7.06vw, 122px);
+  /* Font size: derived from color block height, rounded up to whole px via ceil approximation */
+  --hero-font-size: calc(var(--hero-color-height) * 0.54);
+  /* Hero vertical spacing: text aligns to row-2 top of 8 equal rows below nav (80px) */
+  --hero-row-gap: calc((100dvh - 80px) / 8);
   --hero-inner-gap: clamp(32px, 7.41vw, 128px);
   /* Card: image gaps and green/white gap – Figma 310-1536 default 8px */
   --card-gap: 8px;
@@ -890,10 +891,6 @@ body {
 
 /* md+: hero right column content can grow */
 @media (min-width: 768px) {
-  :root {
-    --hero-font-size: 36px;
-  }
-
   .hero-msg-right {
     min-height: 349px;
   }
@@ -915,7 +912,7 @@ body {
   :root {
     --card-gap: 4px;
     /* Shrink hero color block on mobile; font-size scales from block height */
-    --hero-color-width: 180px;
+    --hero-color-width: 140px;
     --hero-color-height: calc(var(--hero-color-width) * 110 / 225);
   }
 

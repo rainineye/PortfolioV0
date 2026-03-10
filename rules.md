@@ -108,6 +108,16 @@ A checklist to verify before every code change.
 
 ---
 
+## Figma API
+
+- **Token**: do NOT commit to git (GitHub push protection will block it). Ask user to provide each session or store in a local `.env` file.
+- **File ID**: `DQ4Nlj3OMwkvtmTegz7Mox`
+- **Endpoint**: `https://api.figma.com/v1/files/{fileId}/nodes?ids={node-id}&depth=6`
+- **Header**: `X-Figma-Token: <token>`
+- When fetches fail, refresh the token and update this file.
+
+---
+
 ## General
 
 - [ ] **Never revert working changes** — when fixing one component, read that section of CSS first and edit only what is needed. Do not touch unrelated selectors.
