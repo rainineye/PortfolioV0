@@ -139,60 +139,52 @@
   var target   = document.querySelector(".chronological-bleed");
   if (!carousel || !target) return;
 
-  var OFFSET    = 16;   // px gap from viewport top
-  var SNAP_ZONE = 120;  // px past carousel bottom to arm the snap
-  var snapping  = false;
-  var lastY     = window.scrollY;
-  var lastTime  = Date.now();
-  var rafId     = null;
+  var OFFSET  = 16;    // px gap from viewport top
+  var fired   = false; // only snap once per downward pass
+  var rafId   = null;
 
-  // Custom ease: easeInOutQuart — fast in the middle, gentle at both ends
-  function ease(t) {
-    return t < 0.5
-      ? 8 * t * t * t * t
-      : 1 - Math.pow(-2 * t + 2, 4) / 2;
+  // Spring-bounce easing: fast rush + slight overshoot + settle
+  // c = damping (lower = bouncier), tuned for one clean overshoot
+  function springEase(t) {
+    var c  = 12;
+    var w  = Math.sqrt(1 - (c / 20) * (c / 20)) * 2 * Math.PI;
+    return 1 - Math.exp(-c * t / 2) * Math.cos(w * t);
   }
 
-  function smoothScrollTo(targetY, duration) {
+  function snapTo(targetY) {
     var startY    = window.scrollY;
     var distance  = targetY - startY;
+    var duration  = 480; // ms — fast but not jarring
     var startTime = null;
+
+    if (rafId) cancelAnimationFrame(rafId);
 
     function step(now) {
       if (!startTime) startTime = now;
-      var elapsed  = now - startTime;
-      var progress = Math.min(elapsed / duration, 1);
-      window.scrollTo(0, startY + distance * ease(progress));
-      if (progress < 1) {
+      var t = Math.min((now - startTime) / duration, 1);
+      window.scrollTo(0, startY + distance * springEase(t));
+      if (t < 1) {
         rafId = requestAnimationFrame(step);
-      } else {
-        snapping = false;
       }
     }
-
-    if (rafId) cancelAnimationFrame(rafId);
     rafId = requestAnimationFrame(step);
   }
 
-  window.addEventListener("scroll", function () {
-    var currentY = window.scrollY;
-    var now      = Date.now();
-    var velocity = (currentY - lastY) / Math.max(now - lastTime, 1); // px/ms
-    lastY    = currentY;
-    lastTime = now;
-
-    if (snapping) return;
-
-    var carouselBottom = carousel.getBoundingClientRect().bottom + window.scrollY;
-    var snapTarget     = target.getBoundingClientRect().top + window.scrollY - OFFSET;
-
-    // Only snap when scrolling down, past the arm zone, and not yet at destination
-    if (velocity > 0 && currentY > carouselBottom - SNAP_ZONE && currentY < snapTarget - 1) {
-      snapping = true;
-      // Duration scales with distance for a natural feel (420–800ms)
-      var dist     = Math.abs(snapTarget - currentY);
-      var duration = Math.min(800, Math.max(420, dist * 0.6));
-      smoothScrollTo(snapTarget, duration);
+  // IntersectionObserver fires once when carousel bottom edge leaves viewport upward
+  var observer = new IntersectionObserver(function (entries) {
+    var entry = entries[0];
+    // boundingClientRect.bottom < 0 → bottom of carousel has scrolled above viewport
+    if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
+      if (!fired) {
+        fired = true;
+        var snapTarget = target.getBoundingClientRect().top + window.scrollY - OFFSET;
+        snapTo(snapTarget);
+      }
+    } else {
+      // reset when carousel comes back into view (user scrolled back up)
+      fired = false;
     }
-  }, { passive: true });
+  }, { threshold: 0 });
+
+  observer.observe(carousel);
 })();
