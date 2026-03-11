@@ -133,58 +133,79 @@
   });
 })();
 
-// Scroll snap: jump to chronological section once past the project carousel
+// Two-stage scroll snap
+// Stage 0→1: first scroll down → snap to carousel view (carousel bottom + 48px gap)
+// Stage 1→2: next scroll down → snap to chronological section (top - 16px)
+// Beyond stage 2: free scroll
 (function () {
   var carousel = document.querySelector(".project-list-section");
-  var target   = document.querySelector(".chronological-bleed");
-  if (!carousel || !target) return;
+  var chrono   = document.querySelector(".chronological-bleed");
+  if (!carousel || !chrono) return;
 
-  var OFFSET  = 16;    // px gap from viewport top
-  var fired   = false; // only snap once per downward pass
-  var rafId   = null;
+  var snap1  = null;
+  var snap2  = null;
+  var stage  = 0;   // current snap stage
+  var locked = false; // true while animating or cooling down
+  var raf    = null;
 
-  // Spring-bounce easing: fast rush + slight overshoot + settle
-  // c = damping (lower = bouncier), tuned for one clean overshoot
-  function springEase(t) {
-    var c  = 12;
-    var w  = Math.sqrt(1 - (c / 20) * (c / 20)) * 2 * Math.PI;
-    return 1 - Math.exp(-c * t / 2) * Math.cos(w * t);
+  function compute() {
+    var r = carousel.getBoundingClientRect();
+    snap1 = Math.round(r.top + window.scrollY + r.height - window.innerHeight + 48);
+    snap2 = Math.round(chrono.getBoundingClientRect().top + window.scrollY - 16);
   }
 
-  function snapTo(targetY) {
-    var startY    = window.scrollY;
-    var distance  = targetY - startY;
-    var duration  = 480; // ms — fast but not jarring
-    var startTime = null;
+  window.addEventListener("load", compute);
 
-    if (rafId) cancelAnimationFrame(rafId);
-
-    function step(now) {
-      if (!startTime) startTime = now;
-      var t = Math.min((now - startTime) / duration, 1);
-      window.scrollTo(0, startY + distance * springEase(t));
-      if (t < 1) {
-        rafId = requestAnimationFrame(step);
-      }
-    }
-    rafId = requestAnimationFrame(step);
+  function jumpTo(dest, nextStage) {
+    if (raf) cancelAnimationFrame(raf);
+    locked = true;
+    stage  = nextStage;
+    window.scrollTo(0, dest);
+    setTimeout(function () { locked = false; }, 800);
   }
 
-  // IntersectionObserver fires once when carousel bottom edge leaves viewport upward
-  var observer = new IntersectionObserver(function (entries) {
-    var entry = entries[0];
-    // boundingClientRect.bottom < 0 → bottom of carousel has scrolled above viewport
-    if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
-      if (!fired) {
-        fired = true;
-        var snapTarget = target.getBoundingClientRect().top + window.scrollY - OFFSET;
-        snapTo(snapTarget);
-      }
-    } else {
-      // reset when carousel comes back into view (user scrolled back up)
-      fired = false;
-    }
-  }, { threshold: 0 });
+  function onDown() {
+    if (locked) return;
+    if (snap1 === null) compute();
+    if (stage === 0) jumpTo(snap1, 1);
+    else if (stage === 1) jumpTo(snap2, 2);
+    // stage 2+: free scroll, no snap
+  }
 
-  observer.observe(carousel);
+  // Wheel: take only the very first event of each gesture stream
+  var wheelArmed = true;
+  var armTimer   = null;
+
+  window.addEventListener("wheel", function (e) {
+    if (locked) {
+      // Drain inertia — reset the arm timer but don't act
+      clearTimeout(armTimer);
+      armTimer = setTimeout(function () { wheelArmed = true; }, 300);
+      return;
+    }
+    if (e.deltaY <= 0) {
+      // Upward wheel — always free, just reset arm
+      clearTimeout(armTimer);
+      armTimer = setTimeout(function () { wheelArmed = true; }, 300);
+      return;
+    }
+    if (wheelArmed) {
+      wheelArmed = false;
+      onDown();
+    }
+    clearTimeout(armTimer);
+    armTimer = setTimeout(function () { wheelArmed = true; }, 300);
+  }, { passive: true });
+
+  // Touch
+  var touchStartY = null;
+  window.addEventListener("touchstart", function (e) {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  window.addEventListener("touchend", function (e) {
+    if (touchStartY === null) return;
+    var delta = touchStartY - e.changedTouches[0].clientY;
+    touchStartY = null;
+    if (delta > 30) onDown();
+  }, { passive: true });
 })();
