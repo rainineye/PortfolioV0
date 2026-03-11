@@ -977,19 +977,30 @@ body {
   background: var(--surface-overlay-scrim);
   z-index: 9999;
   display: none;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: stretch;
 }
 .overlay.active {
   display: flex;
 }
+.overlay-close-zone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 96px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1;
+}
 .overlay-frame {
-  width: 90%;
-  height: 90%;
-  max-width: 1728px;
+  width: 100%;
+  height: calc(100dvh - 96px);
+  margin-top: 96px;
   background: var(--surface-page-default);
-  border-radius: var(--radius-xl);
   overflow: hidden;
+  position: relative;
 }
 .overlay-frame iframe {
   width: 100%;

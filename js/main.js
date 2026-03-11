@@ -42,16 +42,6 @@
 })();
 
 // Contact link — ensure mailto works (e.g. in embedded previews / restricted browsers)
-(function () {
-  var contactLink = document.querySelector("a.contact-link[href^='mailto:']");
-  if (contactLink) {
-    contactLink.addEventListener("click", function (e) {
-      e.preventDefault();
-      window.location.href = this.getAttribute("href");
-    });
-  }
-})();
-
 // Tab navigation
 (function () {
   var tabs = document.querySelectorAll(".tabs .tab[data-tab]");
@@ -70,6 +60,7 @@
 // Overlay (Trillion case study)
 (function () {
   var overlay = document.getElementById("trillionOverlay");
+  var closeZone = document.getElementById("trillionOverlayClose");
   var frame = document.getElementById("trillionFrame");
   var projectItems = document.querySelectorAll(".project-item[data-project]");
 
@@ -127,10 +118,9 @@
     }
   });
 
-  // Close on backdrop click
-  overlay.addEventListener("click", function (e) {
-    if (e.target === overlay) closeOverlay();
-  });
+  if (closeZone) {
+    closeZone.addEventListener("click", closeOverlay);
+  }
 
   // Close on Escape key
   document.addEventListener("keydown", function (e) {
