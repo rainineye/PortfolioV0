@@ -132,3 +132,67 @@
     if (e.data && e.data.type === "closeTrillionOverlay") closeOverlay();
   });
 })();
+
+// Scroll snap: jump to chronological section once past the project carousel
+(function () {
+  var carousel = document.querySelector(".project-list-section");
+  var target   = document.querySelector(".chronological-bleed");
+  if (!carousel || !target) return;
+
+  var OFFSET    = 16;   // px gap from viewport top
+  var SNAP_ZONE = 120;  // px past carousel bottom to arm the snap
+  var snapping  = false;
+  var lastY     = window.scrollY;
+  var lastTime  = Date.now();
+  var rafId     = null;
+
+  // Custom ease: easeInOutQuart — fast in the middle, gentle at both ends
+  function ease(t) {
+    return t < 0.5
+      ? 8 * t * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 4) / 2;
+  }
+
+  function smoothScrollTo(targetY, duration) {
+    var startY    = window.scrollY;
+    var distance  = targetY - startY;
+    var startTime = null;
+
+    function step(now) {
+      if (!startTime) startTime = now;
+      var elapsed  = now - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, startY + distance * ease(progress));
+      if (progress < 1) {
+        rafId = requestAnimationFrame(step);
+      } else {
+        snapping = false;
+      }
+    }
+
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(step);
+  }
+
+  window.addEventListener("scroll", function () {
+    var currentY = window.scrollY;
+    var now      = Date.now();
+    var velocity = (currentY - lastY) / Math.max(now - lastTime, 1); // px/ms
+    lastY    = currentY;
+    lastTime = now;
+
+    if (snapping) return;
+
+    var carouselBottom = carousel.getBoundingClientRect().bottom + window.scrollY;
+    var snapTarget     = target.getBoundingClientRect().top + window.scrollY - OFFSET;
+
+    // Only snap when scrolling down, past the arm zone, and not yet at destination
+    if (velocity > 0 && currentY > carouselBottom - SNAP_ZONE && currentY < snapTarget - 1) {
+      snapping = true;
+      // Duration scales with distance for a natural feel (420–800ms)
+      var dist     = Math.abs(snapTarget - currentY);
+      var duration = Math.min(800, Math.max(420, dist * 0.6));
+      smoothScrollTo(snapTarget, duration);
+    }
+  }, { passive: true });
+})();
