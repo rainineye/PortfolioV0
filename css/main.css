@@ -176,6 +176,14 @@ body {
   height: 64px;
   min-height: 64px;
 }
+.nav-avatar {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 4px;
+  flex-shrink: 0;
+  display: block;
+}
 .hello-text {
   font-family: "PT Sans", sans-serif;
   font-size: 15px;
@@ -1100,7 +1108,7 @@ body {
   }
 
   .project-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
 
   /* Footer: keep text + © centered together on desktop */
@@ -1123,33 +1131,322 @@ body {
   }
 }
 
-/* Card spacing: 6px between 600px–1024px, 4px below 600px */
-/* Smallest screens: tighter card gap + centered hero message */
-@media (max-width: 599px) {
+/* Mobile layout – Figma 1083-2251: 20px margin, 6 cols, 8px gutter */
+@media (max-width: 768px) {
+  :root {
+    --layout-margin-h: 20px;
+    --layout-col-gutter: 8px;
+    --layout-content-fluid: calc(100vw - 40px);
+    --layout-col-width-fluid: calc(
+      (var(--layout-content-fluid) - 5 * var(--layout-col-gutter)) / 6
+    );
+    --mobile-card-radius-top: 16px;
+    --mobile-card-radius-bottom: 13.448px;
+    --mobile-card-preview-gap: 6.724px;
+  }
+
+  .portfolio-site {
+    max-width: none;
+    padding: 0 var(--layout-margin-h);
+  }
+
+  .hero-section {
+    padding-top: 20px;
+  }
+
+  .hero-inner {
+    min-height: auto;
+    padding-bottom: 0;
+    gap: clamp(88px, 18vw, 144px);
+  }
+
+  .hero-content {
+    max-width: none;
+  }
+
+  .hero-top {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(88px, 18vw, 144px);
+  }
+
+  .nav-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
+  .nav-hello {
+    min-height: 42px;
+    height: 42px;
+  }
+
+  .nav-avatar {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hello-text {
+    font-size: 14px;
+  }
+
+  .tabs-row {
+    grid-column: 2;
+    height: auto;
+    min-height: 0;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 36px;
+  }
+
+  .tabs {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+  }
+
+  .tab-sep,
+  .fullscreen-btn,
+  .hero-msg-left {
+    display: none;
+  }
+
+  .tab,
+  .contact-link {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .contact-fullscreen {
+    gap: 0;
+  }
+
+  .chronological-text {
+    padding: 0 var(--layout-margin-h);
+  }
+
+  .hero-msg-section {
+    display: block;
+    margin-top: 0;
+  }
+
   .hero-msg-right {
-    align-items: center;
+    align-items: flex-start;
+    gap: 24px;
+    padding-left: 16px;
+    padding-right: 24px;
+    padding-bottom: 0;
   }
 
   .hero-message {
+    max-width: 272px;
+    padding: 0;
+    font-size: 38px;
+    line-height: 1.45;
+    letter-spacing: -2.66px;
+    text-align: left;
+  }
+
+  .hero-color-area {
+    width: min(196.364px, 100%);
+    height: 96px;
+    border-radius: 3.491px;
+  }
+
+  .chronological-title {
+    padding: 24px 0 42px;
+  }
+
+  .chronological-text span {
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: -0.24px;
+    white-space: nowrap;
+  }
+
+  /* Mobile: hide scrolling cards, show mobile project list */
+  .project-list-section {
+    display: none;
+  }
+
+  /* Mobile: show mobile cards, hide desktop chronological cards */
+  .projects-chronological {
+    display: none;
+  }
+
+  .projects-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 var(--layout-margin-h) 24px;
+    background: var(--surface-brand-subtle);
+    align-items: stretch;
+  }
+
+  .footer {
+    padding: 24px 0 32px;
+  }
+
+  .footer-inner {
+    padding-left: var(--layout-margin-h);
+    padding-right: var(--layout-margin-h);
+    font-size: 9px;
+    letter-spacing: -0.45px;
+    gap: 2px;
+    flex-wrap: wrap;
+    justify-content: center;
     text-align: center;
   }
+
+  /* Mobile project card – Figma 1089-2438 */
+  .project-card-mobile {
+    width: 100%;
+    max-width: 390px;
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+
+  .project-card-mobile-preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 390 / 225.259;
+    overflow: hidden;
+    background: var(--surface-page-default);
+    border-radius: var(--mobile-card-radius-top) var(--mobile-card-radius-top) 0 0;
+  }
+
+  .project-card-mobile-preview-track {
+    display: flex;
+    gap: var(--mobile-card-preview-gap);
+    width: calc(300% + 2 * var(--mobile-card-preview-gap));
+    height: 100%;
+  }
+
+  .project-card-mobile-thumb {
+    flex: 0 0 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .project-card-mobile-thumb--first {
+    border-top-left-radius: 13.448px;
+  }
+
+  .project-card-mobile-thumb--last {
+    border-top-right-radius: 13.448px;
+  }
+
+  .project-card-mobile-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .project-card-mobile-badge {
+    width: 21px;
+    height: 21px;
+    background: var(--surface-brand-badge);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-brand-medium);
+  }
+
+  .project-card-mobile-info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 15px;
+    background: var(--surface-brand-muted);
+    border-radius: 0 0 var(--mobile-card-radius-bottom) var(--mobile-card-radius-bottom);
+  }
+
+  .project-card-mobile-info-main {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 27px;
+    min-width: 0;
+  }
+
+  .project-card-mobile-header {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    min-width: 0;
+  }
+
+  .project-card-mobile-labels {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .project-card-mobile-labels .project-card-label {
+    background: var(--surface-brand-subtle);
+    border: 0.75px solid var(--border-brand-subtle);
+    border-radius: var(--radius-pill-soft);
+    padding: 3.53px 8.069px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.48px;
+    color: var(--text-brand-default);
+  }
+
+  .project-card-mobile-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding-left: 3px;
+  }
+
+  .project-card-mobile-date {
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--text-secondary);
+  }
+
+  .project-card-mobile-role {
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--text-primary);
+  }
+
+  .project-card-mobile-name {
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.42px;
+    color: var(--text-primary);
+    padding-left: 3px;
+  }
 }
+
+/* Desktop: hide mobile cards */
+@media (min-width: 769px) {
+  .projects-mobile {
+    display: none;
+  }
+}
+
+/* Card spacing: 6px between 600px–1024px, 4px below 600px */
 
 /* Small screens: allow project list to scroll horizontally; card size unchanged (270px), peek = 2 cards */
 @media (max-width: 767px) {
   .project-list {
     animation: none;
-  }
-
-  .project-list-wrapper {
-    overflow-x: auto;
-  }
-
-  .project-list-section {
-    height: calc(
-      24px * var(--card-scale) +
-      9px * var(--card-scale) +
-      var(--card-item-width) * (276 / 270)
-    );
   }
 }

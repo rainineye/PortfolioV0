@@ -142,6 +142,10 @@
   var chrono   = document.querySelector(".chronological-bleed");
   if (!carousel || !chrono) return;
 
+  function isDesktopSnapEnabled() {
+    return window.innerWidth > 768;
+  }
+
   var snap1  = null;
   var snap2  = null;
   var stage  = 0;   // current snap stage
@@ -165,6 +169,7 @@
   }
 
   function onDown() {
+    if (!isDesktopSnapEnabled()) return;
     if (locked) return;
     if (snap1 === null) compute();
     if (stage === 0) jumpTo(snap1, 1);
@@ -177,6 +182,7 @@
   var armTimer   = null;
 
   window.addEventListener("wheel", function (e) {
+    if (!isDesktopSnapEnabled()) return;
     if (locked) {
       // Drain inertia — reset the arm timer but don't act
       clearTimeout(armTimer);
@@ -204,6 +210,10 @@
   }, { passive: true });
   window.addEventListener("touchend", function (e) {
     if (touchStartY === null) return;
+    if (!isDesktopSnapEnabled()) {
+      touchStartY = null;
+      return;
+    }
     var delta = touchStartY - e.changedTouches[0].clientY;
     touchStartY = null;
     if (delta > 30) onDown();

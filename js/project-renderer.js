@@ -122,8 +122,71 @@
     );
   }
 
+  function getMobileCardData(project) {
+    var overrides = {
+      "01": {
+        labels: ["Auto-pay Lending"],
+      },
+      "02": {
+        labels: ["Layer 1", "IBC Transfer"],
+      },
+    };
+
+    return Object.assign({}, project, overrides[project.id] || {});
+  }
+
+  function renderMobilePreview(project, firstImageLoading) {
+    return (
+      '<div class="project-card-mobile-preview">' +
+      '<div class="project-card-mobile-preview-track">' +
+      project.images
+        .map(function (image, imageIndex) {
+          var edgeClass = "";
+          var loading = imageIndex === 0 ? firstImageLoading : "lazy";
+          if (imageIndex === 0) edgeClass = " project-card-mobile-thumb--first";
+          if (imageIndex === project.images.length - 1) edgeClass = " project-card-mobile-thumb--last";
+
+          return (
+            '<div class="project-card-mobile-thumb' + edgeClass + '">' +
+            '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(project.name) + '" width="390" height="225" loading="' + loading + '" />' +
+            "</div>"
+          );
+        })
+        .join("") +
+      "</div></div>"
+    );
+  }
+
+  function renderMobileCard(project, index) {
+    var mobileProject = getMobileCardData(project);
+    var loading = index === 0 ? "eager" : "lazy";
+    return (
+      '<section class="project-card-mobile" id="project-mobile-' + escapeHtml(project.id) + '">' +
+      renderMobilePreview(mobileProject, loading) +
+      '<div class="project-card-mobile-info">' +
+      '<div class="project-card-mobile-info-main">' +
+      '<div class="project-card-mobile-header">' +
+      '<div class="project-card-mobile-labels">' + renderCardLabels(mobileProject.labels) + "</div>" +
+      '<div class="project-card-mobile-meta">' +
+      '<span class="project-card-mobile-date">' + escapeHtml(mobileProject.date) + "</span>" +
+      '<span class="project-card-mobile-role">' + escapeHtml(mobileProject.role) + "</span>" +
+      "</div>" +
+      "</div>" +
+      '<div class="project-card-mobile-name">' + escapeHtml(mobileProject.name) + "</div>" +
+      "</div>" +
+      '<span class="project-card-mobile-badge">' + escapeHtml(mobileProject.id) + "</span>" +
+      "</div></section>"
+    );
+  }
+
   projectList.innerHTML = projects.concat(projects).map(renderCarouselItem).join("");
   projectsChronological.innerHTML = projects.map(renderProjectSection).join("");
+
+  var projectsMobile = document.getElementById("projectsMobile");
+  if (projectsMobile) {
+    projectsMobile.innerHTML = projects.map(renderMobileCard).join("");
+    projectsMobile.removeAttribute("aria-hidden");
+  }
 
   projectsChronological
     .querySelectorAll(".project-card-preview .thumb-left, .project-card-preview .thumb-mid, .project-card-preview .thumb-right")
