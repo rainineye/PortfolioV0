@@ -442,14 +442,14 @@ body {
   position: relative;
   overflow: hidden;
 }
-/* Scrolling cards: Figma 24-438 GIF (animated, monochrome); hover = 808-3727 static color */
+/* Scrolling cards: per-project first image, proportional scaling */
 .project-card-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
-  background-image: url("../assets/library/project-card-bkg.webp");
+  background-repeat: no-repeat;
   filter: grayscale(100%);
 }
 .project-card-bg-hover {
@@ -1156,8 +1156,8 @@ body {
 
   .hero-inner {
     min-height: auto;
-    padding-bottom: 0;
-    gap: clamp(88px, 18vw, 144px);
+    padding-bottom: 128px;
+    gap: 144px;
   }
 
   .hero-content {
@@ -1167,18 +1167,22 @@ body {
   .hero-top {
     display: flex;
     flex-direction: column;
-    gap: clamp(88px, 18vw, 144px);
+    gap: 144px;
   }
 
   .nav-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 21px;
   }
 
   .nav-hello {
+    width: 100%;
     min-height: 42px;
     height: 42px;
+    justify-content: flex-start;
+    gap: 4px;
   }
 
   .nav-avatar {
@@ -1191,7 +1195,6 @@ body {
   }
 
   .tabs-row {
-    grid-column: 2;
     height: auto;
     min-height: 0;
     flex-direction: column;
@@ -1233,13 +1236,13 @@ body {
   .hero-msg-right {
     align-items: flex-start;
     gap: 24px;
-    padding-left: 16px;
+    padding-left: 36px;
     padding-right: 24px;
     padding-bottom: 0;
   }
 
   .hero-message {
-    max-width: 272px;
+    max-width: 263px;
     padding: 0;
     font-size: 38px;
     line-height: 1.45;
@@ -1311,19 +1314,14 @@ body {
     width: 100%;
     aspect-ratio: 390 / 225.259;
     overflow: hidden;
-    background: var(--surface-page-default);
+    background: var(--surface-brand-subtle);
     border-radius: var(--mobile-card-radius-top) var(--mobile-card-radius-top) 0 0;
-  }
-
-  .project-card-mobile-preview-track {
-    display: flex;
-    gap: var(--mobile-card-preview-gap);
-    width: calc(300% + 2 * var(--mobile-card-preview-gap));
-    height: 100%;
+    padding: 0;
   }
 
   .project-card-mobile-thumb {
-    flex: 0 0 100%;
+    position: relative;
+    width: 100%;
     height: 100%;
     overflow: hidden;
   }
@@ -1340,6 +1338,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
   }
 

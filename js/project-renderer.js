@@ -64,11 +64,14 @@
   }
 
   function renderCarouselItem(project) {
+    var bgStyle = project.images && project.images[0]
+      ? ' style="background-image:url(\'' + escapeHtml(project.images[0]) + '\')"'
+      : "";
     return (
       '<div class="project-item" data-project="' + escapeHtml(project.id) + '">' +
       '<div class="project-number-badge"><span>' + escapeHtml(project.id) + "</span></div>" +
       '<div class="project-card-thumb">' +
-      '<div class="project-card-bg"></div>' +
+      '<div class="project-card-bg"' + bgStyle + '></div>' +
       '<div class="project-card-bg-hover"></div>' +
       renderCarouselLabels(project.labels) +
       '<div class="desc"><span>' + escapeHtml(project.description) + "</span></div>" +
@@ -138,21 +141,8 @@
   function renderMobilePreview(project, firstImageLoading) {
     return (
       '<div class="project-card-mobile-preview">' +
-      '<div class="project-card-mobile-preview-track">' +
-      project.images
-        .map(function (image, imageIndex) {
-          var edgeClass = "";
-          var loading = imageIndex === 0 ? firstImageLoading : "lazy";
-          if (imageIndex === 0) edgeClass = " project-card-mobile-thumb--first";
-          if (imageIndex === project.images.length - 1) edgeClass = " project-card-mobile-thumb--last";
-
-          return (
-            '<div class="project-card-mobile-thumb' + edgeClass + '">' +
-            '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(project.name) + '" width="390" height="225" loading="' + loading + '" />' +
-            "</div>"
-          );
-        })
-        .join("") +
+      '<div class="project-card-mobile-thumb project-card-mobile-thumb--first project-card-mobile-thumb--last">' +
+      '<img src="' + escapeHtml(project.images[0]) + '" alt="' + escapeHtml(project.name) + '" width="390" height="225" loading="' + firstImageLoading + '" />' +
       "</div></div>"
     );
   }
