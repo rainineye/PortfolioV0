@@ -227,7 +227,7 @@
   );
   if (!cards.length) return;
   var projects = window.PORTFOLIO_PROJECTS || [];
-  var DRAG_THRESHOLD = 28;
+  var DRAG_RATIO_THRESHOLD = 0.18;
 
   function getProject(projectId) {
     return projects.find(function (project) {
@@ -241,23 +241,32 @@
     return event.clientX;
   }
 
-  function syncPreview(card, imageIndex) {
+  function setPreviewPosition(card, imageIndex, dragOffset, animate) {
     var preview = card.querySelector("[data-mobile-preview]");
-    var image = card.querySelector("[data-preview-image]");
+    var track = card.querySelector("[data-preview-track]");
     var dots = card.querySelectorAll("[data-preview-dot]");
-    if (!preview || !image) return;
+    if (!preview || !track) return;
 
     var projectId = preview.getAttribute("data-project-id");
     var project = getProject(projectId);
     if (!project || !project.images || !project.images.length) return;
 
     var normalizedIndex = ((imageIndex % project.images.length) + project.images.length) % project.images.length;
-    image.src = project.images[normalizedIndex];
-    image.alt = project.name + " image " + (normalizedIndex + 1);
     preview.setAttribute("data-current-image", String(normalizedIndex));
+    preview.classList.toggle("is-dragging", !animate);
+
+    var width = preview.clientWidth || 1;
+    var offset = typeof dragOffset === "number" ? dragOffset : 0;
+    var translateX = -normalizedIndex * width + offset;
+    track.style.transform = "translate3d(" + translateX + "px, 0, 0)";
+
     dots.forEach(function (dot, dotIndex) {
       dot.classList.toggle("is-active", dotIndex === normalizedIndex);
     });
+  }
+
+  function syncPreview(card, imageIndex) {
+    setPreviewPosition(card, imageIndex, 0, true);
   }
 
   function setExpanded(card, expanded) {
@@ -301,29 +310,65 @@
     var preview = card.querySelector("[data-mobile-preview]");
     if (!preview) return;
 
+    function clearDragState() {
+      preview.classList.remove("is-dragging");
+      preview.removeAttribute("data-drag-start-x");
+      preview.removeAttribute("data-drag-current-x");
+      preview.removeAttribute("data-dragging");
+    }
+
     function handleDragStart(event) {
       if (!card.classList.contains("is-expanded")) return;
-      preview.setAttribute("data-drag-start-x", String(getPointX(event)));
+      var pointX = getPointX(event);
+      preview.setAttribute("data-drag-start-x", String(pointX));
+      preview.setAttribute("data-drag-current-x", String(pointX));
+      preview.setAttribute("data-dragging", "true");
+    }
+
+    function handleDragMove(event) {
+      if (preview.getAttribute("data-dragging") !== "true") return;
+      if (!card.classList.contains("is-expanded")) return;
+
+      var startX = Number(preview.getAttribute("data-drag-start-x"));
+      if (!Number.isFinite(startX)) return;
+
+      var currentX = getPointX(event);
+      preview.setAttribute("data-drag-current-x", String(currentX));
+
+      var deltaX = currentX - startX;
+      var current = Number(preview.getAttribute("data-current-image")) || 0;
+      setPreviewPosition(card, current, deltaX, false);
     }
 
     function handleDragEnd(event) {
       if (!card.classList.contains("is-expanded")) return;
 
       var startX = Number(preview.getAttribute("data-drag-start-x"));
-      preview.removeAttribute("data-drag-start-x");
-      if (!Number.isFinite(startX)) return;
+      if (!Number.isFinite(startX)) {
+        clearDragState();
+        return;
+      }
 
       var endX = getPointX(event);
       var deltaX = endX - startX;
-      if (Math.abs(deltaX) < DRAG_THRESHOLD) return;
-
       var current = Number(preview.getAttribute("data-current-image")) || 0;
+      var width = preview.clientWidth || 1;
+      var shouldSwitch = Math.abs(deltaX) > width * DRAG_RATIO_THRESHOLD;
+
+      clearDragState();
+      if (!shouldSwitch) {
+        syncPreview(card, current);
+        return;
+      }
+
       syncPreview(card, deltaX < 0 ? current + 1 : current - 1);
     }
 
     preview.addEventListener("touchstart", handleDragStart, { passive: true });
+    preview.addEventListener("touchmove", handleDragMove, { passive: true });
     preview.addEventListener("touchend", handleDragEnd, { passive: true });
     preview.addEventListener("mousedown", handleDragStart);
-    preview.addEventListener("mouseup", handleDragEnd);
+    window.addEventListener("mousemove", handleDragMove);
+    window.addEventListener("mouseup", handleDragEnd);
   });
 })();

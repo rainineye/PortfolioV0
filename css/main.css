@@ -1133,6 +1133,11 @@ body {
 
 /* Mobile layout – Figma 1083-2251: 20px margin, 6 cols, 8px gutter */
 @media (max-width: 768px) {
+  html,
+  body {
+    background: var(--surface-brand-subtle);
+  }
+
   :root {
     --layout-margin-h: 20px;
     --layout-col-gutter: 8px;
@@ -1327,19 +1332,23 @@ body {
     touch-action: pan-y;
   }
 
-  .project-card-mobile-thumb {
-    position: relative;
+  .project-card-mobile-preview-track {
+    display: flex;
     width: 100%;
     height: 100%;
+    transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .project-card-mobile-preview.is-dragging .project-card-mobile-preview-track {
+    transition: none;
+  }
+
+  .project-card-mobile-thumb {
+    position: relative;
+    flex: 0 0 100%;
+    height: 100%;
     overflow: hidden;
-  }
-
-  .project-card-mobile-thumb--first {
-    border-top-left-radius: 13.448px;
-  }
-
-  .project-card-mobile-thumb--last {
-    border-top-right-radius: 13.448px;
   }
 
   .project-card-mobile-preview img {
@@ -1404,7 +1413,7 @@ body {
     align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
-    padding: 15px;
+    padding: 16px 16px 20px;
     background: var(--surface-brand-muted);
     border-radius: 0 0 var(--mobile-card-radius-bottom) var(--mobile-card-radius-bottom);
   }

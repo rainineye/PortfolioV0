@@ -183,8 +183,18 @@
   function renderMobilePreview(project, firstImageLoading) {
     return (
       '<div class="project-card-mobile-preview" data-mobile-preview data-project-id="' + escapeHtml(project.id) + '" data-image-count="' + escapeHtml(project.images.length) + '">' +
-      '<div class="project-card-mobile-thumb project-card-mobile-thumb--first project-card-mobile-thumb--last">' +
-      '<img src="' + escapeHtml(project.images[0]) + '" alt="' + escapeHtml(project.name) + '" width="390" height="225" loading="' + firstImageLoading + '" data-preview-image />' +
+      '<div class="project-card-mobile-preview-track" data-preview-track>' +
+      project.images
+        .map(function (image, imageIndex) {
+          var loading = imageIndex === 0 ? firstImageLoading : "lazy";
+          return (
+            '<div class="project-card-mobile-thumb">' +
+            '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(project.name) + ' image ' + escapeHtml(imageIndex + 1) + '" width="390" height="225" loading="' + loading + '" data-preview-image />' +
+            "</div>"
+          );
+        })
+        .join("") +
+      "</div>" +
       (project.images && project.images.length > 1
         ? '<div class="project-card-mobile-preview-dots" aria-hidden="true">' +
           project.images
