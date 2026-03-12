@@ -1324,6 +1324,7 @@ body {
     background: var(--surface-brand-subtle);
     border-radius: var(--mobile-card-radius-top) var(--mobile-card-radius-top) 0 0;
     padding: 0;
+    touch-action: pan-y;
   }
 
   .project-card-mobile-thumb {

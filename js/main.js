@@ -227,11 +227,18 @@
   );
   if (!cards.length) return;
   var projects = window.PORTFOLIO_PROJECTS || [];
+  var DRAG_THRESHOLD = 28;
 
   function getProject(projectId) {
     return projects.find(function (project) {
       return project.id === projectId;
     }) || null;
+  }
+
+  function getPointX(event) {
+    if (event.touches && event.touches.length) return event.touches[0].clientX;
+    if (event.changedTouches && event.changedTouches.length) return event.changedTouches[0].clientX;
+    return event.clientX;
   }
 
   function syncPreview(card, imageIndex) {
@@ -278,8 +285,6 @@
       var preview = e.target.closest("[data-mobile-preview]");
       if (preview && card.classList.contains("is-expanded")) {
         e.preventDefault();
-        var current = Number(preview.getAttribute("data-current-image")) || 0;
-        syncPreview(card, current + 1);
         return;
       }
 
@@ -292,5 +297,33 @@
       e.preventDefault();
       toggleCard(card);
     });
+
+    var preview = card.querySelector("[data-mobile-preview]");
+    if (!preview) return;
+
+    function handleDragStart(event) {
+      if (!card.classList.contains("is-expanded")) return;
+      preview.setAttribute("data-drag-start-x", String(getPointX(event)));
+    }
+
+    function handleDragEnd(event) {
+      if (!card.classList.contains("is-expanded")) return;
+
+      var startX = Number(preview.getAttribute("data-drag-start-x"));
+      preview.removeAttribute("data-drag-start-x");
+      if (!Number.isFinite(startX)) return;
+
+      var endX = getPointX(event);
+      var deltaX = endX - startX;
+      if (Math.abs(deltaX) < DRAG_THRESHOLD) return;
+
+      var current = Number(preview.getAttribute("data-current-image")) || 0;
+      syncPreview(card, deltaX < 0 ? current + 1 : current - 1);
+    }
+
+    preview.addEventListener("touchstart", handleDragStart, { passive: true });
+    preview.addEventListener("touchend", handleDragEnd, { passive: true });
+    preview.addEventListener("mousedown", handleDragStart);
+    preview.addEventListener("mouseup", handleDragEnd);
   });
 })();
