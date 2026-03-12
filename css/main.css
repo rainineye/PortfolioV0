@@ -1135,7 +1135,14 @@ body {
 @media (max-width: 768px) {
   html,
   body {
-    background: var(--surface-brand-subtle);
+    background:
+      linear-gradient(
+        to bottom,
+        var(--surface-page-default) 0,
+        var(--surface-page-default) 120px,
+        var(--surface-brand-subtle) 120px,
+        var(--surface-brand-subtle) 100%
+      );
   }
 
   :root {
