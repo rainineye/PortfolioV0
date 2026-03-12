@@ -1179,8 +1179,8 @@ body {
 
   .nav-hello {
     width: 100%;
-    min-height: 42px;
-    height: 42px;
+    min-height: 24px;
+    height: 24px;
     justify-content: flex-start;
     gap: 4px;
   }
@@ -1236,7 +1236,7 @@ body {
   .hero-msg-right {
     align-items: flex-start;
     gap: 24px;
-    padding-left: 36px;
+    padding-left: 24px;
     padding-right: 24px;
     padding-bottom: 0;
   }
@@ -1307,6 +1307,12 @@ body {
     max-width: 390px;
     margin: 0 auto;
     flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .project-card-mobile:focus-visible {
+    outline: 2px solid var(--focus-ring-default);
+    outline-offset: 4px;
   }
 
   .project-card-mobile-preview {
@@ -1375,11 +1381,81 @@ body {
     min-width: 0;
   }
 
+  .project-card-mobile-header-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
   .project-card-mobile-header {
     display: flex;
     flex-direction: column;
     gap: 13px;
     min-width: 0;
+  }
+
+  .project-card-mobile.is-expanded .project-card-mobile-header-group {
+    gap: 30px;
+  }
+
+  .project-card-mobile-detail {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px 16px;
+    background: var(--surface-page-default);
+    border-radius: 8px;
+  }
+
+  .project-card-mobile.is-expanded .project-card-mobile-detail {
+    display: flex;
+  }
+
+  .project-card-mobile-detail-copy {
+    font-family: "Public Sans", sans-serif;
+    font-size: 21px;
+    line-height: 1.45;
+    letter-spacing: -1.47px;
+    color: var(--text-primary);
+  }
+
+  .project-card-mobile-detail-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+  }
+
+  .project-card-mobile-detail-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--text-primary-muted);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .project-card-mobile-detail-link--disabled {
+    opacity: 0.55;
+    cursor: default;
+  }
+
+  .project-card-mobile-detail-link__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    line-height: 0;
+  }
+
+  .project-card-mobile-detail-link__text {
+    font-family: "Tomorrow", sans-serif;
+    font-size: 15.13px;
+    line-height: 1.45;
+    letter-spacing: -0.6052px;
+    color: var(--text-primary-muted);
   }
 
   .project-card-mobile-labels {

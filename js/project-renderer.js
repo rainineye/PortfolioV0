@@ -138,6 +138,48 @@
     return Object.assign({}, project, overrides[project.id] || {});
   }
 
+  function getMobileRedirectLabel(redirect) {
+    if (redirect.type === "overlay") return "Full Story";
+    if (redirect.alt) return redirect.alt.replace(/\s*\([^)]*\)\s*/g, "");
+    return "Learn More";
+  }
+
+  function renderMobileRedirect(redirect) {
+    var label = getMobileRedirectLabel(redirect);
+
+    if (redirect.type === "overlay" && redirect.variant === "trillion-full-story") {
+      return (
+        '<a href="#" class="project-card-mobile-detail-link" data-overlay="trillion">' +
+        '<span class="project-card-mobile-detail-link__icon" aria-hidden="true">' +
+        '<svg width="19" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<path d="M13.5635 2.32178L21.2861 8.32861L21.4521 8.45752V9.73486L21.2861 9.86377L13.5635 15.8706L13.3506 16.0366L12.251 15.4868L12.0137 15.3677V12.519C9.39672 12.53 4.30876 13.9088 2.11523 19.5493L2.08301 19.6333L2.01953 19.6968C1.63592 20.0801 1.10554 20.0404 0.751953 19.8989C0.566628 19.8247 0.390337 19.7108 0.254883 19.5649C0.122701 19.4226 6.83608e-05 19.2155 0 18.9644C2.4863e-05 13.6913 2.02203 10.3451 4.61719 8.32861C7.02626 6.45689 9.89583 5.75529 12.0137 5.67236V2.90869L12.2275 2.78467L13.0859 2.28955L13.3359 2.14502L13.5635 2.32178Z" fill="currentColor"/>' +
+        "</svg></span>" +
+        '<span class="project-card-mobile-detail-link__text">' + escapeHtml(label) + "</span>" +
+        "</a>"
+      );
+    }
+
+    return (
+      '<button type="button" class="project-card-mobile-detail-link project-card-mobile-detail-link--disabled" disabled aria-disabled="true">' +
+      '<span class="project-card-mobile-detail-link__icon" aria-hidden="true">' +
+      '<svg width="19" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M13.5635 2.32178L21.2861 8.32861L21.4521 8.45752V9.73486L21.2861 9.86377L13.5635 15.8706L13.3506 16.0366L12.251 15.4868L12.0137 15.3677V12.519C9.39672 12.53 4.30876 13.9088 2.11523 19.5493L2.08301 19.6333L2.01953 19.6968C1.63592 20.0801 1.10554 20.0404 0.751953 19.8989C0.566628 19.8247 0.390337 19.7108 0.254883 19.5649C0.122701 19.4226 6.83608e-05 19.2155 0 18.9644C2.4863e-05 13.6913 2.02203 10.3451 4.61719 8.32861C7.02626 6.45689 9.89583 5.75529 12.0137 5.67236V2.90869L12.2275 2.78467L13.0859 2.28955L13.3359 2.14502L13.5635 2.32178Z" fill="currentColor"/>' +
+      "</svg></span>" +
+      '<span class="project-card-mobile-detail-link__text">' + escapeHtml(label) + "</span>" +
+      "</button>"
+    );
+  }
+
+  function renderMobileDetail(project) {
+    return (
+      '<div class="project-card-mobile-detail">' +
+      '<div class="project-card-mobile-detail-copy">' + escapeHtml(project.description) + "</div>" +
+      '<div class="project-card-mobile-detail-links">' +
+      project.redirects.map(renderMobileRedirect).join("") +
+      "</div></div>"
+    );
+  }
+
   function renderMobilePreview(project, firstImageLoading) {
     return (
       '<div class="project-card-mobile-preview">' +
@@ -151,16 +193,19 @@
     var mobileProject = getMobileCardData(project);
     var loading = index === 0 ? "eager" : "lazy";
     return (
-      '<section class="project-card-mobile" id="project-mobile-' + escapeHtml(project.id) + '">' +
+      '<section class="project-card-mobile" id="project-mobile-' + escapeHtml(project.id) + '" data-mobile-card tabindex="0" role="button" aria-expanded="false">' +
       renderMobilePreview(mobileProject, loading) +
       '<div class="project-card-mobile-info">' +
       '<div class="project-card-mobile-info-main">' +
+      '<div class="project-card-mobile-header-group">' +
       '<div class="project-card-mobile-header">' +
       '<div class="project-card-mobile-labels">' + renderCardLabels(mobileProject.labels) + "</div>" +
       '<div class="project-card-mobile-meta">' +
       '<span class="project-card-mobile-date">' + escapeHtml(mobileProject.date) + "</span>" +
       '<span class="project-card-mobile-role">' + escapeHtml(mobileProject.role) + "</span>" +
       "</div>" +
+      "</div>" +
+      renderMobileDetail(mobileProject) +
       "</div>" +
       '<div class="project-card-mobile-name">' + escapeHtml(mobileProject.name) + "</div>" +
       "</div>" +

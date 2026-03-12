@@ -219,3 +219,37 @@
     if (delta > 30) onDown();
   }, { passive: true });
 })();
+
+// Mobile project cards: tap to expand/collapse the detail variant
+(function () {
+  var cards = Array.prototype.slice.call(
+    document.querySelectorAll(".project-card-mobile[data-mobile-card]")
+  );
+  if (!cards.length) return;
+
+  function setExpanded(card, expanded) {
+    card.classList.toggle("is-expanded", expanded);
+    card.setAttribute("aria-expanded", expanded ? "true" : "false");
+  }
+
+  function toggleCard(card) {
+    var nextExpanded = !card.classList.contains("is-expanded");
+    cards.forEach(function (otherCard) {
+      setExpanded(otherCard, otherCard === card ? nextExpanded : false);
+    });
+  }
+
+  cards.forEach(function (card) {
+    card.addEventListener("click", function (e) {
+      if (e.target.closest(".project-card-mobile-detail-link")) return;
+      toggleCard(card);
+    });
+
+    card.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      if (e.target.closest(".project-card-mobile-detail-link")) return;
+      e.preventDefault();
+      toggleCard(card);
+    });
+  });
+})();
