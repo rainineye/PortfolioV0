@@ -1349,29 +1349,38 @@ body {
     display: block;
   }
 
-  .project-card-mobile-swipe-hint {
+  .project-card-mobile-preview-dots {
     position: absolute;
     right: 10px;
     top: 10px;
     display: none;
-    padding: 4px 9px;
-    border-radius: 999px;
-    background: rgba(33, 69, 60, 0.72);
-    font-family: "Public Sans", sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: 0.02em;
-    color: rgba(231, 241, 238, 0.9);
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(130, 198, 177, 0.18);
-    box-shadow: 0 1px 8px rgba(10, 18, 16, 0.18);
-  }
-
-  .project-card-mobile.is-expanded .project-card-mobile-swipe-hint {
-    display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 4px;
+    padding: 5px 6px;
+    border-radius: 999px;
+    background: rgba(20, 34, 31, 0.18);
+    backdrop-filter: blur(6px);
+  }
+
+  .project-card-mobile.is-expanded .project-card-mobile-preview-dots {
+    display: inline-flex;
+  }
+
+  .project-card-mobile-preview-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(232, 255, 251, 0.42);
+    transition:
+      background-color 0.18s ease,
+      transform 0.18s ease,
+      opacity 0.18s ease;
+  }
+
+  .project-card-mobile-preview-dot.is-active {
+    background: rgba(232, 255, 251, 0.9);
+    transform: scale(1.05);
   }
 
   .project-card-mobile-badge {

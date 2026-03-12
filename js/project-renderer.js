@@ -186,7 +186,14 @@
       '<div class="project-card-mobile-thumb project-card-mobile-thumb--first project-card-mobile-thumb--last">' +
       '<img src="' + escapeHtml(project.images[0]) + '" alt="' + escapeHtml(project.name) + '" width="390" height="225" loading="' + firstImageLoading + '" data-preview-image />' +
       (project.images && project.images.length > 1
-        ? '<span class="project-card-mobile-swipe-hint" aria-hidden="true">Swipe</span>'
+        ? '<div class="project-card-mobile-preview-dots" aria-hidden="true">' +
+          project.images
+            .map(function (_image, imageIndex) {
+              var activeClass = imageIndex === 0 ? " is-active" : "";
+              return '<span class="project-card-mobile-preview-dot' + activeClass + '" data-preview-dot data-image-index="' + escapeHtml(imageIndex) + '"></span>';
+            })
+            .join("") +
+          "</div>"
         : "") +
       "</div></div>"
     );

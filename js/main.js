@@ -237,6 +237,7 @@
   function syncPreview(card, imageIndex) {
     var preview = card.querySelector("[data-mobile-preview]");
     var image = card.querySelector("[data-preview-image]");
+    var dots = card.querySelectorAll("[data-preview-dot]");
     if (!preview || !image) return;
 
     var projectId = preview.getAttribute("data-project-id");
@@ -247,6 +248,9 @@
     image.src = project.images[normalizedIndex];
     image.alt = project.name + " image " + (normalizedIndex + 1);
     preview.setAttribute("data-current-image", String(normalizedIndex));
+    dots.forEach(function (dot, dotIndex) {
+      dot.classList.toggle("is-active", dotIndex === normalizedIndex);
+    });
   }
 
   function setExpanded(card, expanded) {
