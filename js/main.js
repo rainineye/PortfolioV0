@@ -226,10 +226,35 @@
     document.querySelectorAll(".project-card-mobile[data-mobile-card]")
   );
   if (!cards.length) return;
+  var projects = window.PORTFOLIO_PROJECTS || [];
+
+  function getProject(projectId) {
+    return projects.find(function (project) {
+      return project.id === projectId;
+    }) || null;
+  }
+
+  function syncPreview(card, imageIndex) {
+    var preview = card.querySelector("[data-mobile-preview]");
+    var image = card.querySelector("[data-preview-image]");
+    if (!preview || !image) return;
+
+    var projectId = preview.getAttribute("data-project-id");
+    var project = getProject(projectId);
+    if (!project || !project.images || !project.images.length) return;
+
+    var normalizedIndex = ((imageIndex % project.images.length) + project.images.length) % project.images.length;
+    image.src = project.images[normalizedIndex];
+    image.alt = project.name + " image " + (normalizedIndex + 1);
+    preview.setAttribute("data-current-image", String(normalizedIndex));
+  }
 
   function setExpanded(card, expanded) {
     card.classList.toggle("is-expanded", expanded);
     card.setAttribute("aria-expanded", expanded ? "true" : "false");
+    if (expanded) {
+      syncPreview(card, Number(card.querySelector("[data-mobile-preview]") && card.querySelector("[data-mobile-preview]").getAttribute("data-current-image")) || 0);
+    }
   }
 
   function toggleCard(card) {
@@ -240,8 +265,20 @@
   }
 
   cards.forEach(function (card) {
+    syncPreview(card, 0);
+
     card.addEventListener("click", function (e) {
-      if (e.target.closest(".project-card-mobile-detail-link")) return;
+      var detailLink = e.target.closest(".project-card-mobile-detail-link");
+      if (detailLink) return;
+
+      var preview = e.target.closest("[data-mobile-preview]");
+      if (preview && card.classList.contains("is-expanded")) {
+        e.preventDefault();
+        var current = Number(preview.getAttribute("data-current-image")) || 0;
+        syncPreview(card, current + 1);
+        return;
+      }
+
       toggleCard(card);
     });
 

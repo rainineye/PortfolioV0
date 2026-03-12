@@ -182,9 +182,12 @@
 
   function renderMobilePreview(project, firstImageLoading) {
     return (
-      '<div class="project-card-mobile-preview">' +
+      '<div class="project-card-mobile-preview" data-mobile-preview data-project-id="' + escapeHtml(project.id) + '" data-image-count="' + escapeHtml(project.images.length) + '">' +
       '<div class="project-card-mobile-thumb project-card-mobile-thumb--first project-card-mobile-thumb--last">' +
-      '<img src="' + escapeHtml(project.images[0]) + '" alt="' + escapeHtml(project.name) + '" width="390" height="225" loading="' + firstImageLoading + '" />' +
+      '<img src="' + escapeHtml(project.images[0]) + '" alt="' + escapeHtml(project.name) + '" width="390" height="225" loading="' + firstImageLoading + '" data-preview-image />' +
+      (project.images && project.images.length > 1
+        ? '<span class="project-card-mobile-swipe-hint" aria-hidden="true">Swipe</span>'
+        : "") +
       "</div></div>"
     );
   }
