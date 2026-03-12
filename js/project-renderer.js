@@ -180,26 +180,6 @@
     );
   }
 
-  function renderMobileGallery(project) {
-    if (!project.images || project.images.length < 2) return "";
-
-    return (
-      '<div class="project-card-mobile-gallery" aria-label="' + escapeHtml(project.name) + ' gallery">' +
-      project.images
-        .map(function (image, imageIndex) {
-          var activeClass = imageIndex === 0 ? " is-active" : "";
-
-          return (
-            '<button type="button" class="project-card-mobile-gallery-thumb' + activeClass + '" data-gallery-open data-project-id="' + escapeHtml(project.id) + '" data-image-index="' + escapeHtml(imageIndex) + '" aria-label="Open image ' + escapeHtml(imageIndex + 1) + ' for ' + escapeHtml(project.name) + '">' +
-            '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(project.name) + ' preview ' + escapeHtml(imageIndex + 1) + '" width="96" height="64" loading="lazy" />' +
-            "</button>"
-          );
-        })
-        .join("") +
-      "</div>"
-    );
-  }
-
   function renderMobilePreview(project, firstImageLoading) {
     return (
       '<div class="project-card-mobile-preview">' +
@@ -227,7 +207,6 @@
       "</div>" +
       renderMobileDetail(mobileProject) +
       "</div>" +
-      renderMobileGallery(mobileProject) +
       '<div class="project-card-mobile-name">' + escapeHtml(mobileProject.name) + "</div>" +
       "</div>" +
       '<span class="project-card-mobile-badge">' + escapeHtml(mobileProject.id) + "</span>" +
