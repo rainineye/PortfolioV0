@@ -1151,13 +1151,14 @@ body {
   }
 
   .hero-section {
-    padding-top: 20px;
+    padding-top: 0;
   }
 
   .hero-inner {
-    min-height: auto;
-    padding-bottom: 128px;
-    gap: 144px;
+    min-height: 932px;
+    justify-content: space-between;
+    padding-bottom: 0;
+    gap: 0;
   }
 
   .hero-content {

@@ -4,7 +4,7 @@ window.PORTFOLIO_PROJECTS = [
     name: "Savvy DeFi",
     labels: ["Auto-paying Lending"],
     description:
-      "Auto-repaying lending protocol for yield-bearing assets pegged to synthetic tokens.",
+      "Redefining better usability for position and risk management in DeFi Lending",
     date: "May 2022 - Feb 2023",
     role: "UIUX Lead, co-founder",
     previewClass: "",
@@ -27,7 +27,7 @@ window.PORTFOLIO_PROJECTS = [
     name: "Evmos",
     labels: ["Layer 1", "Cross-chain Transfer"],
     description:
-      "Scalable Proof-of-Stake blockchain that brings the EVM to the Cosmos ecosystem.",
+      "Revamping the cross-chain asset transfer UX in Cosmos Ecosystem",
     date: "Sep 2023",
     role: "Senior Product Designer",
     previewClass: "",
@@ -50,7 +50,7 @@ window.PORTFOLIO_PROJECTS = [
     name: "Namefi",
     labels: ["DID", "Tokenized DNS"],
     description:
-      "ICANN-accredited registrar tokenizing domains on-chain as NFTs for trading.",
+      "Inventing the DNS Tokenization UX for its on-chain trading and setting features",
     date: "Dec 2023 - May 2024",
     role: "Founding Product Designer",
     previewClass: "",
@@ -78,7 +78,7 @@ window.PORTFOLIO_PROJECTS = [
     name: "Entangle UDF",
     labels: ["Data Feeds"],
     description:
-      "Ultra-fast, verifiable data infrastructure for bridging off-chain data to multi-chain dApps.",
+      "Inventing the DX for showcasing data feeds, with streamlined integration and transparency",
     date: "Aug - Nov 2024",
     role: "UX Lead",
     previewClass: "thumb-left-fixed",
@@ -101,7 +101,7 @@ window.PORTFOLIO_PROJECTS = [
     name: "Entangle UTS",
     labels: ["Token Launch"],
     description:
-      "Unified framework for creating and managing native omni-chain tokens.",
+      "Designing a unified token launch UX for creating and managing native omni-chain tokens",
     date: "Sep - Nov 2024",
     role: "UX Lead",
     previewClass: "thumb-left-fixed",
@@ -129,7 +129,7 @@ window.PORTFOLIO_PROJECTS = [
     name: "Trillion DeFi",
     labels: ["Omni-chain Money Market"],
     description:
-      "Enabling cross-chain L&B, leveraged farming with Entangle's interoperable infrastructure.",
+      "Designing an omni-chain money market UX for cross-chain lending and leveraged farming",
     date: "Jul - Nov 2024",
     role: "UX Lead",
     previewClass: "thumb-left-fixed",
@@ -152,7 +152,7 @@ window.PORTFOLIO_PROJECTS = [
     name: "Entangle Hub",
     labels: ["POS Staking, Bridge & Explorer"],
     description:
-      "Blockchain explorer for staking, bridging and visualizing network activities.",
+      "Streamlining staking, bridging and explorer flows across Entangle network activities",
     date: "May - Jun 2024",
     role: "UX Lead",
     previewClass: "thumb-left-fixed",
@@ -175,7 +175,7 @@ window.PORTFOLIO_PROJECTS = [
     name: "Aladdin",
     labels: ["AI Agent", "MVP"],
     description:
-      "Algorithmic contracting protocol for coordinating autonomous agent crew.",
+      "Shaping the MVP UX for coordinating autonomous agent crews through algorithmic contracts",
     date: "Dec 2024 - Feb 2025",
     role: "Early Contributor",
     previewClass: "thumb-left-fixed",
@@ -198,7 +198,7 @@ window.PORTFOLIO_PROJECTS = [
     name: "DIN Systems",
     labels: ["On-chain Federated Learning"],
     description:
-      "Decentralized Intelligence Network for building privacy-preserving, self-sovereign AI.",
+      "Defining the product UX for on-chain federated learning and privacy-preserving AI systems",
     date: "Feb - Aug 2025",
     role: "Product Lead",
     previewClass: "thumb-left-fixed",
@@ -226,7 +226,7 @@ window.PORTFOLIO_PROJECTS = [
     name: "Agent Ball",
     labels: ["ERC-7527"],
     description:
-      "Token standard for seamless ERC-20 and ERC-721 conversion via Function Oracle AMM.",
+      "Designing the token interaction UX for seamless ERC-20 and ERC-721 conversion flows",
     date: "March 2025",
     role: "UX Designer",
     previewClass: "",
@@ -249,7 +249,7 @@ window.PORTFOLIO_PROJECTS = [
     name: "Cede Hub",
     labels: ["UIUX Audit"],
     description:
-      "Incentivized trading platform to boost volume for new token pairs.",
+      "Auditing the trading UX to improve pair discovery, incentives and execution clarity",
     date: "Sep - Oct 2025",
     role: "UIUX Auditor",
     previewClass: "thumb-left-fixed",
