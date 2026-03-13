@@ -1145,6 +1145,7 @@ body {
     --layout-col-width-fluid: calc(
       (var(--layout-content-fluid) - 5 * var(--layout-col-gutter)) / 6
     );
+    --mobile-hero-white-height: 900px;
     --mobile-card-radius-top: 16px;
     --mobile-card-radius-bottom: 13.448px;
     --mobile-card-preview-gap: 6.724px;
@@ -1167,8 +1168,8 @@ body {
       linear-gradient(
         to bottom,
         var(--surface-page-default) 0,
-        var(--surface-page-default) 120px,
-        var(--surface-brand-subtle) 120px,
+        var(--surface-page-default) var(--mobile-hero-white-height),
+        var(--surface-brand-subtle) var(--mobile-hero-white-height),
         var(--surface-brand-subtle) 100%
       );
   }

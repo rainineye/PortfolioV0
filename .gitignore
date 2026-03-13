@@ -19,3 +19,19 @@ Thumbs.db
 # Env
 .env
 .env.*
+
+# Claude Code config (local only)
+.claude/
+CLAUDE.md
+codex_notes.md
+
+# Browser data (Edge/Chrome user profile - sensitive)
+.edge-data/
+
+# Temp files
+*.tmp
+*.png.tmp
+
+# Verification screenshots
+mobile-verify.png
+mobile-verify-full.png
