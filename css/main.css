@@ -220,7 +220,7 @@ body {
 }
 .tab-sep {
   font-family: "PT Serif", serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.325;
   color: var(--text-secondary);
   padding-bottom: 1px;
@@ -230,7 +230,7 @@ body {
   background: none;
   border: 0;
   font-family: "PT Serif", serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.325;
   color: var(--text-secondary);
@@ -1135,14 +1135,7 @@ body {
 @media (max-width: 768px) {
   html,
   body {
-    background:
-      linear-gradient(
-        to bottom,
-        var(--surface-page-default) 0,
-        var(--surface-page-default) 120px,
-        var(--surface-brand-subtle) 120px,
-        var(--surface-brand-subtle) 100%
-      );
+    background: var(--surface-brand-subtle);
   }
 
   :root {
@@ -1158,8 +1151,26 @@ body {
   }
 
   .portfolio-site {
+    position: relative;
+    z-index: 0;
     max-width: none;
     padding: 0 var(--layout-margin-h);
+  }
+
+  .portfolio-site::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        to bottom,
+        var(--surface-page-default) 0,
+        var(--surface-page-default) 120px,
+        var(--surface-brand-subtle) 120px,
+        var(--surface-brand-subtle) 100%
+      );
   }
 
   .hero-section {
@@ -1321,11 +1332,19 @@ body {
     margin: 0 auto;
     flex-shrink: 0;
     cursor: pointer;
+    transform: translate3d(0, 0, 0);
+    transition:
+      transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.28s ease;
   }
 
   .project-card-mobile:focus-visible {
     outline: 2px solid var(--focus-ring-default);
     outline-offset: 4px;
+  }
+
+  .project-card-mobile.is-expanded {
+    transform: translate3d(0, -3px, 0);
   }
 
   .project-card-mobile-preview {
@@ -1370,7 +1389,6 @@ body {
     position: absolute;
     right: 10px;
     top: 10px;
-    display: none;
     align-items: center;
     justify-content: center;
     gap: 4px;
@@ -1378,10 +1396,17 @@ body {
     border-radius: 999px;
     background: rgba(20, 34, 31, 0.18);
     backdrop-filter: blur(6px);
+    opacity: 0;
+    transform: translate3d(0, -4px, 0);
+    pointer-events: none;
+    transition:
+      opacity 0.22s ease,
+      transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .project-card-mobile.is-expanded .project-card-mobile-preview-dots {
-    display: inline-flex;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 
   .project-card-mobile-preview-dot {
@@ -1413,6 +1438,15 @@ body {
     font-size: 12px;
     font-weight: 600;
     color: var(--text-brand-medium);
+    transform: translate3d(0, 0, 0);
+    transition:
+      transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.22s ease,
+      color 0.22s ease;
+  }
+
+  .project-card-mobile.is-expanded .project-card-mobile-badge {
+    transform: translate3d(0, 1px, 0) scale(1.04);
   }
 
   .project-card-mobile-info {
@@ -1423,6 +1457,10 @@ body {
     padding: 16px 16px 20px;
     background: var(--surface-brand-muted);
     border-radius: 0 0 var(--mobile-card-radius-bottom) var(--mobile-card-radius-bottom);
+    transition:
+      border-radius 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.22s ease;
   }
 
   .project-card-mobile-info-main {
@@ -1437,6 +1475,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0;
+    transition: gap 0.42s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .project-card-mobile-header {
@@ -1451,16 +1490,44 @@ body {
   }
 
   .project-card-mobile-detail {
-    display: none;
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translate3d(0, -8px, 0);
+    visibility: hidden;
+    pointer-events: none;
+    margin-top: 0;
+    transition:
+      max-height 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.22s ease,
+      transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+      margin-top 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0.46s;
+  }
+
+  .project-card-mobile.is-expanded .project-card-mobile-detail {
+    max-height: 320px;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+    pointer-events: auto;
+    margin-top: 18px;
+    transition:
+      max-height 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.24s ease 0.04s,
+      transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+      margin-top 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0s;
+  }
+
+  .project-card-mobile-detail-inner {
+    display: flex;
     flex-direction: column;
     gap: 16px;
     padding: 12px 16px;
     background: var(--surface-page-default);
     border-radius: 8px;
-  }
-
-  .project-card-mobile.is-expanded .project-card-mobile-detail {
-    display: flex;
   }
 
   .project-card-mobile-detail-copy {

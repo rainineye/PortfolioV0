@@ -173,10 +173,11 @@
   function renderMobileDetail(project) {
     return (
       '<div class="project-card-mobile-detail">' +
+      '<div class="project-card-mobile-detail-inner">' +
       '<div class="project-card-mobile-detail-copy">' + escapeHtml(project.description) + "</div>" +
       '<div class="project-card-mobile-detail-links">' +
       project.redirects.map(renderMobileRedirect).join("") +
-      "</div></div>"
+      "</div></div></div>"
     );
   }
 
