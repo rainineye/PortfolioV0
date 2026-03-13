@@ -1133,9 +1133,19 @@ body {
 
 /* Mobile layout – Figma 1083-2251: 20px margin, 6 cols, 8px gutter */
 @media (max-width: 768px) {
-  html,
+  html {
+    background:
+      linear-gradient(
+        to bottom,
+        var(--surface-page-default) 0,
+        var(--surface-page-default) var(--mobile-hero-white-height),
+        var(--surface-brand-subtle) var(--mobile-hero-white-height),
+        var(--surface-brand-subtle) 100%
+      );
+  }
+
   body {
-    background: var(--surface-brand-subtle);
+    background: transparent;
   }
 
   :root {
@@ -1152,26 +1162,8 @@ body {
   }
 
   .portfolio-site {
-    position: relative;
-    z-index: 0;
     max-width: none;
     padding: 0 var(--layout-margin-h);
-  }
-
-  .portfolio-site::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-      linear-gradient(
-        to bottom,
-        var(--surface-page-default) 0,
-        var(--surface-page-default) var(--mobile-hero-white-height),
-        var(--surface-brand-subtle) var(--mobile-hero-white-height),
-        var(--surface-brand-subtle) 100%
-      );
   }
 
   .hero-section {
@@ -1390,6 +1382,7 @@ body {
     position: absolute;
     right: 10px;
     top: 10px;
+    display: none;
     align-items: center;
     justify-content: center;
     gap: 4px;
@@ -1397,17 +1390,10 @@ body {
     border-radius: 999px;
     background: rgba(20, 34, 31, 0.18);
     backdrop-filter: blur(6px);
-    opacity: 0;
-    transform: translate3d(0, -4px, 0);
-    pointer-events: none;
-    transition:
-      opacity 0.22s ease,
-      transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .project-card-mobile.is-expanded .project-card-mobile-preview-dots {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
+    display: inline-flex;
   }
 
   .project-card-mobile-preview-dot {
