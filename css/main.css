@@ -447,7 +447,7 @@ body {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url("../assets/library/project-card-bkg.gif?v=20260314c");
+  background-image: url("../assets/library/project-card-bkg.gif?v=20260315gif");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -462,7 +462,7 @@ body {
   z-index: 0;
   background-size: cover;
   background-position: center;
-  background-image: url("../assets/library/project-card-bkg-hover.webp?v=20260314c");
+  background-image: url("../assets/library/project-card-bkg-hover.webp?v=20260315gif");
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
