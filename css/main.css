@@ -368,7 +368,7 @@ body {
   height: calc(
     24px * var(--card-scale) +
     9px * var(--card-scale) +
-    var(--card-item-width) * (276 / 270)
+    268px
   );
   overflow: hidden;
 }
@@ -433,7 +433,7 @@ body {
 /* Project item: horizontal scrolling carousel cards (not project card) */
 .project-item-thumb {
   width: 100%;
-  height: calc(var(--card-item-width) * (276 / 270));
+  height: 268px;
   border-radius: calc(var(--card-scale) * 8px);
   padding: calc(var(--card-scale) * 14.4px);
   display: flex;
@@ -1114,6 +1114,10 @@ body {
 
   .tab:hover {
     border-bottom-color: transparent; /* ::after provides 1.75px underline */
+  }
+
+  .tab.active:hover {
+    border-bottom-color: var(--border-brand-subtle); /* keep green underline on active tab hover */
   }
 
   .tab:hover::after {
