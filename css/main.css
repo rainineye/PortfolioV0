@@ -887,12 +887,12 @@ body {
   width: auto;
   height: 30px;
 }
-/* Full Story: available — full opacity, rolling text on hover */
-.project-card-redirect-item--full-story {
+/* Available redirect: full opacity, rolling text on hover */
+.project-card-redirect-item--rolling {
   opacity: 1;
   color: var(--text-primary-muted);
 }
-.project-card-redirect-item--full-story .redirect-icon--full-story {
+.project-card-redirect-item--rolling .redirect-icon--full-story {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -915,6 +915,14 @@ body {
   display: block;
   overflow: visible;
 }
+.redirect-icon__glyph--image {
+  width: auto;
+}
+.redirect-icon__glyph-image {
+  display: block;
+  width: auto;
+  height: 30px;
+}
 .redirect-icon__text-window {
   position: relative;
   display: block;
@@ -928,7 +936,7 @@ body {
   transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
-.project-card-redirect-item--full-story .redirect-icon__text-line {
+.project-card-redirect-item--rolling .redirect-icon__text-line {
   display: flex;
   align-items: center;
   height: 30px;
@@ -940,17 +948,17 @@ body {
   color: var(--text-primary-muted);
   white-space: nowrap;
 }
-.project-card-redirect-item--full-story:hover .redirect-icon__text-track,
-.project-card-redirect-item--full-story:focus-visible .redirect-icon__text-track {
+.project-card-redirect-item--rolling:hover .redirect-icon__text-track,
+.project-card-redirect-item--rolling:focus-visible .redirect-icon__text-track {
   transform: translateY(-30px);
 }
-.project-card-redirect-item--full-story:hover .redirect-icon__glyph,
-.project-card-redirect-item--full-story:focus-visible .redirect-icon__glyph {
+.project-card-redirect-item--rolling:hover .redirect-icon__glyph,
+.project-card-redirect-item--rolling:focus-visible .redirect-icon__glyph {
   color: var(--text-brand-medium);
   transform: translateY(-1px);
 }
-.project-card-redirect-item--full-story:hover .redirect-icon__text-line,
-.project-card-redirect-item--full-story:focus-visible .redirect-icon__text-line {
+.project-card-redirect-item--rolling:hover .redirect-icon__text-line,
+.project-card-redirect-item--rolling:focus-visible .redirect-icon__text-line {
   color: var(--text-primary);
 }
 

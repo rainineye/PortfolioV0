@@ -215,9 +215,10 @@ window.PORTFOLIO_PROJECTS = [
         alt: "Full Story",
       },
       {
-        type: "coming-soon",
+        type: "external",
+        href: "https://arxiv.org/pdf/2407.02461",
         icon: "assets/icons/whitepaper--available.svg",
-        alt: "Whitepaper",
+        alt: "White Paper",
       },
     ],
   },
