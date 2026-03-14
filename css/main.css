@@ -15,12 +15,12 @@
   --layout-col-width-fluid: calc(
     (var(--layout-content-fluid) - 11 * var(--layout-col-gutter)) / 12
   );
-  /* Hero message = 5 columns, wraps when exceeds; font from color block height */
-  --hero-msg-width: calc(5 * var(--layout-col-width-fluid) + 4 * var(--layout-col-gutter));
-  --hero-font-size: calc(var(--hero-color-height) * 0.42);
-  /* Hero: green block = 2 columns wide, height from 110:225 ratio; fluid for smooth scaling */
-  --hero-color-width: clamp(80px, calc(2 * var(--layout-col-width-fluid)), 225px);
-  --hero-color-height: calc(var(--hero-color-width) * 110 / 225);
+  /* Hero message and color block: fixed size (no proportional scaling) */
+  --hero-msg-width: 580px;
+  --hero-font-size: 46px;
+  /* Hero green block: fixed 225×110 (110:225 ratio) */
+  --hero-color-width: 225px;
+  --hero-color-height: 110px;
   /* Hero vertical spacing: text aligns to row-2 top of 8 equal rows below nav (64px) */
   --hero-row-gap: clamp(8px, 1.8vw, 32px);
   --hero-inner-gap: clamp(32px, 7.41vw, 128px);
@@ -1156,6 +1156,16 @@ body {
 
   .hero-message {
     width: 100%;
+  }
+}
+
+/* Tablet just above mobile: hero msg + color block scale 0.85 */
+@media (max-width: 900px) and (min-width: 769px) {
+  :root {
+    --hero-msg-width: 500px;
+    --hero-font-size: 40px;
+    --hero-color-width: 200px;
+    --hero-color-height: 98px; /* 200 × 110/225 */
   }
 }
 
