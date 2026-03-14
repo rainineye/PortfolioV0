@@ -1134,18 +1134,11 @@ body {
 /* Mobile layout – Figma 1083-2251: 20px margin, 6 cols, 8px gutter */
 @media (max-width: 768px) {
   html {
-    background:
-      linear-gradient(
-        to bottom,
-        var(--surface-page-default) 0,
-        var(--surface-page-default) var(--mobile-hero-white-height),
-        var(--surface-brand-subtle) var(--mobile-hero-white-height),
-        var(--surface-brand-subtle) 100%
-      );
+    background: var(--surface-page-default);
   }
 
   body {
-    background: transparent;
+    background: var(--surface-page-default);
   }
 
   :root {
@@ -1155,7 +1148,6 @@ body {
     --layout-col-width-fluid: calc(
       (var(--layout-content-fluid) - 5 * var(--layout-col-gutter)) / 6
     );
-    --mobile-hero-white-height: 900px;
     --mobile-card-radius-top: 16px;
     --mobile-card-radius-bottom: 13.448px;
     --mobile-card-preview-gap: 6.724px;
@@ -1305,6 +1297,14 @@ body {
 
   .footer {
     padding: 24px 0 32px;
+  }
+
+  .footer::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: calc(96px + env(safe-area-inset-bottom, 0px));
+    background: var(--surface-brand-subtle);
   }
 
   .footer-inner {
