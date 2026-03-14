@@ -443,12 +443,12 @@ body {
   position: relative;
   overflow: hidden;
 }
-/* Project item bg: wavy-line pattern (Figma 24-438), WebP for reliable load */
+/* Project item bg: animated GIF wavy-line pattern (Figma 24-438) */
 .project-item-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url("../assets/library/project-card-bkg.webp?v=20260316");
+  background-image: url("../assets/library/project-card-bkg.gif?v=20260317");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -648,7 +648,7 @@ body {
   flex-shrink: 0;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   overflow: hidden;
-  aspect-ratio: 1408 / 268;
+  height: 268px;
 }
 .project-card-preview .thumb-left,
 .project-card-preview .thumb-mid,
@@ -1031,23 +1031,46 @@ body {
   /* No padding on .chronological-text so divider line spans full page (Figma 279-1037) */
 }
 
-/* Autoscroll: fewer cards visible (smaller peek) as viewport shrinks; card size stays 270px */
+/* Autoscroll: scale carousel by visible-cards so project item stays full-size (font/label proportion preserved) */
 @media (max-width: 1280px) {
   .project-list-section {
     --visible-cards: 4;
+    --carousel-base-width: calc(
+      4 * var(--card-item-width-base) + 3 * var(--card-item-gap-base)
+    );
+    --card-scale: min(1, calc(var(--layout-content-fluid) / var(--carousel-base-width)));
   }
 }
 @media (max-width: 1024px) {
   .project-list-section {
     --visible-cards: 3;
+    --carousel-base-width: calc(
+      3 * var(--card-item-width-base) + 2 * var(--card-item-gap-base)
+    );
+    --card-scale: min(1, calc(var(--layout-content-fluid) / var(--carousel-base-width)));
   }
 }
 @media (max-width: 768px) {
   .project-list-section {
     --visible-cards: 2;
+    --carousel-base-width: calc(
+      2 * var(--card-item-width-base) + 1 * var(--card-item-gap-base)
+    );
+    --card-scale: min(1, calc(var(--layout-content-fluid) / var(--carousel-base-width)));
   }
 }
 
+/* When the responsive card width can no longer fit two right-side preview columns,
+   collapse the preview to the lead image + second image only. */
+@media (max-width: 820px) and (min-width: 769px) {
+  .project-card-preview {
+    grid-template-columns: var(--card-green-w) minmax(0, 1fr);
+  }
+
+  .project-card-preview .thumb-right {
+    display: none;
+  }
+}
 
 /* xl: large desktop – wider horizontal padding */
 @media (min-width: 1280px) {
@@ -1072,7 +1095,7 @@ body {
     gap: 26px;
   }
 
-  /* Animated underline for tabs on hover: 2px to match Projects active green line */
+  /* Tab hover underline: 1.75px, same spacing as Projects green border (1px gap + border area) */
   .tab {
     position: relative;
   }
@@ -1081,15 +1104,16 @@ body {
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0;
-    height: 2px;
+    bottom: -1.75px; /* align with border area so gap from text matches active */
+    height: 1.75px;
     width: 0;
     background: var(--border-neutral-subtle);
     transition: width 0.2s ease;
+    border-radius: 0;
   }
 
   .tab:hover {
-    border-bottom-color: transparent; /* use ::after only, same 2px as active */
+    border-bottom-color: transparent; /* ::after provides 1.75px underline */
   }
 
   .tab:hover::after {
