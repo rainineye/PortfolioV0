@@ -64,15 +64,12 @@
   }
 
   function renderCarouselItem(project) {
-    var bgStyle = project.images && project.images[0]
-      ? ' style="background-image:url(\'' + escapeHtml(project.images[0]) + '\')"'
-      : "";
     return (
       '<div class="project-item" data-project="' + escapeHtml(project.id) + '">' +
       '<div class="project-number-badge"><span>' + escapeHtml(project.id) + "</span></div>" +
-      '<div class="project-card-thumb">' +
-      '<div class="project-card-bg"' + bgStyle + '></div>' +
-      '<div class="project-card-bg-hover"></div>' +
+      '<div class="project-item-thumb">' +
+      '<div class="project-item-bg"></div>' +
+      '<div class="project-item-bg-hover"></div>' +
       renderCarouselLabels(project.labels) +
       '<div class="desc"><span>' + escapeHtml(project.description) + "</span></div>" +
       '<div class="title">' + escapeHtml(project.name) + "</div>" +
