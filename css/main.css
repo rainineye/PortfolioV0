@@ -442,12 +442,12 @@ body {
   position: relative;
   overflow: hidden;
 }
-/* Scrolling cards: GIF wavy-line pattern (Figma 24-438), not project thumbnails */
+/* Scrolling cards: wavy-line pattern (Figma 24-438), WebP for reliable load; GIF ~13MB may fail on hosts */
 .project-card-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url("../assets/library/project-card-bkg.gif?v=20260315gif");
+  background-image: url("../assets/library/project-card-bkg.webp?v=20260316");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -462,7 +462,7 @@ body {
   z-index: 0;
   background-size: cover;
   background-position: center;
-  background-image: url("../assets/library/project-card-bkg-hover.webp?v=20260315gif");
+  background-image: url("../assets/library/project-card-bkg-hover.webp?v=20260316");
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
