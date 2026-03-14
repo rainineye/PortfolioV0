@@ -442,15 +442,19 @@ body {
   position: relative;
   overflow: hidden;
 }
-/* Scrolling cards: per-project first image, proportional scaling */
+/* Scrolling cards: GIF wavy-line pattern (Figma 24-438), not project thumbnails */
 .project-card-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-size: contain;
+  background-image: url("../assets/library/project-card-bkg.gif?v=20260314c");
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   filter: grayscale(100%);
+}
+.project-item:hover .project-card-bg {
+  filter: none;
 }
 .project-card-bg-hover {
   position: absolute;
@@ -458,7 +462,7 @@ body {
   z-index: 0;
   background-size: cover;
   background-position: center;
-  background-image: url("../assets/library/project-card-bkg-hover.webp");
+  background-image: url("../assets/library/project-card-bkg-hover.webp?v=20260314c");
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
@@ -1325,19 +1329,11 @@ body {
     margin: 0 auto;
     flex-shrink: 0;
     cursor: pointer;
-    transform: translate3d(0, 0, 0);
-    transition:
-      transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
-      filter 0.28s ease;
   }
 
   .project-card-mobile:focus-visible {
     outline: 2px solid var(--focus-ring-default);
     outline-offset: 4px;
-  }
-
-  .project-card-mobile.is-expanded {
-    transform: translate3d(0, -3px, 0);
   }
 
   .project-card-mobile-preview {
