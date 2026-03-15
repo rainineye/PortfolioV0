@@ -4,6 +4,8 @@ window.PORTFOLIO_PROJECTS = [
     name: "Savvy DeFi",
     labels: ["Auto-paying Lending"],
     description:
+      "Auto-repaying lending protocol for yield-bearing assets pegged to synthetic tokens.",
+    uxStoryDescription:
       "Redefining better usability for position and risk management in DeFi Lending",
     date: "May 2022 - Feb 2023",
     role: "UIUX Lead, co-founder",
@@ -27,6 +29,8 @@ window.PORTFOLIO_PROJECTS = [
     name: "Evmos",
     labels: ["Layer 1", "Cross-chain Transfer"],
     description:
+      "EVM-compatible Layer 1 and IBC hub for cross-chain asset transfer in the Cosmos ecosystem.",
+    uxStoryDescription:
       "Revamping the cross-chain asset transfer UX in Cosmos Ecosystem",
     date: "Sep 2023",
     role: "Senior Product Designer",
@@ -50,6 +54,8 @@ window.PORTFOLIO_PROJECTS = [
     name: "Namefi",
     labels: ["DID", "Tokenized DNS"],
     description:
+      "Tokenized DNS and DID protocol for on-chain domain trading and identity.",
+    uxStoryDescription:
       "Inventing the DNS Tokenization UX for its on-chain trading and setting features",
     date: "Dec 2023 - May 2024",
     role: "Founding Product Designer",
@@ -78,6 +84,8 @@ window.PORTFOLIO_PROJECTS = [
     name: "Entangle UDF",
     labels: ["Data Feeds"],
     description:
+      "Decentralized data feed infrastructure with streamlined integration and transparent sourcing.",
+    uxStoryDescription:
       "Inventing the DX for showcasing data feeds, with streamlined integration and transparency",
     date: "Aug - Nov 2024",
     role: "UX Lead",
@@ -101,6 +109,8 @@ window.PORTFOLIO_PROJECTS = [
     name: "Entangle UTS",
     labels: ["Token Launch"],
     description:
+      "Unified token launchpad for creating and managing native omni-chain tokens.",
+    uxStoryDescription:
       "Designing a unified token launch UX for creating and managing native omni-chain tokens",
     date: "Sep - Nov 2024",
     role: "UX Lead",
@@ -129,6 +139,8 @@ window.PORTFOLIO_PROJECTS = [
     name: "Trillion DeFi",
     labels: ["Omni-chain Money Market"],
     description:
+      "Omni-chain money market for cross-chain lending and leveraged yield farming.",
+    uxStoryDescription:
       "Designing an omni-chain money market UX for cross-chain lending and leveraged farming",
     date: "Jul - Nov 2024",
     role: "UX Lead",
@@ -152,6 +164,8 @@ window.PORTFOLIO_PROJECTS = [
     name: "Entangle Hub",
     labels: ["POS Staking, Bridge & Explorer"],
     description:
+      "Staking, bridge and block explorer for the Entangle network.",
+    uxStoryDescription:
       "Streamlining staking, bridging and explorer flows across Entangle network activities",
     date: "May - Jun 2024",
     role: "UX Lead",
@@ -175,6 +189,8 @@ window.PORTFOLIO_PROJECTS = [
     name: "Aladdin",
     labels: ["AI Agent", "MVP"],
     description:
+      "Autonomous agent protocol coordinating crews via algorithmic contracts.",
+    uxStoryDescription:
       "Shaping the MVP UX for coordinating autonomous agent crews through algorithmic contracts",
     date: "Dec 2024 - Feb 2025",
     role: "Early Contributor",
@@ -198,6 +214,8 @@ window.PORTFOLIO_PROJECTS = [
     name: "DIN Systems",
     labels: ["On-chain Federated Learning"],
     description:
+      "On-chain federated learning and privacy-preserving AI infrastructure.",
+    uxStoryDescription:
       "Defining the product UX for on-chain federated learning and privacy-preserving AI systems",
     date: "Feb - Aug 2025",
     role: "Product Lead",
@@ -227,6 +245,8 @@ window.PORTFOLIO_PROJECTS = [
     name: "Agent Ball",
     labels: ["ERC-7527"],
     description:
+      "ERC-7527 token standard enabling seamless ERC-20 and ERC-721 conversion flows.",
+    uxStoryDescription:
       "Designing the token interaction UX for seamless ERC-20 and ERC-721 conversion flows",
     date: "March 2025",
     role: "UX Designer",
@@ -250,6 +270,8 @@ window.PORTFOLIO_PROJECTS = [
     name: "Cede Hub",
     labels: ["UIUX Audit"],
     description:
+      "DEX and trading platform with focus on pair discovery, incentives and execution.",
+    uxStoryDescription:
       "Auditing the trading UX to improve pair discovery, incentives and execution clarity",
     date: "Sep - Oct 2025",
     role: "UIUX Auditor",
