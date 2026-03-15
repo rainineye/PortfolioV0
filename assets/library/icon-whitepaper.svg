@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="17.78" height="20" viewBox="0 0 17.78 20" fill="none" aria-hidden="true">
-  <!-- Document with folded corner and lines -->
-  <path d="M1 1h10.5l5.28 5.28V19H1V1z" stroke="#82A8A4" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
-  <path d="M11.5 1v5.28H16.78" stroke="#82A8A4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M4 9h9.78M4 12h9.78M4 15h6" stroke="#82A8A4" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Figma 328-2081: outer 1.333, inner lines 0.9 -->
+  <path d="M1 1h10.5l5.28 5.28V19H1V1z" stroke="#82A8A4" stroke-width="1.333" fill="none" stroke-linejoin="round"/>
+  <path d="M11.5 1v5.28H16.78" stroke="#82A8A4" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M4 9h9.78M4 12h9.78M4 15h6" stroke="#82A8A4" stroke-width="0.9" stroke-linecap="round"/>
 </svg>

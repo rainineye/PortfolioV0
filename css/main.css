@@ -955,7 +955,7 @@ body {
 }
 .project-card-redirect-item--whitepaper {
   opacity: 1;
-  gap: 10px;
+  gap: 12px;
   color: var(--text-primary);
   align-items: center;
 }
@@ -963,8 +963,8 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 20px;
+  width: 22px;
+  height: 30px;
   flex: 0 0 auto;
   flex-shrink: 0;
 }
@@ -973,6 +973,7 @@ body {
   width: 18px;
   height: 20px;
   object-fit: contain;
+  object-position: center;
   transition:
     filter 0.28s ease,
     transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
