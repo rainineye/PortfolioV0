@@ -59,15 +59,16 @@
     if (redirect.type === "external" && redirect.href) {
       var label = redirect.alt || "Learn More";
       return (
-        '<a href="' + escapeHtml(redirect.href) + '" class="project-card-redirect-item project-card-redirect-item--rolling" target="_blank" rel="noreferrer noopener" aria-label="' + escapeHtml(label) + '">' +
-        '<span class="redirect-icon redirect-icon--full-story" aria-hidden="true">' +
-        '<span class="redirect-icon__glyph redirect-icon__glyph--image">' +
-        '<img src="' + escapeHtml(redirect.icon) + '" alt="" class="redirect-icon__glyph-image" height="30" />' +
-        '</span><span class="redirect-icon__text-window">' +
-        '<span class="redirect-icon__text-track">' +
-        '<span class="redirect-icon__text-line">' + escapeHtml(label) + "</span>" +
-        '<span class="redirect-icon__text-line" aria-hidden="true">' + escapeHtml(label) + "</span>" +
-        "</span></span></span></a>"
+        '<a href="' + escapeHtml(redirect.href) + '" class="project-card-redirect-item project-card-redirect-item--whitepaper" target="_blank" rel="noreferrer noopener" aria-label="' + escapeHtml(label) + '">' +
+        '<span class="redirect-icon redirect-icon--whitepaper" aria-hidden="true">' +
+        '<img src="' + escapeHtml(redirect.icon) + '" alt="" class="redirect-icon__whitepaper-image" />' +
+        "</span>" +
+        '<span class="project-card-redirect-item__label-window">' +
+        '<span class="project-card-redirect-item__label-track">' +
+        '<span class="project-card-redirect-item__label-line">' + escapeHtml(label) + "</span>" +
+        '<span class="project-card-redirect-item__label-line" aria-hidden="true">' + escapeHtml(label) + "</span>" +
+        "</span></span>" +
+        "</a>"
       );
     }
 

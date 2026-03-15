@@ -24,10 +24,10 @@
   /* Hero vertical spacing: text aligns to row-2 top of 8 equal rows below nav (64px) */
   --hero-row-gap: clamp(8px, 1.8vw, 32px);
   --hero-inner-gap: clamp(32px, 7.41vw, 128px);
-  /* Card: image gaps and green/white gap – Figma 310-1536 default 8px */
+  /* Card: image gaps and green/white gap – responsive 4px–6px range */
   --card-gap: clamp(4px, calc(var(--layout-content-fluid) * (6 / 1408)), 6px);
-  /* Chronological card: first image/title panel width scales down to 320px minimum */
-  --card-green-w: clamp(320px, calc(var(--layout-content-fluid) * (464 / 1408)), 464px);
+  /* Chronological card: exact Figma preview ratio 464 / 472 / 472 across 1408px */
+  --card-green-w: calc((100% - 2 * var(--card-gap)) * 464 / 1408);
 /* Project card (autoscroll): fixed Figma 79-713 size; visible peek shrinks at breakpoints */
   --card-item-gap-base: 12px;
   --card-item-width-base: 252px;
@@ -368,7 +368,7 @@ body {
   height: calc(
     24px * var(--card-scale) +
     9px * var(--card-scale) +
-    268px
+    var(--card-item-width) * (276 / 270)
   );
   overflow: hidden;
 }
@@ -433,7 +433,7 @@ body {
 /* Project item: horizontal scrolling carousel cards (not project card) */
 .project-item-thumb {
   width: 100%;
-  height: 268px;
+  height: calc(var(--card-item-width) * (276 / 270));
   border-radius: calc(var(--card-scale) * 8px);
   padding: calc(var(--card-scale) * 14.4px);
   display: flex;
@@ -638,8 +638,7 @@ body {
 .project-card:hover {
   box-shadow: var(--shadow-card-rest);
 }
-/* Preview: 3 equal images with 8px gap. Height = 268/1408 of card width.
-   Figma: Preview TL=16 TR=16 BR=0 BL=0 */
+/* Preview: Figma 310-2466 – 3 cols 464/472/472, ratio 1408:268 */
 .project-card-preview {
   display: grid;
   grid-template-columns: var(--card-green-w) minmax(0, 1fr) minmax(0, 1fr);
@@ -648,7 +647,8 @@ body {
   flex-shrink: 0;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   overflow: hidden;
-  height: 268px;
+  aspect-ratio: 1408 / 268;
+  width: 100%;
 }
 .project-card-preview .thumb-left,
 .project-card-preview .thumb-mid,
@@ -746,7 +746,7 @@ body {
   align-items: stretch;
 }
 .project-card-title-block {
-  /* 464/1408 of content width, min 320px — matches left image above */
+  /* Match the first preview column exactly so left panel aligns with the lead image */
   flex: 0 0 var(--card-green-w);
   width: var(--card-green-w);
   background: var(--surface-brand-muted);
@@ -915,14 +915,6 @@ body {
   display: block;
   overflow: visible;
 }
-.redirect-icon__glyph--image {
-  width: auto;
-}
-.redirect-icon__glyph-image {
-  display: block;
-  width: auto;
-  height: 30px;
-}
 .redirect-icon__text-window {
   position: relative;
   display: block;
@@ -960,6 +952,73 @@ body {
 .project-card-redirect-item--rolling:hover .redirect-icon__text-line,
 .project-card-redirect-item--rolling:focus-visible .redirect-icon__text-line {
   color: var(--text-primary);
+}
+.project-card-redirect-item--whitepaper {
+  opacity: 1;
+  gap: 10px;
+  color: var(--text-primary);
+  align-items: center;
+}
+.redirect-icon--whitepaper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 20px;
+  flex: 0 0 auto;
+  flex-shrink: 0;
+}
+.redirect-icon__whitepaper-image {
+  display: block;
+  width: 18px;
+  height: 20px;
+  object-fit: contain;
+  transition:
+    filter 0.28s ease,
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project-card-redirect-item__label {
+  font-family: "Tomorrow", sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.84px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.project-card-redirect-item__label-window {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  height: 30px;
+  overflow: hidden;
+}
+.project-card-redirect-item__label-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.project-card-redirect-item__label-line {
+  font-family: "Tomorrow", sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 30px;
+  height: 30px;
+  letter-spacing: -0.84px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.project-card-redirect-item--whitepaper:hover .redirect-icon__whitepaper-image,
+.project-card-redirect-item--whitepaper:focus-visible .redirect-icon__whitepaper-image {
+  filter: brightness(0) saturate(100%) invert(59%) sepia(26%) saturate(563%) hue-rotate(108deg) brightness(93%) contrast(87%);
+  transform: translateY(-1px);
+}
+.project-card-redirect-item--whitepaper:hover .project-card-redirect-item__label-track,
+.project-card-redirect-item--whitepaper:focus-visible .project-card-redirect-item__label-track {
+  transform: translateY(-30px);
 }
 
 /* Footer */

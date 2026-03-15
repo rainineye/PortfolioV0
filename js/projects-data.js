@@ -217,8 +217,8 @@ window.PORTFOLIO_PROJECTS = [
       {
         type: "external",
         href: "https://arxiv.org/pdf/2407.02461",
-        icon: "assets/icons/whitepaper--available.svg",
-        alt: "White Paper",
+        icon: "assets/library/icon-whitepaper.svg",
+        alt: "Whitepaper",
       },
     ],
   },
