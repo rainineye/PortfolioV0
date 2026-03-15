@@ -953,9 +953,10 @@ body {
 .project-card-redirect-item--rolling:focus-visible .redirect-icon__text-line {
   color: var(--text-primary);
 }
+/* Whitepaper icon: 18×20 (Figma design) */
 .project-card-redirect-item--whitepaper {
   opacity: 1;
-  gap: 12px;
+  gap: 10px;
   color: var(--text-primary);
   align-items: center;
 }
@@ -963,15 +964,15 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 30px;
+  width: 18px;
+  height: 20px;
   flex: 0 0 auto;
   flex-shrink: 0;
 }
 .redirect-icon__whitepaper-image {
   display: block;
-  width: 18px;
-  height: 20px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: center;
   transition:
@@ -1228,6 +1229,15 @@ body {
 
   .hero-message {
     width: 100%;
+  }
+}
+
+/* < 1400px: hero font 42px, color block scaled proportionally (42/46) */
+@media (max-width: 1399px) {
+  :root {
+    --hero-font-size: 42px;
+    --hero-color-width: calc(225px * 42 / 46);
+    --hero-color-height: calc(110px * 42 / 46);
   }
 }
 
