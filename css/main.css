@@ -15,12 +15,11 @@
   --layout-col-width-fluid: calc(
     (var(--layout-content-fluid) - 11 * var(--layout-col-gutter)) / 12
   );
-  /* Hero message and color block: fixed size (no proportional scaling) */
-  --hero-msg-width: 580px;
-  --hero-font-size: 46px;
-  /* Hero green block: fixed 225×110 (110:225 ratio) */
-  --hero-color-width: 225px;
-  --hero-color-height: 110px;
+  /* Hero message and color block: default 42px, others proportional rounded */
+  --hero-msg-width: 530px;
+  --hero-font-size: 42px;
+  --hero-color-width: 205px;
+  --hero-color-height: 100px;
   /* Hero vertical spacing: text aligns to row-2 top of 8 equal rows below nav (64px) */
   --hero-row-gap: clamp(8px, 1.8vw, 32px);
   --hero-inner-gap: clamp(32px, 7.41vw, 128px);
@@ -1234,22 +1233,22 @@ body {
   }
 }
 
-/* < 1400px: hero font 42px, color block scaled proportionally (42/46) */
+/* < 1400px: hero font 38px, color block scaled from default (42px base) */
 @media (max-width: 1399px) {
   :root {
-    --hero-font-size: 42px;
-    --hero-color-width: calc(225px * 42 / 46);
-    --hero-color-height: calc(110px * 42 / 46);
+    --hero-font-size: 38px;
+    --hero-color-width: 186px;
+    --hero-color-height: 90px;
   }
 }
 
-/* Tablet just above mobile: hero msg + color block scale 0.85 */
+/* Tablet just above mobile: scaled from default 42px, rounded */
 @media (max-width: 900px) and (min-width: 769px) {
   :root {
-    --hero-msg-width: 500px;
-    --hero-font-size: 40px;
-    --hero-color-width: 200px;
-    --hero-color-height: 98px; /* 200 × 110/225 */
+    --hero-msg-width: 453px;
+    --hero-font-size: 36px;
+    --hero-color-width: 176px;
+    --hero-color-height: 86px;
   }
 }
 
