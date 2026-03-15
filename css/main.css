@@ -953,14 +953,14 @@ body {
 .project-card-redirect-item--rolling:focus-visible .redirect-icon__text-line {
   color: var(--text-primary);
 }
-/* Whitepaper icon: 18×20 (Figma design) */
+/* Whitepaper icon: height 20px, width scaled proportionally (18:20) */
 .project-card-redirect-item--whitepaper {
   opacity: 1;
   gap: 10px;
   color: var(--text-primary);
   align-items: center;
 }
-.redirect-icon--whitepaper {
+.project-card-redirect-item--whitepaper .redirect-icon--whitepaper {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -969,7 +969,7 @@ body {
   flex: 0 0 auto;
   flex-shrink: 0;
 }
-.redirect-icon__whitepaper-image {
+.project-card-redirect-item--whitepaper .redirect-icon__whitepaper-image {
   display: block;
   width: 100%;
   height: 100%;
