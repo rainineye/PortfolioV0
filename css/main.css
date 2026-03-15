@@ -691,6 +691,8 @@ body {
   object-fit: cover;
   display: block;
   opacity: 0;
+  /* Slightly sharpen upscaled thumbs; replace low-res assets (e.g. 05 Entangle UTS, 10 Agent Ball) at 464×268 or 2x for best quality */
+  image-rendering: -webkit-optimize-contrast;
   transition:
     opacity 0.28s ease,
     transform 0.4s ease;
