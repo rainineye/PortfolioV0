@@ -9,7 +9,10 @@
     "lint": "next lint",
     "test": "vitest run",
     "sprites": "node scripts/generate-sprites.mjs",
-    "sprites:dry": "node scripts/generate-sprites.mjs --dry-run"
+    "sprites:dry": "node scripts/generate-sprites.mjs --dry-run",
+    "sprites:perchance": "node scripts/generate-sprites-perchance.mjs",
+    "sprites:perchance:headed": "node scripts/generate-sprites-perchance.mjs --headed",
+    "sprites:perchance:dry": "node scripts/generate-sprites-perchance.mjs --dry-run"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^1.2.0",
