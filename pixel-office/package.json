@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "sprites": "node scripts/generate-sprites.mjs",
+    "sprites:dry": "node scripts/generate-sprites.mjs --dry-run"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^1.2.0",
