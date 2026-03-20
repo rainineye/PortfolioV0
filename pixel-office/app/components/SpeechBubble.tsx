@@ -21,6 +21,8 @@ interface SpeechBubbleProps {
   /** Which side the bubble tail points toward the character */
   tailSide?: "left" | "right";
   soundEnabled: boolean;
+  /** Called when the stream errors — triggers shake animation on the Character */
+  onError?: () => void;
 }
 
 /** Lightweight tick sound (base64 encoded beep) */
@@ -50,6 +52,7 @@ export function SpeechBubble({
   onClose,
   tailSide = "left",
   soundEnabled,
+  onError,
 }: SpeechBubbleProps) {
   const [text, setText] = useState("");
   const [status, setStatus] = useState<"loading" | "streaming" | "done" | "error">(
@@ -82,6 +85,7 @@ export function SpeechBubble({
           `Hmm, something went wrong on my end.\n(${err.error ?? res.status})`
         );
         setStatus("error");
+        onError?.();
         return;
       }
 
@@ -127,8 +131,9 @@ export function SpeechBubble({
       if ((e as Error).name === "AbortError") return;
       setText("I seem to be having a bad day...\nTry clicking me again.");
       setStatus("error");
+      onError?.();
     }
-  }, [skillId, soundEnabled]);
+  }, [skillId, soundEnabled, onError]);
 
   useEffect(() => {
     startStream();

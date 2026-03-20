@@ -16,8 +16,6 @@ import { anthropic } from "@ai-sdk/anthropic";
 import { cookies } from "next/headers";
 import { SKILLS_MAP } from "@/lib/skills";
 
-const GATE_PASSWORD = process.env.GATE_PASSWORD ?? "";
-
 export async function POST(request: Request) {
   // Validate gate cookie
   const cookieStore = await cookies();

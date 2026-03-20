@@ -53,6 +53,9 @@ export function OfficeScene() {
   const [dayNight, setDayNight] = useState(() =>
     getDayNightOverlay(new Date().getHours())
   );
+  const [clockTime, setClockTime] = useState(() =>
+    new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+  );
   const hourTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Detect mobile viewport
@@ -82,9 +85,10 @@ export function OfficeScene() {
   // Update day/night every minute
   useEffect(() => {
     function tick() {
-      setDayNight(getDayNightOverlay(new Date().getHours()));
-      // Re-fire at start of next minute
       const now = new Date();
+      setDayNight(getDayNightOverlay(now.getHours()));
+      setClockTime(now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+      // Re-fire at start of next minute
       const msToNextMinute =
         (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
       hourTimerRef.current = setTimeout(tick, msToNextMinute);
@@ -201,13 +205,13 @@ export function OfficeScene() {
           left: 16,
           zIndex: 200,
         }}
-        aria-label={`Current time: ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`}
+        aria-label={`Current time: ${clockTime}`}
       >
         <span
           className="font-pixel"
           style={{ fontSize: 7, color: "rgba(255,248,231,0.7)" }}
         >
-          {new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+          {clockTime}
         </span>
       </div>
 

@@ -114,6 +114,10 @@ export function Character({
             onClose={onClose}
             tailSide="left"
             soundEnabled={soundEnabled}
+            onError={() => {
+              setShaking(true);
+              setTimeout(() => setShaking(false), 500);
+            }}
           />
         </div>
       )}
@@ -144,7 +148,7 @@ export function Character({
           background: "transparent",
           border: "none",
           cursor: isActive ? "default" : "pointer",
-          outline: "none",
+
           minWidth: skill.frameWidth * 2,
           minHeight: skill.frameHeight * 2,
         }}
