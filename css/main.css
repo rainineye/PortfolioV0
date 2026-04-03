@@ -131,6 +131,21 @@ body {
 .hero-section {
   width: 100%;
 }
+.about-inline {
+  display: none;
+  width: 100%;
+}
+.portfolio-site.view-about .about-inline {
+  display: block;
+}
+.portfolio-site.view-about .hero-msg-section,
+.portfolio-site.view-about .project-list-section,
+.portfolio-site.view-about .chronological-bleed {
+  display: none;
+}
+.portfolio-site.view-about .hero-inner {
+  justify-content: flex-start;
+}
 .hero-inner {
   display: flex;
   flex-direction: column;

@@ -2,8 +2,6 @@
   var navRoot = document.querySelector("[data-nav-root]");
   if (!navRoot) return;
 
-  var currentPage = navRoot.getAttribute("data-nav-page") || "home";
-
   function renderTab(label, config) {
     var className = "tab" + (config.active ? " active" : "");
     var attrs = ' class="' + className + '"';
@@ -22,21 +20,13 @@
     return "<" + tagName + attrs + ">" + label + "</" + tagName + ">";
   }
 
-  var tabsMarkup = currentPage === "about"
-    ? [
-        renderTab("Projects", { kind: "link", href: "index.html", active: false }),
-        '<span class="tab-sep" aria-hidden="true">,</span>',
-        renderTab("Craft", { kind: "link", href: "index.html", active: false }),
-        '<span class="tab-sep" aria-hidden="true">,</span>',
-        renderTab("About", { kind: "link", active: true }),
-      ].join("")
-    : [
-        renderTab("Projects", { kind: "button", dataTab: "projects", active: true }),
-        '<span class="tab-sep" aria-hidden="true">,</span>',
-        renderTab("Craft", { kind: "button", dataTab: "craft", active: false }),
-        '<span class="tab-sep" aria-hidden="true">,</span>',
-        renderTab("About", { kind: "link", href: "about.html", active: false }),
-      ].join("");
+  var tabsMarkup = [
+    renderTab("Projects", { kind: "button", dataTab: "projects", active: true }),
+    '<span class="tab-sep" aria-hidden="true">,</span>',
+    renderTab("Craft", { kind: "button", dataTab: "craft", active: false }),
+    '<span class="tab-sep" aria-hidden="true">,</span>',
+    renderTab("About", { kind: "button", dataTab: "about", active: false }),
+  ].join("");
 
   navRoot.innerHTML = [
     '  <div class="nav-hello">',

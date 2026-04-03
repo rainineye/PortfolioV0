@@ -44,15 +44,53 @@
 // Contact link — ensure mailto works (e.g. in embedded previews / restricted browsers)
 // Tab navigation
 (function () {
+  var site = document.querySelector(".portfolio-site");
   var tabs = document.querySelectorAll(".tabs .tab[data-tab]");
+  var aboutSection = document.querySelector(".about-inline");
+  var heroMessage = document.querySelector(".hero-msg-section");
+  var projectListSection = document.querySelector(".project-list-section");
+  var chronologicalBleed = document.querySelector(".chronological-bleed");
+
+  function setActiveTab(tabName) {
+    tabs.forEach(function (tab) {
+      var isActive = tab.getAttribute("data-tab") === tabName;
+      tab.classList.toggle("active", isActive);
+      tab.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+
+  function setView(viewName) {
+    var isAbout = viewName === "about";
+    if (site) site.classList.toggle("view-about", isAbout);
+    if (aboutSection) aboutSection.setAttribute("aria-hidden", isAbout ? "false" : "true");
+    if (heroMessage) heroMessage.setAttribute("aria-hidden", isAbout ? "true" : "false");
+    if (projectListSection) projectListSection.setAttribute("aria-hidden", isAbout ? "true" : "false");
+    if (chronologicalBleed) chronologicalBleed.setAttribute("aria-hidden", isAbout ? "true" : "false");
+  }
+
+  function activate(tabName, syncHash) {
+    setActiveTab(tabName);
+    setView(tabName === "about" ? "about" : "home");
+
+    if (!syncHash) return;
+
+    if (tabName === "about") {
+      window.history.replaceState(null, "", "#about");
+    } else if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+  }
+
+  function syncFromLocation() {
+    activate(window.location.hash === "#about" ? "about" : "projects", false);
+  }
+
+  syncFromLocation();
+  window.addEventListener("hashchange", syncFromLocation);
+
   tabs.forEach(function (tab) {
     tab.addEventListener("click", function () {
-      tabs.forEach(function (t) {
-        t.classList.remove("active");
-        t.setAttribute("aria-pressed", "false");
-      });
-      this.classList.add("active");
-      this.setAttribute("aria-pressed", "true");
+      activate(this.getAttribute("data-tab"), true);
     });
   });
 })();
