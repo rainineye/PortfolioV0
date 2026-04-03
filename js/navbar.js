@@ -21,7 +21,7 @@
   }
 
   var tabsMarkup = [
-    renderTab("Projects", { kind: "button", dataTab: "projects", active: true }),
+    renderTab("Projects", { kind: "button", dataTab: "projects", active: false }),
     '<span class="tab-sep" aria-hidden="true">,</span>',
     renderTab("Craft", { kind: "button", dataTab: "craft", active: false }),
     '<span class="tab-sep" aria-hidden="true">,</span>',
