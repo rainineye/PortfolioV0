@@ -228,6 +228,7 @@ body {
   appearance: none;
   background: none;
   border: 0;
+  text-decoration: none;
   font-family: "PT Serif", serif;
   font-size: 16px;
   font-weight: 400;
