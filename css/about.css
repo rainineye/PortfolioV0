@@ -45,6 +45,10 @@ a {
   display: block;
 }
 
+.resume-mobile-link {
+  display: none;
+}
+
 .resume-frame {
   display: block;
   width: 100%;
@@ -80,7 +84,23 @@ a {
     padding-top: 24px;
   }
 
+  .resume-mobile-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    padding: 0 20px;
+    border: 1px solid var(--border-brand-subtle);
+    text-decoration: none;
+    font-family: "PT Serif", serif;
+    font-size: 16px;
+    line-height: 1.2;
+    color: var(--text-primary);
+    background: #ffffff;
+  }
+
   .resume-frame {
-    min-height: 68vh;
+    display: none;
   }
 }
