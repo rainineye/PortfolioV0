@@ -100,7 +100,8 @@ a {
     width: min(100%, 280px);
     min-height: 52px;
     padding: 0 20px;
-    border: 1px solid var(--border-brand-subtle);
+    border: 1.5px solid var(--border-brand-subtle);
+    border-radius: 8px;
     text-decoration: none;
     font-family: "PT Serif", serif;
     font-size: 16px;
