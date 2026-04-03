@@ -18,28 +18,7 @@
   <body>
     <div class="about-site">
       <header class="about-header">
-        <nav class="nav-row">
-          <div class="nav-hello">
-          <img
-            src="favicon.ico"
-            alt=""
-            class="nav-avatar"
-            width="16"
-            height="16"
-            aria-hidden="true"
-          />
-          <p class="hello-text">
-            Hi! It's <span class="name">Mian</span>,
-            <span class="role">Product</span><span class="slash"> / </span
-            ><span class="role">UX Lead</span>
-          </p>
-          </div>
-          <div class="tabs-row">
-            <div class="tabs" aria-label="Primary sections">
-              <a href="index.html" class="tab">Projects</a><span class="tab-sep" aria-hidden="true">,</span><a href="index.html" class="tab">Craft</a><span class="tab-sep" aria-hidden="true">,</span><span class="tab active" aria-current="page">About</span>
-            </div>
-          </div>
-        </nav>
+        <div data-nav-root data-nav-page="about"></div>
       </header>
 
       <main class="about-main">
@@ -52,5 +31,7 @@
         </section>
       </main>
     </div>
+    <script src="js/navbar.js?v=20260403a"></script>
+    <script src="js/main.js?v=20260314b"></script>
   </body>
 </html>
