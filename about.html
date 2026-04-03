@@ -12,67 +12,48 @@
       href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:wght@400&family=PT+Serif+Caption:ital@1&family=Public+Sans:ital,wght@0,100;0,200;0,400;0,500;0,600;1,400&family=Roboto+Condensed:wght@400&family=Roboto+Flex:opsz,wght@8..144,400..700&family=Tomorrow:wght@400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/about.css?v=20260403" />
+    <link rel="stylesheet" href="css/main.css?v=20260318" />
+    <link rel="stylesheet" href="css/about.css?v=20260403b" />
   </head>
   <body>
     <div class="about-site">
       <header class="about-header">
-        <div class="about-header__intro">
+        <nav class="nav-row">
+          <div class="nav-hello">
           <img
             src="favicon.ico"
             alt=""
-            class="about-header__avatar"
+            class="nav-avatar"
             width="16"
             height="16"
             aria-hidden="true"
           />
-          <p class="about-header__hello">
+          <p class="hello-text">
             Hi! It's <span class="name">Mian</span>,
             <span class="role">Product</span><span class="slash"> / </span
             ><span class="role">UX Lead</span>
           </p>
-        </div>
-        <nav class="about-nav" aria-label="Primary sections">
-          <a href="index.html" class="about-nav__link">Projects</a>
-          <span class="about-nav__sep" aria-hidden="true">,</span>
-          <a href="index.html" class="about-nav__link">Craft</a>
-          <span class="about-nav__sep" aria-hidden="true">,</span>
-          <span class="about-nav__link about-nav__link--active" aria-current="page">About</span>
+          </div>
+          <div class="tabs-row">
+            <div class="tabs" aria-label="Primary sections">
+              <a href="index.html" class="tab">Projects</a><span class="tab-sep" aria-hidden="true">,</span><a href="index.html" class="tab">Craft</a><span class="tab-sep" aria-hidden="true">,</span><span class="tab active" aria-current="page">About</span>
+            </div>
+          </div>
         </nav>
       </header>
 
       <main class="about-main">
-        <section class="about-copy">
-          <p class="about-eyebrow">Resume Preview</p>
-          <h1 class="about-title">A quick, skim-friendly view of my experience.</h1>
-          <p class="about-description">
-            Browse the PDF right here, or download it if you want to save, share,
-            or review it later.
-          </p>
-          <div class="about-actions">
-            <a
-              href="About/CV_Mian_Deng_2026.pdf"
-              class="about-action about-action--primary"
-              download="CV_Mian_Deng_2026.pdf"
-            >
-              Download Resume
-            </a>
-            <a href="index.html" class="about-action about-action--secondary">
-              Back to Projects
+        <section class="resume-panel" aria-label="Resume PDF preview">
+          <div class="resume-panel__meta">
+            <a href="About/CV_Mian_Deng_2026.pdf" class="resume-download" download="CV_Mian_Deng_2026.pdf">
+              Download
             </a>
           </div>
-        </section>
-
-        <section class="resume-panel" aria-label="Resume PDF preview">
           <iframe
             src="About/CV_Mian_Deng_2026.pdf#view=FitH"
             title="Mian resume PDF preview"
             class="resume-frame"
           ></iframe>
-          <p class="resume-fallback">
-            If the preview doesn&apos;t load in your browser,
-            <a href="About/CV_Mian_Deng_2026.pdf" download="CV_Mian_Deng_2026.pdf">download the PDF here</a>.
-          </p>
         </section>
       </main>
     </div>
