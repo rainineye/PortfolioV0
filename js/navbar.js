@@ -36,7 +36,7 @@
     '  <div class="tabs-row">',
     '    <div class="tabs" aria-label="Primary sections">' + tabsMarkup + "</div>",
     '    <div class="contact-fullscreen">',
-    '      <a href="mailto:rainineyeweb3@gmail.com?subject=Portfolio%20Inquiry" class="contact-link">Contact</a>',
+    '      <a href="https://calendly.com/rainineyeweb3/30min?month=2026-04" class="contact-link" target="_blank" rel="noreferrer">Contact</a>',
     '      <button type="button" class="fullscreen-btn" id="fullscreenBtn" aria-label="Enter fullscreen">',
     '        <img src="assets/icons/fullscreen--no--normal.svg" alt="" class="fullscreen-btn__icon" width="24" height="24" aria-hidden="true" />',
     "      </button>",
