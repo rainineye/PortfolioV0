@@ -42,30 +42,7 @@ a {
 }
 
 .resume-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.resume-panel__meta {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  min-height: 20px;
-}
-
-.resume-download {
-  font-family: "PT Serif", serif;
-  font-size: 14px;
-  line-height: 1.2;
-  color: var(--text-secondary);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-}
-
-.resume-download:hover {
-  color: var(--text-primary);
-  border-bottom-color: var(--border-neutral-subtle);
+  display: block;
 }
 
 .resume-frame {
@@ -74,11 +51,6 @@ a {
   min-height: calc(100vh - 148px);
   border: 0;
   background: #ffffff;
-}
-
-.resume-download:focus-visible {
-  outline: 2px solid var(--focus-ring-default);
-  outline-offset: 3px;
 }
 
 @media (max-width: 900px) {
@@ -98,10 +70,6 @@ a {
 
   .about-main {
     padding-top: 24px;
-  }
-
-  .resume-panel {
-    gap: 10px;
   }
 
   .resume-frame {
