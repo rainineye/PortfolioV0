@@ -39,7 +39,6 @@
       ].join("");
 
   navRoot.innerHTML = [
-    '<nav class="nav-row">',
     '  <div class="nav-hello">',
     '    <img src="favicon.ico" alt="" class="nav-avatar" width="16" height="16" aria-hidden="true" />',
     '    <p class="hello-text">Hi! It&apos;s <span class="name">Mian</span>, <span class="role">Product</span><span class="slash"> / </span><span class="role">UX Lead</span></p>',
@@ -53,6 +52,5 @@
     "      </button>",
     "    </div>",
     "  </div>",
-    "</nav>",
   ].join("");
 })();
