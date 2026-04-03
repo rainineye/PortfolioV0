@@ -55,9 +55,9 @@ a {
 
 @media (min-width: 769px) {
   .resume-panel {
-    width: min(calc(100vw - 16px), 1712px);
-    margin-left: 50%;
-    transform: translateX(-50%);
+    width: min(980px, 100%);
+    margin: 0 auto;
+    transform: none;
   }
 }
 
