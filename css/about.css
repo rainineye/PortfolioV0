@@ -53,6 +53,14 @@ a {
   background: #ffffff;
 }
 
+@media (min-width: 769px) {
+  .resume-panel {
+    width: min(calc(100vw - 16px), 1712px);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 @media (max-width: 900px) {
   .resume-frame {
     min-height: 72vh;
