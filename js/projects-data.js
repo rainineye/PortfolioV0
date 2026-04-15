@@ -2,7 +2,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     id: "01",
     name: "Savvy DeFi",
-    labels: ["Auto-paying Lending"],
+    labels: ["Auto-pay Lending"],
     description:
       "Auto-repaying lending protocol for yield-bearing assets pegged to synthetic tokens.",
     uxStoryDescription:
@@ -27,7 +27,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     id: "02",
     name: "Evmos",
-    labels: ["Layer 1", "Cross-chain Transfer"],
+    labels: ["Layer 1", "IBC Transfer"],
     description:
       "EVM-compatible Layer 1 and IBC hub for cross-chain asset transfer in the Cosmos ecosystem.",
     uxStoryDescription:
@@ -52,7 +52,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     id: "03",
     name: "Namefi",
-    labels: ["DID", "Tokenized DNS"],
+    labels: ["RWA", "DID"],
     description:
       "Tokenized DNS and DID protocol for on-chain domain trading and identity.",
     uxStoryDescription:
@@ -82,7 +82,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     id: "04",
     name: "Entangle UDF",
-    labels: ["Data Feeds"],
+    labels: ["Data Feeds", "Dev Tool"],
     description:
       "Decentralized data feed infrastructure with streamlined integration and transparent sourcing.",
     uxStoryDescription:
@@ -111,7 +111,7 @@ window.PORTFOLIO_PROJECTS = [
     description:
       "Unified token launchpad for creating and managing native omni-chain tokens.",
     uxStoryDescription:
-      "Designing a unified token launch UX for creating and managing native omni-chain tokens",
+      "Creating the launching experience for omni-chain token standard, with further liquidity management",
     date: "Sep - Nov 2024",
     role: "UX Lead",
     previewClass: "thumb-left-fixed",
@@ -141,7 +141,7 @@ window.PORTFOLIO_PROJECTS = [
     description:
       "Omni-chain money market for cross-chain lending and leveraged yield farming.",
     uxStoryDescription:
-      "Designing an omni-chain money market UX for cross-chain lending and leveraged farming",
+      "Redefining a trader-centered omni-chain lending & borrowing experience",
     date: "Jul - Nov 2024",
     role: "UX Lead",
     previewClass: "thumb-left-fixed",
@@ -166,7 +166,7 @@ window.PORTFOLIO_PROJECTS = [
     description:
       "Staking, bridge and block explorer for the Entangle network.",
     uxStoryDescription:
-      "Streamlining staking, bridging and explorer flows across Entangle network activities",
+      "Revamping the UX for staking $NGL, E-bridge and cross-chain messaging transactions",
     date: "May - Jun 2024",
     role: "UX Lead",
     previewClass: "thumb-left-fixed",
@@ -187,11 +187,11 @@ window.PORTFOLIO_PROJECTS = [
   {
     id: "08",
     name: "Aladdin",
-    labels: ["AI Agent", "MVP"],
+    labels: ["AI Agents", "MVP"],
     description:
       "Autonomous agent protocol coordinating crews via algorithmic contracts.",
     uxStoryDescription:
-      "Shaping the MVP UX for coordinating autonomous agent crews through algorithmic contracts",
+      "MVP to validate orchestrated agent crew formation, workflow and discovery",
     date: "Dec 2024 - Feb 2025",
     role: "Early Contributor",
     previewClass: "thumb-left-fixed",
@@ -212,11 +212,11 @@ window.PORTFOLIO_PROJECTS = [
   {
     id: "09",
     name: "DIN Systems",
-    labels: ["On-chain Federated Learning"],
+    labels: ["On-chain federated learning"],
     description:
       "On-chain federated learning and privacy-preserving AI infrastructure.",
     uxStoryDescription:
-      "Defining the product UX for on-chain federated learning and privacy-preserving AI systems",
+      "Product ideation and strategies based on a technical whitepaper of decentralized AI training",
     date: "Feb - Aug 2025",
     role: "Product Lead",
     previewClass: "thumb-left-fixed",
@@ -247,7 +247,7 @@ window.PORTFOLIO_PROJECTS = [
     description:
       "ERC-7527 token standard enabling seamless ERC-20 and ERC-721 conversion flows.",
     uxStoryDescription:
-      "Designing the token interaction UX for seamless ERC-20 and ERC-721 conversion flows",
+      "Translating ERC-7527 into interfaces for wrapping/unwrapping between token and NFT",
     date: "March 2025",
     role: "UX Designer",
     previewClass: "",
@@ -268,11 +268,11 @@ window.PORTFOLIO_PROJECTS = [
   {
     id: "11",
     name: "Cede Hub",
-    labels: ["UIUX Audit"],
+    labels: ["NDA"],
     description:
       "DEX and trading platform with focus on pair discovery, incentives and execution.",
     uxStoryDescription:
-      "Auditing the trading UX to improve pair discovery, incentives and execution clarity",
+      "Revamping the UX for trading campaigns in boosting CEX trading volumes",
     date: "Sep - Oct 2025",
     role: "UIUX Auditor",
     previewClass: "thumb-left-fixed",
