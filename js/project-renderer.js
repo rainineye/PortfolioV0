@@ -131,7 +131,7 @@
       '</div><div class="project-card-badge">' + escapeHtml(project.id) + "</div>" +
       "</div></div>" +
       '<div class="project-card-desc">' +
-      '<div class="project-card-desc-title">' + escapeHtml(project.description) + "</div>" +
+      '<div class="project-card-desc-title">' + escapeHtml(project.uxStoryDescription) + "</div>" +
       '<div class="project-card-redirect">' +
       project.redirects.map(renderRedirect).join("") +
       "</div></div></div></div></section>"
@@ -139,16 +139,7 @@
   }
 
   function getMobileCardData(project) {
-    var overrides = {
-      "01": {
-        labels: ["Auto-pay Lending"],
-      },
-      "02": {
-        labels: ["Layer 1", "IBC Transfer"],
-      },
-    };
-
-    return Object.assign({}, project, overrides[project.id] || {});
+    return project;
   }
 
   function getMobileRedirectLabel(redirect) {
@@ -199,7 +190,7 @@
     return (
       '<div class="project-card-mobile-detail">' +
       '<div class="project-card-mobile-detail-inner">' +
-      '<div class="project-card-mobile-detail-copy">' + escapeHtml(project.description) + "</div>" +
+      '<div class="project-card-mobile-detail-copy">' + escapeHtml(project.uxStoryDescription) + "</div>" +
       '<div class="project-card-mobile-detail-links">' +
       project.redirects.map(renderMobileRedirect).join("") +
       "</div></div></div>"
