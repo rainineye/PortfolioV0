@@ -21,13 +21,21 @@
   progressEl.appendChild(fillEl);
   document.body.appendChild(progressEl);
 
+  var heroImgSection = document.querySelector(".title-image-section");
+
   function updateScrollProgress() {
     var scrollTop  = window.pageYOffset || document.documentElement.scrollTop;
     var maxScroll  = document.documentElement.scrollHeight - window.innerHeight;
     var pct        = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
     fillEl.style.height = (pct * 100).toFixed(2) + "%";
+
+    // Keep track below hero image — slides up as hero scrolls out of view
+    var heroH = heroImgSection ? heroImgSection.offsetHeight : 0;
+    var trackTop = Math.max(0, heroH - scrollTop);
+    progressEl.style.top = trackTop + "px";
   }
   window.addEventListener("scroll", updateScrollProgress, { passive: true });
+  window.addEventListener("resize", updateScrollProgress, { passive: true });
   updateScrollProgress();
 
   if (!closeBtn) return;
