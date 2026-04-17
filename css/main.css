@@ -112,7 +112,13 @@ body {
 }
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
 }
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.32); }
 body {
   font-family: "PT Sans", sans-serif;
   background: var(--surface-page-default);
@@ -1125,7 +1131,7 @@ body {
   background: var(--surface-page-default);
   overflow: hidden;
   position: relative;
-  border-radius: clamp(16px, 2vw, 28px) clamp(16px, 2vw, 28px) 0 0; /* top corners clip iframe content */
+  clip-path: inset(0 round clamp(16px, 2vw, 28px) clamp(16px, 2vw, 28px) 0 0); /* clip-path clips iframe content; border-radius alone does not */
 }
 .overlay-frame iframe {
   width: 100%;
