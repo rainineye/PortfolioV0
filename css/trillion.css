@@ -136,6 +136,10 @@ img {
   object-position: center bottom;
   border-radius: var(--trillion-radius-shell) var(--trillion-radius-shell) 0 0;
 }
+/* When embedded in overlay, outer frame clips the shape — remove inner rounding */
+.story-trillion[data-embedded="true"] .title-image-section img {
+  border-radius: 0;
+}
 
 .title-text-section {
   width: min(calc(100% - 2 * var(--trillion-gutter)), var(--trillion-content-max));
