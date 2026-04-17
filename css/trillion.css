@@ -29,15 +29,45 @@
   box-sizing: border-box;
 }
 
-/* Minimal scrollbar */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
+/* Hide native scrollbar — replaced by custom .scroll-progress element */
+html { scrollbar-width: none; }
+::-webkit-scrollbar { display: none; }
+
+/* Custom scroll progress / reading indicator */
+.scroll-progress {
+  position: fixed;
+  right: 5px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  z-index: 200;
+  pointer-events: none;
 }
-::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.18); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.32); }
+.scroll-progress__track {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 99px;
+}
+.scroll-progress__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0%;
+  background: #00f8a5; /* portfolio brand color */
+  border-radius: 99px;
+}
+.scroll-progress__thumb {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: #00f8a5;
+  border-radius: 50%;
+  margin-top: -3px; /* center on fill bottom edge */
+}
 
 html,
 body {

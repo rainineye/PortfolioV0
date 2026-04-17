@@ -7,15 +7,30 @@
     root.setAttribute("data-embedded", isEmbedded ? "true" : "false");
   }
 
-  if (!closeBtn) return;
+  // ── Scroll progress / reading indicator ──────────────────────────────────
+  var progressEl   = document.createElement("div");
+  var trackEl      = document.createElement("div");
+  var fillEl       = document.createElement("div");
+  var thumbEl      = document.createElement("div");
+  progressEl.className         = "scroll-progress";
+  trackEl.className            = "scroll-progress__track";
+  fillEl.className             = "scroll-progress__fill";
+  thumbEl.className            = "scroll-progress__thumb";
+  fillEl.appendChild(thumbEl);
+  progressEl.appendChild(trackEl);
+  progressEl.appendChild(fillEl);
+  document.body.appendChild(progressEl);
 
-  closeBtn.addEventListener("click", function () {
-    if (isEmbedded) {
-      window.parent.postMessage({ type: "closeTrillionOverlay" }, "*");
-    } else if (window.history.length > 1) {
-      window.history.back();
-    }
-  });
+  function updateScrollProgress() {
+    var scrollTop  = window.pageYOffset || document.documentElement.scrollTop;
+    var maxScroll  = document.documentElement.scrollHeight - window.innerHeight;
+    var pct        = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
+    fillEl.style.height = (pct * 100).toFixed(2) + "%";
+  }
+  window.addEventListener("scroll", updateScrollProgress, { passive: true });
+  updateScrollProgress();
+
+  if (!closeBtn) return;
 
   // Switch × stroke color when scrolled past the dark hero image into white area
   var heroSection = document.querySelector(".title-image-section");

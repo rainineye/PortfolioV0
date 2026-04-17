@@ -1131,7 +1131,7 @@ body {
   background: var(--surface-page-default);
   overflow: hidden;
   position: relative;
-  clip-path: inset(0 round clamp(16px, 2vw, 28px) clamp(16px, 2vw, 28px) 0 0); /* clip-path clips iframe content; border-radius alone does not */
+  clip-path: inset(0 round clamp(24px, 2.6vw, 44px) clamp(24px, 2.6vw, 44px) 0 0); /* matches --trillion-radius-shell; clip-path clips iframe; border-radius alone does not */
 }
 .overlay-frame iframe {
   width: 100%;
