@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=PT+Sans:wght@400&family=Public+Sans:ital,wght@0,200;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/trillion.css" />
+  <link rel="stylesheet" href="css/trillion.css?v=mobile-1" />
 </head>
 <body>
   <div class="story-trillion" data-name="Story Trillion">
@@ -156,22 +156,56 @@ In short, the interface needed to give users <strong>clear, contextual, and tran
         <div class="key-flows-inner">
           <p class="key-flows-title">3. Key flows & feature UX in Lo-fi</p>
           <div class="flow-items">
-            <div class="flow-item">
+            <div class="flow-item flow-desktop-only">
               <img src="assets/trillion/staking-flow.webp" alt="Staking Flow" width="1400" height="478" loading="lazy" decoding="async" class="img-staking-flow">
               <p class="caption">1. Staking Flow: Approve → Stake → Staking → Success + Show Balance (V0)</p>
             </div>
-            <div class="flow-item">
+            <div class="flow-item flow-desktop-only">
               <img src="assets/trillion/manage-flow.webp" alt="Manage Flow" width="1400" height="517" loading="lazy" decoding="async" class="img-manage-flow">
               <p class="caption">2. Manage Positions: Supply / Withdraw → Approve → Supplying / Withdrawing → Success + Realized PnL (V0)</p>
             </div>
+
+            <div class="flow-mobile-only flow-steps">
+              <p class="flow-step-label">1. Staking flow:</p>
+              <img src="assets/trillion/mobile/stake-1.webp" alt="Stake Approve" width="2600" height="2850" loading="lazy" decoding="async" class="flow-step-img">
+              <div class="flow-step-marker"><span>Approve</span><span class="flow-arrow" aria-hidden="true"></span></div>
+              <img src="assets/trillion/mobile/stake-2.webp" alt="Stake" width="2600" height="2850" loading="lazy" decoding="async" class="flow-step-img">
+              <div class="flow-step-marker"><span>Stake</span><span class="flow-arrow" aria-hidden="true"></span></div>
+              <img src="assets/trillion/mobile/stake-3.webp" alt="Staking" width="2600" height="2850" loading="lazy" decoding="async" class="flow-step-img">
+              <div class="flow-step-marker"><span>Staking</span><span class="flow-arrow" aria-hidden="true"></span></div>
+              <img src="assets/trillion/mobile/stake-4.webp" alt="Staking Success" width="2600" height="2850" loading="lazy" decoding="async" class="flow-step-img">
+              <p class="flow-step-caption">Success + Show Balance (V0)</p>
+            </div>
+
+            <div class="flow-mobile-only flow-steps">
+              <p class="flow-step-label">2. Managing Positions:</p>
+              <img src="assets/trillion/mobile/manage-1.webp" alt="Manage Approve" width="2080" height="2680" loading="lazy" decoding="async" class="flow-step-img flow-step-img--manage">
+              <div class="flow-step-marker"><span>Approve</span><span class="flow-arrow" aria-hidden="true"></span></div>
+              <img src="assets/trillion/mobile/manage-2.webp" alt="Supply / Withdraw" width="2080" height="2680" loading="lazy" decoding="async" class="flow-step-img flow-step-img--manage">
+              <div class="flow-step-marker"><span>Supply / Withdraw</span><span class="flow-arrow" aria-hidden="true"></span></div>
+              <img src="assets/trillion/mobile/manage-3.webp" alt="Supplying / Withdrawing" width="2080" height="2680" loading="lazy" decoding="async" class="flow-step-img flow-step-img--manage">
+              <div class="flow-step-marker"><span>Supplying / Withdrawing</span><span class="flow-arrow" aria-hidden="true"></span></div>
+              <img src="assets/trillion/mobile/manage-4.webp" alt="Manage Success" width="2080" height="2280" loading="lazy" decoding="async" class="flow-step-img flow-step-img--manage-success">
+              <p class="flow-step-caption">Success + Realized PnL (V0)</p>
+            </div>
+
             <div class="flow-two-col">
               <div class="flow-item">
-                <img src="assets/trillion/add-liquidity.webp" alt="Add Liquidity" loading="lazy" decoding="async">
-                <p class="caption">3. Add Liquidity: 1:1, Zap or with Custom Range (V1)</p>
+                <p class="flow-step-label flow-mobile-only">3. Add Liquidity:</p>
+                <img src="assets/trillion/add-liquidity.webp" alt="Add Liquidity" loading="lazy" decoding="async" class="img-add-liquidity">
+                <p class="caption flow-desktop-only">3. Add Liquidity: 1:1, Zap or with Custom Range (V1)</p>
+                <p class="flow-step-caption flow-mobile-only">1:1, Zap or with Custom Range (V1)</p>
               </div>
               <div class="flow-item">
-                <img src="assets/trillion/wallet.webp" alt="Wallet" loading="lazy" decoding="async">
-                <p class="caption">4. Wallet dropdown: Multi-asset Management (V1)</p>
+                <p class="flow-step-label flow-mobile-only">4. Wallet dropdown:</p>
+                <img src="assets/trillion/wallet.webp" alt="Wallet" loading="lazy" decoding="async" class="img-wallet flow-desktop-only">
+                <div class="wallet-composite flow-mobile-only" aria-label="Wallet dropdown">
+                  <img class="wallet-composite__bg" src="assets/trillion/mobile/wallet-bg.webp" alt="" loading="lazy" decoding="async">
+                  <div class="wallet-composite__overlay"></div>
+                  <img class="wallet-composite__panel" src="assets/trillion/mobile/wallet-panel.webp" alt="Wallet panel" loading="lazy" decoding="async">
+                </div>
+                <p class="caption flow-desktop-only">4. Wallet dropdown: Multi-asset Management (V1)</p>
+                <p class="flow-step-caption flow-mobile-only">Multi-asset Management (V1)</p>
               </div>
             </div>
           </div>
