@@ -16,4 +16,19 @@
       window.history.back();
     }
   });
+
+  // Switch × stroke color when scrolled past the dark hero image into white area
+  var heroSection = document.querySelector(".title-image-section");
+  if (heroSection) {
+    function updateCloseBtnColor() {
+      var heroBottom = heroSection.getBoundingClientRect().bottom;
+      if (heroBottom <= 60) {
+        closeBtn.classList.add("close-btn--light");
+      } else {
+        closeBtn.classList.remove("close-btn--light");
+      }
+    }
+    window.addEventListener("scroll", updateCloseBtnColor, { passive: true });
+    updateCloseBtnColor();
+  }
 })();

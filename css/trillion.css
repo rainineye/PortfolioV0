@@ -11,7 +11,7 @@
   --trillion-border-card: #d0ffc0;
   --trillion-ux-header: #1b2d15;
   --trillion-page-max: 1728px;
-  --trillion-content-max: 1408px;
+  --trillion-content-max: 1378px;
   --trillion-content-narrow: 1104px;
   --trillion-gutter: clamp(20px, 2.2vw, 36px);
   --trillion-gap-xl: clamp(72px, 8vw, 132px);
@@ -58,19 +58,23 @@ img {
 
 .close-btn {
   position: fixed;
-  top: 24px;
-  right: clamp(20px, 2.2vw, 36px);
-  width: 40px;
-  height: 40px;
+  top: clamp(20px, 2.5vw, 40px);
+  right: clamp(20px, 2.5vw, 40px);
+  width: 47px;   /* = SVG 33px × √2 ≈ 46.7px — backdrop fully wraps × diagonal */
+  height: 47px;
   border: 0;
-  background: rgba(255, 255, 255, 0.84);
+  background: transparent;
   border-radius: 999px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   z-index: 20;
-  backdrop-filter: blur(10px);
+  transition: background 0.18s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .story-trillion[data-embedded="true"] .close-btn {
@@ -78,9 +82,24 @@ img {
 }
 
 .close-btn svg {
-  width: 24px;
-  height: 24px;
-  stroke: var(--trillion-text-primary);
+  width: 33px;   /* 35px × 95% */
+  height: 33px;
+  stroke: #EAEAEA;
+  transition: stroke 0.18s ease;
+}
+
+/* When button is over the light/white content area — must come AFTER .close-btn svg to override stroke */
+.close-btn--light {
+  background: transparent;
+}
+.close-btn--light:hover {
+  background: rgba(0, 0, 0, 0.10);
+}
+.close-btn.close-btn--light svg {
+  stroke: #2a2a2a;  /* clearly dark on white bg */
+}
+.close-btn.close-btn--light:hover svg {
+  stroke: #000;     /* even darker on hover */
 }
 
 .trillion-page {
@@ -89,7 +108,7 @@ img {
   gap: var(--trillion-gap-xl);
   width: min(100%, var(--trillion-page-max));
   margin: 0 auto;
-  padding-bottom: var(--trillion-gap-xl);
+  padding-bottom: 0;
 }
 
 .trillion-pre {
@@ -106,7 +125,7 @@ img {
 
 .title-image-section {
   width: 100%;
-  aspect-ratio: 1728 / 761;
+  aspect-ratio: 1728 / 627;
   overflow: hidden;
 }
 
@@ -114,7 +133,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center bottom;
   border-radius: var(--trillion-radius-shell) var(--trillion-radius-shell) 0 0;
 }
 
@@ -152,7 +171,7 @@ img {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(320px, 408px);
   gap: clamp(24px, 4vw, 56px);
-  align-items: start;
+  align-items: center;
 }
 
 .intro-left,
@@ -161,7 +180,7 @@ img {
 }
 
 .intro-title {
-  font-size: clamp(34px, 4vw, 52px);
+  font-size: clamp(28px, 3vw, 52px);
   font-weight: 400;
   line-height: 1.45;
   letter-spacing: -0.07em;
@@ -187,6 +206,10 @@ img {
   color: var(--trillion-text-secondary);
 }
 
+.ux-header {
+  color: var(--trillion-ux-header);
+}
+
 .meta-value {
   font-family: "PT Sans", sans-serif;
   font-size: 17px;
@@ -205,7 +228,7 @@ img {
 .concept-text,
 .ps-body,
 .user-desc {
-  font-size: clamp(17px, 1.35vw, 19px);
+  font-size: clamp(15px, 1.1vw, 19px);
   line-height: 1.5;
 }
 
@@ -223,25 +246,35 @@ img {
 }
 
 .trillion-process {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
   border-top: 1px solid var(--trillion-border-subtle);
   padding: clamp(44px, 5vw, 60px) var(--trillion-gutter) 0;
 }
 
-.process-spacer-left,
+.process-spacer-left {
+  flex: 546 1 0;
+  min-width: 0;
+}
+
 .process-spacer-right {
-  display: none;
+  flex: 131 1 0;
+  min-width: 0;
 }
 
 .process-main {
-  width: min(100%, var(--trillion-content-narrow));
-  margin: 0 auto;
+  flex: 963 1 0;
+  min-width: 0;
+  width: auto;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: var(--trillion-gap-lg);
 }
 
 .target-users {
-  width: min(100%, 680px);
+  width: min(100%, 546px);
   display: flex;
   flex-direction: column;
   gap: var(--trillion-gap-md);
@@ -261,7 +294,7 @@ img {
 }
 
 .user-title {
-  font-size: clamp(20px, 1.8vw, 22px);
+  font-size: clamp(16px, 1.27vw, 22px);
   font-weight: 600;
   line-height: 1.2;
 }
@@ -317,13 +350,25 @@ img {
   gap: clamp(32px, 4vw, 58px);
 }
 
-.img-text-row,
-.img-row-two,
-.ux-row {
+.img-text-row {
   display: grid;
-  grid-template-columns: minmax(0, 547px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.46fr) minmax(0, 1fr);
   gap: clamp(24px, 4vw, 48px);
   align-items: start;
+}
+
+.img-row-two {
+  display: grid;
+  grid-template-columns: minmax(0, 270px) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+}
+
+.ux-row {
+  display: grid;
+  grid-template-columns: minmax(0, 684px) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
 }
 
 .img-col,
@@ -331,10 +376,13 @@ img {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  align-items: flex-end;
 }
 
 .img-row-two {
   grid-template-columns: minmax(0, 270px) minmax(0, 1fr);
+  align-self: flex-end;
+  width: min(100%, 695px);
 }
 
 .img-caption,
@@ -343,6 +391,7 @@ img {
 .flow-item .caption {
   font-size: 13px;
   font-style: italic;
+  text-align: center;
   color: var(--trillion-text-primary);
 }
 
@@ -436,7 +485,7 @@ img {
 }
 
 .ps-body {
-  text-align: center;
+  text-align: left;
   padding: 0 clamp(0px, 3vw, 44px);
 }
 
@@ -447,8 +496,7 @@ img {
   font-weight: 700;
 }
 
-.ux-solutions,
-.key-flows {
+.ux-solutions {
   padding: 0 var(--trillion-gutter);
 }
 
@@ -475,7 +523,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .ux-imgs img,
@@ -487,27 +535,55 @@ img {
 }
 
 .ux-card-tooltip-wrap {
-  width: min(100%, 353px);
-  aspect-ratio: 353 / 259;
+  /* Figma: card 353×259 at top=50px left=0; tooltip 255×146 at top=0 left=335px
+     Full composition width = 335+255 = 590px, height = 50+259 = 309px */
   position: relative;
+  width: min(100%, 590px);
+  aspect-ratio: 590 / 309;
   margin-top: clamp(20px, 3vw, 50px);
 }
 
 .ux-card-tooltip-wrap .ux-card-img {
   position: absolute;
-  inset: 0;
+  left: 0;
+  top: 16.2%;        /* 50.03 / 309 */
+  width: 59.85%;     /* 353.225 / 590.125 */
+  height: 83.68%;    /* 258.546 / 309 */
   border: 1px solid var(--trillion-border-card);
-  border-radius: 12px;
+  border-radius: 2%;
   object-fit: cover;
 }
 
 .ux-card-tooltip-wrap .ux-tooltip-img {
   position: absolute;
-  top: -4px;
-  left: 22.6%;
-  width: 72.2%;
-  height: auto;
+  left: 56.8%;       /* 335.22 / 590.125 */
+  top: 0;
+  width: 43.2%;      /* 254.905 / 590.125 */
+  height: 47.14%;    /* 145.66 / 309 */
   object-fit: contain;
+}
+
+/* connector: positioned directly in the 590×309 wrap at natural SVG size (23.546×53.406px)       */
+/* Line junction (2.913,3.154) in SVG coords → Figma pos (321.2,21.12) in wrap coords           */
+/* viewBox expanded by 2px bleed on all sides → SVG now 27.546×57.406, origin shifted by 2px   */
+/* → img left = (321.2−4.913)/590.125 = 53.60%  top = (21.12−5.154)/309 = 5.17%               */
+.ux-card-tooltip-wrap .ux-connector-img {
+  position: absolute;
+  left: 53.60%;   /* line junction aligns with Figma container left edge (−2px bleed offset) */
+  top: 5.17%;     /* line junction aligns with Figma container top edge  (−2px bleed offset) */
+  width: 4.67%;   /* 27.546 / 590.125 — natural SVG width  (with 2px bleed)                 */
+  height: 18.58%; /* 57.406 / 309     — natural SVG height (with 2px bleed)                 */
+  z-index: 3;
+  border-radius: 0; /* override .ux-imgs img border-radius that clips circle/diamond corners */
+}
+
+/* cursor icon: left=293.71, top=103.55, w=17.479, h=22.246 */
+.ux-card-tooltip-wrap .ux-cursor-img {
+  position: absolute;
+  left: 49.77%;      /* 293.71 / 590.125 */
+  top: 33.54%;       /* 103.55 / 309 */
+  width: 2.96%;      /* 17.479 / 590.125 */
+  height: auto;
 }
 
 .ux-text,
@@ -516,10 +592,25 @@ img {
   padding: 0 clamp(0px, 2vw, 29px);
 }
 
+/* Space between title and body, and between body paragraphs */
+.ux-text p + p,
+.ux-block .text p + p,
+.text-col-inner p + p,
+.ps-inner p + p {
+  margin-top: 1.3em;
+}
+
 .ux-block {
   display: flex;
   flex-direction: column;
   gap: var(--trillion-gap-md);
+}
+
+/* image + caption sub-group: Figma gap = 10px */
+.ux-img-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .key-flows {
@@ -530,7 +621,8 @@ img {
 }
 
 .key-flows-inner {
-  width: min(100%, 1378px);
+  width: min(calc(100% - 2 * var(--trillion-gutter)), 1378px);
+  margin: 0 auto;
 }
 
 .key-flows-title {
@@ -558,8 +650,9 @@ img {
 
 .flow-two-col {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--trillion-gap-sm);
+  grid-template-columns: repeat(2, minmax(0, 459px));
+  gap: 7px;
+  justify-content: center;
 }
 
 .flow-two-col .flow-item img {
@@ -568,7 +661,8 @@ img {
 }
 
 .concept-text .lead {
-  font-size: 22px;
+  font-size: 19px;
+  font-weight: 700;
 }
 
 .concept-text--spaced {
@@ -597,6 +691,7 @@ img {
 
 .mockup-section {
   width: 100%;
+  aspect-ratio: 1728 / 964;
   background: var(--trillion-accent-green);
   overflow: hidden;
 }
@@ -604,15 +699,34 @@ img {
 .mockup-section img {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  margin-top: -4.5vw;
 }
 
 @media (max-width: 1180px) {
+  .trillion-process {
+    display: block;
+  }
+
+  .process-spacer-left,
+  .process-spacer-right {
+    display: none;
+  }
+
+  .process-main {
+    width: 100%;
+    flex: none;
+  }
+
   .intro-row,
   .img-text-row,
   .img-row-two,
   .ux-row {
     grid-template-columns: 1fr;
+  }
+
+  .img-row-two {
+    align-self: auto;
+    width: 100%;
   }
 
   .intro-meta {
@@ -653,6 +767,7 @@ img {
   .user-block,
   .flow-two-col {
     grid-template-columns: 1fr;
+    justify-content: start;
   }
 
   .user-icon,
@@ -667,7 +782,13 @@ img {
   }
 
   .close-btn {
+    width: 38px;   /* 27px × √2 ≈ 38px */
+    height: 38px;
     top: 16px;
     right: 16px;
+  }
+  .close-btn svg {
+    width: 27px;   /* 28px × 95% */
+    height: 27px;
   }
 }

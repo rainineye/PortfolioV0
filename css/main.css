@@ -1096,7 +1096,9 @@ body {
 .overlay {
   position: fixed;
   inset: 0;
-  background: var(--surface-overlay-scrim);
+  background: rgba(0, 0, 0, 0.72); /* 72% darken — 70-80% range */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 9999;
   display: none;
   align-items: stretch;
@@ -1110,7 +1112,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 96px;
+  height: 48px;
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -1118,8 +1120,8 @@ body {
 }
 .overlay-frame {
   width: 100%;
-  height: calc(100dvh - 96px);
-  margin-top: 96px;
+  height: calc(100dvh - 48px);
+  margin-top: 48px;
   background: var(--surface-page-default);
   overflow: hidden;
   position: relative;
