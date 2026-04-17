@@ -1125,6 +1125,7 @@ body {
   background: var(--surface-page-default);
   overflow: hidden;
   position: relative;
+  border-radius: clamp(16px, 2vw, 28px) clamp(16px, 2vw, 28px) 0 0; /* top corners clip iframe content */
 }
 .overlay-frame iframe {
   width: 100%;
