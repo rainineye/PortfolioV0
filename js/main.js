@@ -47,6 +47,7 @@
   var site = document.querySelector(".portfolio-site");
   var tabs = document.querySelectorAll(".tabs .tab[data-tab]");
   var aboutSection = document.querySelector(".about-inline");
+  var craftSection = document.querySelector(".craft-inline");
   var heroMessage = document.querySelector(".hero-msg-section");
   var projectListSection = document.querySelector(".project-list-section");
   var chronologicalBleed = document.querySelector(".chronological-bleed");
@@ -61,28 +62,50 @@
 
   function setView(viewName) {
     var isAbout = viewName === "about";
-    if (site) site.classList.toggle("view-about", isAbout);
+    var isCraft = viewName === "craft";
+    var isHome = !isAbout && !isCraft;
+
+    if (site) {
+      site.classList.toggle("view-about", isAbout);
+      site.classList.toggle("view-craft", isCraft);
+    }
     if (aboutSection) aboutSection.setAttribute("aria-hidden", isAbout ? "false" : "true");
-    if (heroMessage) heroMessage.setAttribute("aria-hidden", isAbout ? "true" : "false");
-    if (projectListSection) projectListSection.setAttribute("aria-hidden", isAbout ? "true" : "false");
-    if (chronologicalBleed) chronologicalBleed.setAttribute("aria-hidden", isAbout ? "true" : "false");
+    if (craftSection) craftSection.setAttribute("aria-hidden", isCraft ? "false" : "true");
+    if (heroMessage) heroMessage.setAttribute("aria-hidden", isHome ? "false" : "true");
+    if (projectListSection) projectListSection.setAttribute("aria-hidden", isHome ? "false" : "true");
+    if (chronologicalBleed) chronologicalBleed.setAttribute("aria-hidden", isHome ? "false" : "true");
+
+    // Scrolling to the top makes the transition feel like a real tab change
+    // rather than keeping old scroll position from the previous view.
+    if (isCraft || isAbout) {
+      window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+    }
   }
 
   function activate(tabName, syncHash) {
     setActiveTab(tabName);
-    setView(tabName === "about" ? "about" : "home");
+    var view = tabName === "about" ? "about"
+             : tabName === "craft" ? "craft"
+             : "home";
+    setView(view);
 
     if (!syncHash) return;
 
     if (tabName === "about") {
       window.history.replaceState(null, "", "#about");
+    } else if (tabName === "craft") {
+      window.history.replaceState(null, "", "#craft");
     } else if (window.location.hash) {
       window.history.replaceState(null, "", window.location.pathname + window.location.search);
     }
   }
 
   function syncFromLocation() {
-    activate(window.location.hash === "#about" ? "about" : "projects", false);
+    var hash = window.location.hash;
+    var target = hash === "#about" ? "about"
+               : hash === "#craft" ? "craft"
+               : "projects";
+    activate(target, false);
   }
 
   syncFromLocation();
@@ -181,7 +204,14 @@
   if (!carousel || !chrono) return;
 
   function isDesktopSnapEnabled() {
-    return window.innerWidth > 768;
+    if (window.innerWidth <= 768) return false;
+    // Disable snap when another tab's view is active (Craft/About) — those views
+    // hide the carousel and chronological section, so snapping into them is nonsensical.
+    var site = document.querySelector(".portfolio-site");
+    if (site && (site.classList.contains("view-craft") || site.classList.contains("view-about"))) {
+      return false;
+    }
+    return true;
   }
 
   var snap1  = null;

@@ -1,0 +1,469 @@
+/* Craft tab — single-image slide viewer.
+ * Companion to main.css (reuses every design token from :root).
+ *
+ * Core promises:
+ *   - Images are never cropped. `object-fit: contain` wherever an image is shown.
+ *   - One image at a time, with a caption panel sitting next to it.
+ *   - Works with keyboard arrows, touch swipe, and explicit prev/next buttons.
+ */
+
+/* -------------------------------------------------------------------------
+ * View toggle — identical pattern to .about-inline
+ * ------------------------------------------------------------------------- */
+
+.craft-inline {
+  display: none;
+  width: 100%;
+}
+
+.portfolio-site.view-craft .craft-inline {
+  display: block;
+}
+
+.portfolio-site.view-craft .hero-msg-section,
+.portfolio-site.view-craft .project-list-section,
+.portfolio-site.view-craft .chronological-bleed,
+.portfolio-site.view-craft .about-inline {
+  display: none;
+}
+
+.portfolio-site.view-craft .hero-inner {
+  justify-content: flex-start;
+  padding-bottom: 0;
+  min-height: auto;
+}
+
+/* -------------------------------------------------------------------------
+ * Header — chapter index across the top
+ * ------------------------------------------------------------------------- */
+
+.craft-header {
+  width: 100%;
+  max-width: var(--layout-content-width);
+  margin: clamp(12px, 3vw, 28px) auto clamp(20px, 3vw, 36px);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.craft-eyebrow {
+  font-family: "PT Serif Caption", serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.craft-eyebrow em {
+  color: var(--text-primary-muted);
+  font-style: italic;
+}
+
+.craft-chapters {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.craft-chapter-btn {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 4px 0;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: color 0.18s ease, border-color 0.18s ease;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.craft-chapter-btn span {
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  letter-spacing: 0;
+}
+
+.craft-chapter-btn:hover {
+  color: var(--text-primary);
+}
+
+.craft-chapter-btn.is-current {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-brand-subtle);
+}
+
+.craft-chapter-btn:focus-visible {
+  outline: 2px solid var(--focus-ring-default);
+  outline-offset: 4px;
+}
+
+/* -------------------------------------------------------------------------
+ * Viewer layout — stage on the left, caption panel on the right
+ * ------------------------------------------------------------------------- */
+
+.craft-viewer {
+  width: 100%;
+  max-width: var(--layout-content-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(280px, 28%, 380px);
+  column-gap: clamp(24px, 4vw, 64px);
+  align-items: stretch;
+  /* Lock the whole viewer to a pleasant viewport-relative height so the image
+     stage never jumps in size between slides of different aspect ratios. */
+  min-height: calc(100vh - 220px);
+}
+
+/* ---- Stage ---- */
+
+.craft-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Background is the page background — contain padding becomes invisible */
+  background: var(--surface-page-default);
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.craft-stage__img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  /* Shown via .is-current; animate opacity + a tiny scale as it arrives */
+  opacity: 0;
+  transform: scale(0.995);
+  transition:
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  pointer-events: none;
+}
+
+.craft-stage__img.is-current {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* ---- Caption panel ---- */
+
+.craft-caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5) 0;
+  min-width: 0;
+}
+
+/* Top nav row inside the caption panel: Previous · counter · Next.
+ * Editorial, text-first — no button chrome, no borders, just type and an
+ * even-stroke SVG arrow. Integrates with the caption the way a page number
+ * integrates with a book. */
+.craft-caption__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-neutral-subtle);
+}
+
+.craft-nav-btn {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 2px 0;
+  cursor: pointer;
+  font-family: "PT Serif", serif;
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.18s ease, opacity 0.18s ease;
+}
+
+/* Arrow is an inline SVG using stroke="currentColor" so hover color changes
+ * automatically follow the button's text color. */
+.craft-nav-btn__arrow {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  color: inherit;
+  flex-shrink: 0;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.craft-nav-btn:hover:not(:disabled),
+.craft-nav-btn:focus-visible:not(:disabled) {
+  color: var(--text-primary);
+}
+
+.craft-nav-btn--prev:hover:not(:disabled) .craft-nav-btn__arrow,
+.craft-nav-btn--prev:focus-visible:not(:disabled) .craft-nav-btn__arrow {
+  transform: translateX(-3px);
+}
+
+.craft-nav-btn--next:hover:not(:disabled) .craft-nav-btn__arrow,
+.craft-nav-btn--next:focus-visible:not(:disabled) .craft-nav-btn__arrow {
+  transform: translateX(3px);
+}
+
+.craft-nav-btn:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.craft-nav-btn:focus-visible {
+  outline: 2px solid var(--focus-ring-default);
+  outline-offset: 4px;
+}
+
+.craft-caption__counter {
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.craft-caption__chapter {
+  margin: 0 0 var(--space-3);
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.craft-caption__title {
+  font-family: "Public Sans", sans-serif;
+  font-size: clamp(24px, 1.9vw, 30px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.craft-caption__subtitle {
+  font-family: "PT Serif Caption", serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-primary-muted);
+  margin: 0;
+}
+
+.craft-caption__body {
+  font-family: "PT Serif", serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.craft-caption__meta {
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-neutral-subtle);
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+}
+
+/* Caption content fades when slides change, so the panel reads like the
+ * picture plate: image updates, text updates, nothing jumps layout. */
+.craft-caption__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.craft-caption.is-transitioning .craft-caption__content {
+  opacity: 0;
+}
+
+/* -------------------------------------------------------------------------
+ * Footer strip — dots + keyboard hint
+ * ------------------------------------------------------------------------- */
+
+.craft-footer {
+  width: 100%;
+  max-width: var(--layout-content-width);
+  margin: var(--space-5) auto 0;
+  padding-bottom: clamp(24px, 4vw, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.craft-dots {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Dots palette — pulled into a neutral-grey family so both ends feel subtle.
+ * Inactive: a light grey (L≈70%, barely-saturated) — present but unassertive.
+ * Current: a dark muted charcoal (L≈21%, barely-saturated) — clear but quiet.
+ * 49 points of lightness gap between the two carries the "position" signal
+ * without needing brand color. */
+.craft-dot {
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--border-neutral-subtle);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s ease, width 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.craft-dot:hover {
+  background: var(--text-primary-muted);
+}
+
+.craft-dot.is-current {
+  background: var(--text-primary-muted);
+  width: 40px;
+}
+
+.craft-dot:focus-visible {
+  outline: 2px solid var(--focus-ring-default);
+  outline-offset: 3px;
+}
+
+.craft-hint {
+  font-family: "PT Serif Caption", serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.craft-hint kbd {
+  font-family: "Roboto Flex", sans-serif;
+  font-style: normal;
+  font-size: 11px;
+  background: var(--surface-neutral-subtle);
+  color: var(--text-primary-muted);
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-neutral-subtle);
+  margin: 0 2px;
+}
+
+/* -------------------------------------------------------------------------
+ * Mobile — ≤768px
+ *   Stage on top, caption panel underneath. Image still `contain`, so
+ *   portraits and landscapes both show whole.
+ * ------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .craft-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-top: 16px;
+    margin-bottom: 20px;
+  }
+
+  .craft-chapters {
+    gap: var(--space-4);
+  }
+
+  .craft-chapter-btn {
+    font-size: 13px;
+  }
+
+  .craft-viewer {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    row-gap: var(--space-4);
+    min-height: auto;
+  }
+
+  .craft-stage {
+    aspect-ratio: 4 / 5;
+    max-height: 70vh;
+    width: 100%;
+  }
+
+  .craft-caption {
+    padding: 0;
+    gap: var(--space-3);
+  }
+
+  .craft-caption__nav {
+    padding-bottom: var(--space-3);
+  }
+
+  .craft-nav-btn {
+    font-size: 13px;
+  }
+
+  .craft-nav-btn__label {
+    /* On very narrow screens, hide the "Previous"/"Next" labels and keep just arrows */
+  }
+
+  .craft-caption__counter {
+    font-size: 11px;
+  }
+
+  .craft-caption__title {
+    font-size: 22px;
+  }
+
+  .craft-caption__body {
+    font-size: 14.5px;
+  }
+
+  .craft-caption__meta {
+    margin-top: var(--space-3);
+  }
+
+  .craft-footer {
+    margin-top: var(--space-4);
+    padding-bottom: 32px;
+    justify-content: center;
+  }
+
+  .craft-hint {
+    display: none; /* Touch users don't need a keyboard hint */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .craft-stage__img,
+  .craft-caption__content,
+  .craft-dot,
+  .craft-nav-btn,
+  .craft-nav-btn__arrow {
+    transition: none;
+  }
+}
