@@ -7,6 +7,46 @@ window.CRAFT_SLIDES = [
   // Chapter 01 — Objects (Furniture & Exhibition, OBJECTIVE Gallery)
   // ---------------------------------------------------------------------
   {
+    id: "coexist-exhibition",
+    chapter: "Objects",
+    src: "assets/craft/024-coexist-exhibition-shanghai-by-objective-960x1440.jpg",
+    title: "Coexist",
+    subtitle: "OBJECTIVE Gallery · Shanghai · 2020",
+    caption:
+      "An exhibition staged as a living room. Caning chairs framed by an open door, a side table holding a single vessel. Furniture shown in the atmosphere it's meant to create.",
+    meta: "Exhibition design · photography",
+  },
+  {
+    id: "jewel-side-table",
+    chapter: "Objects",
+    src: "assets/craft/union_page_12.jpg",
+    title: "Jewel Side Table",
+    subtitle: "Jewel-inspired side table",
+    caption:
+      "Inspired by a 1930s Italian jewel. Steel, bronze, and clear acrylic stacked like gem settings — the contrast conceals the joinery between materials.",
+    meta: "Steel · Bronze · Acrylic",
+  },
+  {
+    id: "green-sofa-context",
+    chapter: "Objects",
+    src: "assets/craft/obj_page_61_right.jpg",
+    title: "Sage Sofa · in a room",
+    subtitle: "Lifestyle · OBJECTIVE Gallery",
+    caption:
+      "The sofa as it lives — under a palette-shaped painting, over the Wagyu four-seasons table. The room dresses the furniture before the catalog strips everything back to the object itself.",
+    meta: "Lifestyle pairing",
+  },
+  {
+    id: "green-sofa-spread",
+    chapter: "Objects",
+    src: "assets/craft/obj_page_58.jpg",
+    title: "Gallery Catalog",
+    subtitle: "OBJECTIVE · Shanghai & New York",
+    caption:
+      "A spread from the Objective Gallery catalog — book design as part of the collection, not a footnote to it.",
+    meta: "Editorial · print design",
+  },
+  {
     id: "petal-opener",
     chapter: "Objects",
     src: "assets/craft/obj_2023_p22_petal_opener.jpg",
@@ -65,46 +105,6 @@ window.CRAFT_SLIDES = [
     caption:
       "The same marble, up close. A macro on the material — the moment in the lookbook where the eye slows down and looks at grain and fat and fault line.",
     meta: "Union Collection",
-  },
-  {
-    id: "coexist-exhibition",
-    chapter: "Objects",
-    src: "assets/craft/024-coexist-exhibition-shanghai-by-objective-960x1440.jpg",
-    title: "Coexist",
-    subtitle: "OBJECTIVE Gallery · Shanghai · 2021",
-    caption:
-      "An exhibition staged as a living room. Caning chairs framed by an open door, a side table holding a single vessel. Furniture shown in the atmosphere it's meant to create.",
-    meta: "Exhibition design · photography",
-  },
-  {
-    id: "jewel-side-table",
-    chapter: "Objects",
-    src: "assets/craft/union_page_12.jpg",
-    title: "Jewel Side Table",
-    subtitle: "Jewel-inspired side table",
-    caption:
-      "Inspired by a 1930s Italian jewel. Steel, bronze, and clear acrylic stacked like gem settings — the contrast conceals the joinery between materials.",
-    meta: "Steel · Bronze · Acrylic",
-  },
-  {
-    id: "green-sofa-context",
-    chapter: "Objects",
-    src: "assets/craft/obj_page_61_right.jpg",
-    title: "Sage Sofa · in a room",
-    subtitle: "Lifestyle · OBJECTIVE Gallery",
-    caption:
-      "The sofa as it lives — under a palette-shaped painting, over the Wagyu four-seasons table. The room dresses the furniture before the catalog strips everything back to the object itself.",
-    meta: "Lifestyle pairing",
-  },
-  {
-    id: "green-sofa-spread",
-    chapter: "Objects",
-    src: "assets/craft/obj_page_58.jpg",
-    title: "Gallery Catalog",
-    subtitle: "OBJECTIVE · Shanghai & New York",
-    caption:
-      "A spread from the Objective Gallery catalog — book design as part of the collection, not a footnote to it.",
-    meta: "Editorial · print design",
   },
 
   // ---------------------------------------------------------------------

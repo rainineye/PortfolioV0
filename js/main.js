@@ -114,6 +114,10 @@
   tabs.forEach(function (tab) {
     tab.addEventListener("click", function () {
       activate(this.getAttribute("data-tab"), true);
+      // Drop focus so the focus ring doesn't linger on the just-clicked tab.
+      // Keyboard users saw the ring when tabbing onto it; releasing focus
+      // after activation matches the behavior of native app-style tabs.
+      this.blur();
     });
   });
 })();
