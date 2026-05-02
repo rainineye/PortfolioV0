@@ -10,8 +10,8 @@ window.CRAFT_SLIDES = [
     id: "coexist-exhibition",
     chapter: "Objects",
     src: "assets/craft/024-coexist-exhibition-shanghai-by-objective-960x1440.jpg",
-    title: "Coexist",
-    subtitle: "Debut exhibition · OBJECTIVE Gallery · Shanghai · 2020",
+    title: "Coexist Exhibition",
+    subtitle: "OBJECTIVE Gallery · Shanghai · 2020",
     caption:
       "Objective Gallery's debut exhibition. The gallery curates 'narrative environments' rather than white-cube showcases — the room becomes the show, with furniture, lighting, and art read in the atmosphere they're meant to inhabit. Coexist makes that premise literal: art, design, and craft sharing one space.",
     meta: "Exhibition design · photography",
@@ -50,8 +50,8 @@ window.CRAFT_SLIDES = [
     id: "petal-opener",
     chapter: "Objects",
     src: "assets/craft/obj_2023_p22_petal_opener.jpg",
-    title: "Petal Series",
-    subtitle: "Collection #2 · OBJECTIVE Gallery · Shanghai · 2021",
+    title: "Petal Series Exhibition",
+    subtitle: "OBJECTIVE Gallery · Shanghai · 2021",
     caption:
       "Objective Gallery's Collection #2 — soft curves drawn from petal forms and translated into furniture. For this seasonal staging, the silhouettes are unchanged from the catalog; only the surfaces shift, with bespoke fabrics in fresh colors and dynamic textures commissioned specifically for the show. The opening spread arranges the first three pieces in front of a painted fireplace — the room they were curated to live in.",
     meta: "Collection opener · editorial",
@@ -101,7 +101,7 @@ window.CRAFT_SLIDES = [
     chapter: "Objects",
     src: "assets/craft/union_page_07.jpg",
     title: "Four Seasons Coffee Table",
-    subtitle: "Wagyu · Special Edition · in detail",
+    subtitle: "Wagyu · Special Edition · Marble Surface Detail",
     caption:
       "The same table, closer in. Grain, fat, fault line in the marble; the bronze cruciform just visible at the edge. A second look at the special-edition piece.",
     meta: "Designed by Mian · © Mian",
@@ -128,7 +128,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Tomson Riviera Shanghai · Hand Drawing",
     caption:
       "Public-area design for Tomson Riviera, a high-end residence in Shanghai. The brief calls for a colonial-era French Art Deco language; FF&E and art pieces were reselected to fit, then drawn into the lobby as a hand-rendered perspective. Vaulted ceiling, sculptural chandelier, a single figurative sculpture closing the axis.",
-    meta: "One-point Perspective · mixed media",
+    meta: "One-point Perspective · Art Curation",
   },
   {
     id: "a1a2-sub-lobby",
@@ -138,7 +138,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Tomson Riviera Shanghai · Hand Drawing",
     caption:
       "A smaller companion to the main lobby, with a branch-motif backdrop and elevator openings flanking a centered plinth. Same project, same palette, same pencil — smaller room.",
-    meta: "One-point Perspective · mixed media",
+    meta: "One-point Perspective · Art Curation",
   },
   {
     id: "living-room-sketch",
@@ -148,7 +148,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Living Room · hand-drawn elevation",
     caption:
       "Minimalism softened with warmth. Fluted marble door frames, a fireplace of scrolled stonework, an earth-tone palette; a row of monochrome gradient panels stepping across the wall above the sofa and a plaster-textured French chandelier overhead. The sketch comes before anything is modeled — proportion first, finish later.",
-    meta: "Hand drawing",
+    meta: "Designed, modelled, rendered & post-produced by Mian",
   },
   {
     id: "spa-room",
@@ -158,7 +158,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Spa Room · hand-drawn sketch",
     caption:
       "A private wellness space tucked within the residence. Oriental sensibility paired with marble and brass — natural, unhurried, settled into stillness. A program that asks to feel held, not watched.",
-    meta: "Hand drawing",
+    meta: "Designed, modelled, rendered & post-produced by Mian",
   },
 
   // ---------------------------------------------------------------------
