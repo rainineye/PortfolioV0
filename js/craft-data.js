@@ -14,7 +14,7 @@ window.CRAFT_SLIDES = [
     subtitle: "OBJECTIVE Gallery · Shanghai · 2020",
     caption:
       "Objective Gallery's debut exhibition. The gallery curates 'narrative environments' rather than white-cube showcases — the room becomes the show, with furniture, lighting, and art read in the atmosphere they're meant to inhabit. Coexist makes that premise literal: art, design, and craft sharing one space.",
-    meta: "Exhibition design · photography",
+    meta: "Collection opener · editorial",
   },
   {
     id: "jewel-side-table",
@@ -34,7 +34,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Coexist exhibition · OBJECTIVE Gallery",
     caption:
       "Soft against stone, warmth against the cool of metal — the pieces talk to each other before they talk to anyone in the room. A quiet chord, held still.",
-    meta: "Lifestyle pairing · Coexist exhibition",
+    meta: "Staging by Ansha · Coexist exhibition",
   },
   {
     id: "marshmallow-sofa-object",
@@ -54,7 +54,7 @@ window.CRAFT_SLIDES = [
     subtitle: "OBJECTIVE Gallery · Shanghai · 2021",
     caption:
       "Objective Gallery's Collection #2 — soft curves drawn from petal forms and translated into furniture. For this seasonal staging, the silhouettes are unchanged from the catalog; only the surfaces shift, with bespoke fabrics in fresh colors and dynamic textures commissioned specifically for the show. The opening spread arranges the first three pieces in front of a painted fireplace — the room they were curated to live in.",
-    meta: "Collection opener · editorial",
+    meta: "Staging by Ansha · Petal Series exhibition",
   },
   {
     id: "aria-pink",
@@ -118,7 +118,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Cruiseship · White Clay Rendering",
     caption:
       "A French restaurant aboard a cruiseship, designed during my time at Studio Jouin Manku in Paris. Translucent screens — drawn from the studio's vocabulary and shaped after underwater portholes — give each seating area its own pocket of privacy; digital walls run continuous undersea footage to keep the meal immersive. The axonometric came last, distilled from several rounds of plan iteration and 3D study.",
-    meta: "Axonometric View",
+    meta: "Axonometric View · modelled, rendered by Mian",
   },
   {
     id: "a1a2-main-lobby",
@@ -128,7 +128,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Tomson Riviera Shanghai · Hand Drawing",
     caption:
       "Public-area design for Tomson Riviera, a high-end residence in Shanghai. The brief calls for a colonial-era French Art Deco language; FF&E and art pieces were reselected to fit, then drawn into the lobby as a hand-rendered perspective. Vaulted ceiling, sculptural chandelier, a single figurative sculpture closing the axis.",
-    meta: "One-point Perspective · Art Curation",
+    meta: "One-point Perspective · Furniture, Fixtures & Art Curation by Mian",
   },
   {
     id: "a1a2-sub-lobby",
@@ -138,7 +138,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Tomson Riviera Shanghai · Hand Drawing",
     caption:
       "A smaller companion to the main lobby, with a branch-motif backdrop and elevator openings flanking a centered plinth. Same project, same palette, same pencil — smaller room.",
-    meta: "One-point Perspective · Art Curation",
+    meta: "One-point Perspective · Furniture, Fixtures & Art Curation by Mian",
   },
   {
     id: "living-room-sketch",
