@@ -50,7 +50,7 @@ window.CRAFT_SLIDES = [
     id: "petal-opener",
     chapter: "Objects",
     src: "assets/craft/obj_2023_p22_petal_opener.jpg",
-    title: "Petal Series",
+    title: "Petal Series · with Chen Peng",
     subtitle: "Collection #2 · OBJECTIVE Gallery · 2021",
     caption:
       "The opening spread of the Petal Series — Brown Sugar sofa, Aria armchair in pink toile, and a small marble side table, arranged in front of a painted fireplace. The scene the first three pieces were made for.",
@@ -60,7 +60,7 @@ window.CRAFT_SLIDES = [
     id: "aria-pink",
     chapter: "Objects",
     src: "assets/craft/20201229_OBJECTIVE3985_master.jpg",
-    title: "Aria Armchair",
+    title: "Aria Armchair · Pink Toile",
     subtitle: "Acrylic armchair · OBJ+ · 2020",
     caption:
       "OBJECTIVE Gallery's long-running best seller. An acrylic frame that disappears into the room so the upholstery does all the talking — this pink toile version remains the signature piece.",
@@ -71,39 +71,39 @@ window.CRAFT_SLIDES = [
     chapter: "Objects",
     src: "assets/craft/union_page_04.jpg",
     title: "Brown Sugar Marshmallow Sofa",
-    subtitle: "Marshmallow sofa · Union Collection",
+    subtitle: "Limited edition · Louis Vuitton VIP Lounge",
     caption:
-      "Soft like marshmallow. Simple, sculptural, and quietly playful — the sofa that opens the Union collection lookbook.",
+      "A specially curated edition of the Marshmallow Sofa, reworked for Louis Vuitton's VIP lounge. The silhouette stays; the materials change — softer at the seat, rougher at the wrap.",
     meta: "Designed by Mian · © Mian",
   },
   {
     id: "brown-sugar-back",
     chapter: "Objects",
     src: "assets/craft/union_page_05.jpg",
-    title: "Brown Sugar, from behind",
-    subtitle: "Marshmallow sofa · rear view",
+    title: "Brown Sugar · from behind",
+    subtitle: "Limited edition · rear view",
     caption:
-      "The back is where the character lives. Rough, confectionery-like upholstery wraps the arms while the seat keeps a smooth velvet face.",
+      "The back is where the rework reads. Confectionery-rough upholstery climbs the arms while the seat keeps a smooth velvet face — same piece, two textures, the contrast that names it.",
     meta: "Designed by Mian · © Mian",
   },
   {
     id: "wagyu-table",
     chapter: "Objects",
     src: "assets/craft/union_page_06.jpg",
-    title: "Wagyu Four Seasons Coffee Table",
-    subtitle: "Four Seasons coffee table",
+    title: "Four Seasons Coffee Table",
+    subtitle: "Wagyu · Special Edition",
     caption:
-      "Four marble slabs, each a season, each marbled like a slice of wagyu. Held by a bronze cruciform base — heavy, grounded, and oddly tender.",
+      "A special edition of the Four Seasons Coffee Table, custom-cut in an Italian marble chosen to echo the '盘花卷红烛' (coiled flowers, curling red candles) theme. Four slabs, each a season, each grained like a slice of wagyu — held by a bronze cruciform base, heavy and grounded.",
     meta: "Designed by Mian · © Mian",
   },
   {
-    id: "wagyu-marble",
+    id: "wagyu-detail",
     chapter: "Objects",
     src: "assets/craft/union_page_07.jpg",
-    title: "Wagyu · Surface Study",
-    subtitle: "Marble surface detail",
+    title: "Wagyu · in detail",
+    subtitle: "Special edition · marble + bronze",
     caption:
-      "The same marble, up close. A macro on the material — the moment in the lookbook where the eye slows down and looks at grain and fat and fault line.",
+      "The same table, closer in. Grain, fat, fault line in the marble; the bronze cruciform just visible at the edge. A second look at the special-edition piece.",
     meta: "Designed by Mian · © Mian",
   },
 
@@ -115,9 +115,9 @@ window.CRAFT_SLIDES = [
     chapter: "Drawings",
     src: "assets/craft/AXO.jpg",
     title: "Restaurant",
-    subtitle: "Cruise ship · interior proposal",
+    subtitle: "Cruiseship · Studio Jouin Manku, Paris",
     caption:
-      "An axonometric of the whole restaurant on a cruise ship — seating pockets at the perimeter, a central service line, booth alcoves tucked along the walls. The plan drawn as a diagram before the room is filled in.",
+      "A French restaurant aboard a cruiseship, designed during my time at Studio Jouin Manku in Paris. Translucent screens — drawn from the studio's vocabulary and shaped after underwater portholes — give each seating area its own pocket of privacy; digital walls run continuous undersea footage to keep the meal immersive. The axonometric came last, distilled from several rounds of plan iteration and 3D study.",
     meta: "Axonometric · line drawing",
   },
   {
@@ -125,9 +125,9 @@ window.CRAFT_SLIDES = [
     chapter: "Drawings",
     src: "assets/craft/A1A2 Lobby.JPG",
     title: "A1/A2 · Main Lobby",
-    subtitle: "Residential proposal · line + wash",
+    subtitle: "Tomson Riviera · Shanghai · public area",
     caption:
-      "Vaulted ceiling, sculptural chandelier, a single figurative sculpture at the end of the axis. Drawn by hand because that's still the fastest way to think a room through.",
+      "Public-area design for Tomson Riviera, a high-end residence in Shanghai. The brief calls for a colonial-era French Art Deco language; FF&E and art pieces were reselected to fit, then drawn into the lobby as a hand-rendered elevation. Vaulted ceiling, sculptural chandelier, a single figurative sculpture closing the axis.",
     meta: "Hand drawing · mixed media",
   },
   {
@@ -145,9 +145,9 @@ window.CRAFT_SLIDES = [
     chapter: "Drawings",
     src: "assets/craft/living room.jpg",
     title: "Living Room",
-    subtitle: "Residential interior · mixed media",
+    subtitle: "Tomson Riviera · private residence proposal",
     caption:
-      "The sketch done before anything is modeled. A tree leaning into the room from the left; a fireplace glowing to the right. Proportion first, finish later.",
+      "A private-residence proposal at Tomson Riviera, designed for the family's eldest son — minimalism softened with warmth. Fluted marble door frames, a fireplace of scrolled stonework, an earth-tone palette; a row of monochrome gradient panels stepping across the wall above the sofa and a plaster-textured French chandelier overhead. The sketch comes before anything is modeled — proportion first, finish later.",
     meta: "Hand drawing",
   },
   {
@@ -172,7 +172,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Residence · painterly render",
     caption:
       "The living room of the same residence, rendered as an oil painting. Same geometry as the tearoom, different language — choosing the rendering style is part of designing the space.",
-    meta: "3D model · painterly render",
+    meta: "Designed, modelled, rendered & post-produced by Mian",
   },
   {
     id: "residence-tearoom",
@@ -182,6 +182,6 @@ window.CRAFT_SLIDES = [
     subtitle: "Residence · photoreal render",
     caption:
       "A tatami platform tucked behind a patterned screen, with the city thirty floors below. Same residence as the oil-pass living room — one home, two rooms, one model, two rendering languages.",
-    meta: "3D model · photoreal render",
+    meta: "Designed, modelled, rendered & post-produced by Mian",
   },
 ];
