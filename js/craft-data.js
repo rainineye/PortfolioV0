@@ -11,9 +11,9 @@ window.CRAFT_SLIDES = [
     chapter: "Objects",
     src: "assets/craft/024-coexist-exhibition-shanghai-by-objective-960x1440.jpg",
     title: "Coexist",
-    subtitle: "OBJECTIVE Gallery · Xintiandi, Shanghai · 2020",
+    subtitle: "Debut exhibition · OBJECTIVE Gallery · Shanghai · 2020",
     caption:
-      "Objective curates 'narrative environments' rather than white-cube showcases — the gallery becomes a room, and furniture, lighting, and art are read in the atmosphere they're meant to inhabit. Coexist makes that premise literal: art, design, and craft sharing one space.",
+      "Objective Gallery's debut exhibition. The gallery curates 'narrative environments' rather than white-cube showcases — the room becomes the show, with furniture, lighting, and art read in the atmosphere they're meant to inhabit. Coexist makes that premise literal: art, design, and craft sharing one space.",
     meta: "Exhibition design · photography",
   },
   {
@@ -51,7 +51,7 @@ window.CRAFT_SLIDES = [
     chapter: "Objects",
     src: "assets/craft/obj_2023_p22_petal_opener.jpg",
     title: "Petal Series",
-    subtitle: "Collection #2 · OBJECTIVE Gallery · 2021 · special staging",
+    subtitle: "Collection #2 · OBJECTIVE Gallery · Shanghai · 2021",
     caption:
       "Objective Gallery's Collection #2 — soft curves drawn from petal forms and translated into furniture. For this seasonal staging, the silhouettes are unchanged from the catalog; only the surfaces shift, with bespoke fabrics in fresh colors and dynamic textures commissioned specifically for the show. The opening spread arranges the first three pieces in front of a painted fireplace — the room they were curated to live in.",
     meta: "Collection opener · editorial",
@@ -71,9 +71,9 @@ window.CRAFT_SLIDES = [
     chapter: "Objects",
     src: "assets/craft/union_page_04.jpg",
     title: "Brown Sugar Marshmallow Sofa",
-    subtitle: "Limited edition · Louis Vuitton VIP Lounge",
+    subtitle: "Limited edition · Petal Series exhibition",
     caption:
-      "A specially curated edition of the Marshmallow Sofa, reworked for Louis Vuitton's VIP lounge. The silhouette stays; the materials change — softer at the seat, rougher at the wrap.",
+      "A specially curated edition of the Marshmallow Sofa, reworked in new materials for the Petal Series exhibition. The silhouette stays; the materials change — softer at the seat, rougher at the wrap. After the show, the piece moved into Louis Vuitton's VIP Lounge for continuous display.",
     meta: "Designed by Mian · © Mian",
   },
   {
@@ -81,7 +81,7 @@ window.CRAFT_SLIDES = [
     chapter: "Objects",
     src: "assets/craft/union_page_05.jpg",
     title: "Brown Sugar Marshmallow Sofa",
-    subtitle: "Limited edition · LV VIP Lounge · from behind",
+    subtitle: "Limited edition · Petal Series · from behind",
     caption:
       "The back is where the rework reads. Confectionery-rough upholstery climbs the arms while the seat keeps a smooth velvet face — same piece, two textures, the contrast that names it.",
     meta: "Designed by Mian · © Mian",
@@ -93,7 +93,7 @@ window.CRAFT_SLIDES = [
     title: "Four Seasons Coffee Table",
     subtitle: "Wagyu · Special Edition",
     caption:
-      "A special edition of the Four Seasons Coffee Table, custom-cut in an Italian marble chosen to echo the '盘花卷红烛' (coiled flowers, curling red candles) theme. Four slabs, each a season, each grained like a slice of wagyu — held by a bronze cruciform base, heavy and grounded.",
+      "A special edition of the Four Seasons Coffee Table, custom-cut in an Italian marble chosen for the Petal Series exhibition. Four slabs, each a season, each grained like a slice of wagyu — held by a bronze cruciform base, heavy and grounded.",
     meta: "Designed by Mian · © Mian",
   },
   {
@@ -115,36 +115,36 @@ window.CRAFT_SLIDES = [
     chapter: "Drawings",
     src: "assets/craft/AXO.jpg",
     title: "French Fine-dining Restaurant",
-    subtitle: "Cruiseship · Studio Jouin Manku, Paris",
+    subtitle: "Cruiseship · White Clay Rendering",
     caption:
       "A French restaurant aboard a cruiseship, designed during my time at Studio Jouin Manku in Paris. Translucent screens — drawn from the studio's vocabulary and shaped after underwater portholes — give each seating area its own pocket of privacy; digital walls run continuous undersea footage to keep the meal immersive. The axonometric came last, distilled from several rounds of plan iteration and 3D study.",
-    meta: "Axonometric · line drawing",
+    meta: "Axonometric View",
   },
   {
     id: "a1a2-main-lobby",
     chapter: "Drawings",
     src: "assets/craft/A1A2 Lobby.JPG",
-    title: "Tomson Riviera",
-    subtitle: "Shanghai · public area · Main Lobby",
+    title: "Public area · Main Lobby",
+    subtitle: "Tomson Riviera Shanghai · Hand Drawing",
     caption:
-      "Public-area design for Tomson Riviera, a high-end residence in Shanghai. The brief calls for a colonial-era French Art Deco language; FF&E and art pieces were reselected to fit, then drawn into the lobby as a hand-rendered elevation. Vaulted ceiling, sculptural chandelier, a single figurative sculpture closing the axis.",
-    meta: "Hand drawing · mixed media",
+      "Public-area design for Tomson Riviera, a high-end residence in Shanghai. The brief calls for a colonial-era French Art Deco language; FF&E and art pieces were reselected to fit, then drawn into the lobby as a hand-rendered perspective. Vaulted ceiling, sculptural chandelier, a single figurative sculpture closing the axis.",
+    meta: "One-point Perspective · mixed media",
   },
   {
     id: "a1a2-sub-lobby",
     chapter: "Drawings",
     src: "assets/craft/A1 A2 Sub Lobby af.jpg",
-    title: "Tomson Riviera",
-    subtitle: "Shanghai · public area · Sub Lobby",
+    title: "Public area · Sub Lobby",
+    subtitle: "Tomson Riviera Shanghai · Hand Drawing",
     caption:
       "A smaller companion to the main lobby, with a branch-motif backdrop and elevator openings flanking a centered plinth. Same project, same palette, same pencil — smaller room.",
-    meta: "Hand drawing · mixed media",
+    meta: "One-point Perspective · mixed media",
   },
   {
     id: "living-room-sketch",
     chapter: "Drawings",
     src: "assets/craft/living room.jpg",
-    title: "私人住宅",
+    title: "Private Residence A",
     subtitle: "Living Room · hand-drawn elevation",
     caption:
       "Minimalism softened with warmth. Fluted marble door frames, a fireplace of scrolled stonework, an earth-tone palette; a row of monochrome gradient panels stepping across the wall above the sofa and a plaster-textured French chandelier overhead. The sketch comes before anything is modeled — proportion first, finish later.",
@@ -154,7 +154,7 @@ window.CRAFT_SLIDES = [
     id: "spa-room",
     chapter: "Drawings",
     src: "assets/craft/SPA.jpg",
-    title: "私人住宅",
+    title: "Private Residence A",
     subtitle: "Spa Room · hand-drawn sketch",
     caption:
       "A private wellness space tucked within the residence. Oriental sensibility paired with marble and brass — natural, unhurried, settled into stillness. A program that asks to feel held, not watched.",
@@ -168,7 +168,7 @@ window.CRAFT_SLIDES = [
     id: "living-room-oil",
     chapter: "Renders",
     src: "assets/craft/living_textured oil painting.jpg",
-    title: "私人住宅",
+    title: "Private Residence B",
     subtitle: "Living Room · oil-pass rendering",
     caption:
       "The living room of the residence, rendered as an oil pass. Atmosphere over precision — the way the space is meant to feel before it gets built.",
@@ -178,7 +178,7 @@ window.CRAFT_SLIDES = [
     id: "residence-tearoom",
     chapter: "Renders",
     src: "assets/craft/Tearoom_textured.jpg",
-    title: "私人住宅",
+    title: "Private Residence B",
     subtitle: "Study + Japanese tea room · oil-pass rendering",
     caption:
       "The study, opened up around a renovated Japanese tea room. A caned tatami platform anchors the space, an oriental chandelier overhead; entry is marked by a Carrara marble stepping stone — a small ritual built into the threshold. Lattice windows filter the strong outside light, leaving the room soft and quietly held.",
