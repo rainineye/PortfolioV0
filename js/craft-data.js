@@ -24,27 +24,27 @@ window.CRAFT_SLIDES = [
     subtitle: "Jewel-inspired side table",
     caption:
       "Inspired by a 1930s Italian jewel. Steel, bronze, and clear acrylic stacked like gem settings — the contrast conceals the joinery between materials.",
-    meta: "Steel · Bronze · Acrylic",
+    meta: "Designed by Mian · © Mian",
   },
   {
-    id: "green-sofa-context",
+    id: "marshmallow-sofa-context",
     chapter: "Objects",
     src: "assets/craft/obj_page_61_right.jpg",
-    title: "Sage Sofa · in a room",
+    title: "Marshmallow Sofa · in a room",
     subtitle: "Lifestyle · OBJECTIVE Gallery",
     caption:
-      "The sofa as it lives — under a palette-shaped painting, over the Wagyu four-seasons table. The room dresses the furniture before the catalog strips everything back to the object itself.",
-    meta: "Lifestyle pairing",
+      "The sofa as it lives — pale-green Dedar velvet beside a Four Seasons side table in Italian marble, the cool of an aluminum side panel just catching the light at the arm. The room sets the temperature before the page turns to the object itself.",
+    meta: "Lifestyle pairing · Dedar Velvet · Italian Marble",
   },
   {
-    id: "green-sofa-spread",
+    id: "marshmallow-sofa-object",
     chapter: "Objects",
     src: "assets/craft/obj_page_58.jpg",
-    title: "Gallery Catalog",
-    subtitle: "OBJECTIVE · Shanghai & New York",
+    title: "Marshmallow Sofa",
+    subtitle: "OBJ+ · sage colorway",
     caption:
-      "A spread from the Objective Gallery catalog — book design as part of the collection, not a footnote to it.",
-    meta: "Editorial · print design",
+      "Minimal and architectural — a study in proportion and asymmetry. Two backrests sit at offset heights, a single aluminum panel caps one end like a bookend, and the rounded forms are kept so comfort still reads first. Dedar velvet against cool aluminum: the contrast lives in the texture, not the color.",
+    meta: "Designed by Mian · © Mian",
   },
   {
     id: "petal-opener",
@@ -64,7 +64,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Acrylic armchair · OBJ+ · 2020",
     caption:
       "OBJECTIVE Gallery's long-running best seller. An acrylic frame that disappears into the room so the upholstery does all the talking — this pink toile version remains the signature piece.",
-    meta: "Acrylic · Custom Fabric · 75 × 80 × 80 cm",
+    meta: "Designed by Mian · © Mian",
   },
   {
     id: "brown-sugar-front",
@@ -74,7 +74,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Marshmallow sofa · Union Collection",
     caption:
       "Soft like marshmallow. Simple, sculptural, and quietly playful — the sofa that opens the Union collection lookbook.",
-    meta: "Velvet · Textured Velvet · Walnut base",
+    meta: "Designed by Mian · © Mian",
   },
   {
     id: "brown-sugar-back",
@@ -84,7 +84,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Marshmallow sofa · rear view",
     caption:
       "The back is where the character lives. Rough, confectionery-like upholstery wraps the arms while the seat keeps a smooth velvet face.",
-    meta: "Union Collection",
+    meta: "Designed by Mian · © Mian",
   },
   {
     id: "wagyu-table",
@@ -94,7 +94,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Four Seasons coffee table",
     caption:
       "Four marble slabs, each a season, each marbled like a slice of wagyu. Held by a bronze cruciform base — heavy, grounded, and oddly tender.",
-    meta: "Rosso Levanto Marble · Patinated Bronze",
+    meta: "Designed by Mian · © Mian",
   },
   {
     id: "wagyu-marble",
@@ -104,7 +104,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Marble surface detail",
     caption:
       "The same marble, up close. A macro on the material — the moment in the lookbook where the eye slows down and looks at grain and fat and fault line.",
-    meta: "Union Collection",
+    meta: "Designed by Mian · © Mian",
   },
 
   // ---------------------------------------------------------------------
