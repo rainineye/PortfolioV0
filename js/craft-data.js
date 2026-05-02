@@ -13,7 +13,7 @@ window.CRAFT_SLIDES = [
     title: "Coexist",
     subtitle: "OBJECTIVE Gallery · Xintiandi, Shanghai · 2020",
     caption:
-      "An exhibition for Objective Gallery, staged inside its evocative space in a historic building in Shanghai's Xintiandi. Objective doesn't do white-cube showcases — it curates 'narrative environments' where the gallery becomes a room, so furniture, lighting, and art are read in the atmosphere they're meant to inhabit. Coexist makes the gallery's premise literal: art, design, and craft sharing the same space — pieces sourced globally meeting the gallery's own collaborative design work.",
+      "Objective curates 'narrative environments' rather than white-cube showcases — the gallery becomes a room, and furniture, lighting, and art are read in the atmosphere they're meant to inhabit. Coexist makes that premise literal: art, design, and craft sharing one space.",
     meta: "Exhibition design · photography",
   },
   {
@@ -31,10 +31,10 @@ window.CRAFT_SLIDES = [
     chapter: "Objects",
     src: "assets/craft/obj_page_61_right.jpg",
     title: "Marshmallow Sofa",
-    subtitle: "OBJECTIVE Gallery · in a room",
+    subtitle: "Coexist exhibition · OBJECTIVE Gallery",
     caption:
-      "The sofa as it lives — pale-green Dedar velvet beside a Four Seasons side table in Italian marble, the cool of an aluminum side panel just catching the light at the arm. The room sets the temperature before the page turns to the object itself.",
-    meta: "Lifestyle pairing · Dedar Velvet · Italian Marble",
+      "Soft against stone, warmth against the cool of metal — the pieces talk to each other before they talk to anyone in the room. A quiet chord, held still.",
+    meta: "Lifestyle pairing · Coexist exhibition",
   },
   {
     id: "marshmallow-sofa-object",
@@ -144,20 +144,20 @@ window.CRAFT_SLIDES = [
     id: "living-room-sketch",
     chapter: "Drawings",
     src: "assets/craft/living room.jpg",
-    title: "私人住宅 · Living Room",
-    subtitle: "Private residence proposal · interior elevation",
+    title: "私人住宅",
+    subtitle: "Living Room · hand-drawn elevation",
     caption:
-      "A private-residence proposal — minimalism softened with warmth. Fluted marble door frames, a fireplace of scrolled stonework, an earth-tone palette; a row of monochrome gradient panels stepping across the wall above the sofa and a plaster-textured French chandelier overhead. The sketch comes before anything is modeled — proportion first, finish later.",
+      "Minimalism softened with warmth. Fluted marble door frames, a fireplace of scrolled stonework, an earth-tone palette; a row of monochrome gradient panels stepping across the wall above the sofa and a plaster-textured French chandelier overhead. The sketch comes before anything is modeled — proportion first, finish later.",
     meta: "Hand drawing",
   },
   {
     id: "spa-room",
     chapter: "Drawings",
     src: "assets/craft/SPA.jpg",
-    title: "Spa Room",
-    subtitle: "Treatment suite · warm palette",
+    title: "私人住宅",
+    subtitle: "Spa Room · hand-drawn sketch",
     caption:
-      "Warm stone, wood, and a single dark painting on the long wall. A program that asks to feel held, not watched.",
+      "A private wellness space tucked within the residence. Oriental sensibility paired with marble and brass — natural, unhurried, settled into stillness. A program that asks to feel held, not watched.",
     meta: "Hand drawing",
   },
 
@@ -168,20 +168,20 @@ window.CRAFT_SLIDES = [
     id: "living-room-oil",
     chapter: "Renders",
     src: "assets/craft/living_textured oil painting.jpg",
-    title: "Living Room",
-    subtitle: "Residence · oil-pass painterly render",
+    title: "私人住宅",
+    subtitle: "Living Room · oil-pass rendering",
     caption:
-      "The living room of the same residence, rendered as an oil painting. Same geometry as the tearoom, different language — choosing the rendering style is part of designing the space.",
+      "The living room of the residence, rendered as an oil pass. Atmosphere over precision — the way the space is meant to feel before it gets built.",
     meta: "Designed, modelled, rendered & post-produced by Mian",
   },
   {
     id: "residence-tearoom",
     chapter: "Renders",
     src: "assets/craft/Tearoom_textured.jpg",
-    title: "Tearoom",
-    subtitle: "Residence · photoreal render",
+    title: "私人住宅",
+    subtitle: "Study + Japanese tea room · oil-pass rendering",
     caption:
-      "A tatami platform tucked behind a patterned screen, with the city thirty floors below. Same residence as the oil-pass living room — one home, two rooms, one model, two rendering languages.",
+      "The study, opened up around a renovated Japanese tea room. A caned tatami platform anchors the space, an oriental chandelier overhead; entry is marked by a Carrara marble stepping stone — a small ritual built into the threshold. Lattice windows filter the strong outside light, leaving the room soft and quietly held.",
     meta: "Designed, modelled, rendered & post-produced by Mian",
   },
 ];
