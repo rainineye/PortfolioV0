@@ -370,11 +370,11 @@
   font-family: "Roboto Flex", sans-serif;
   font-style: normal;
   font-size: 11px;
-  background: var(--surface-neutral-subtle);
+  background: var(--surface-brand-badge);
   color: var(--text-primary-muted);
   padding: 1px 6px;
   border-radius: var(--radius-xs);
-  border: 1px solid var(--border-neutral-subtle);
+  border: 1px solid var(--border-brand-subtle);
   margin: 0 2px;
 }
 
@@ -389,8 +389,12 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-3);
-    margin-top: 16px;
-    margin-bottom: 20px;
+    /* Push the two header lines down (away from the top nav's Contact link)
+       while pulling them closer to the image — keep top + bottom margins
+       summing to the same ~36px so the image's vertical position is
+       unchanged. */
+    margin-top: 32px;
+    margin-bottom: 4px;
   }
 
   .craft-chapters {
@@ -451,6 +455,60 @@
     margin-top: var(--space-4);
     padding-bottom: 32px;
     justify-content: center;
+  }
+
+  /* Mobile dots: fit edge-to-edge in a single row; each dash gets an equal
+     share of width and a generous vertical tap target (the thin line is
+     drawn via ::after so the visible mark stays minimal). */
+  .craft-dots {
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 4px;
+  }
+
+  .craft-dots > li {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .craft-dot {
+    width: 100%;
+    height: 32px; /* tap target — comfortable for thumb */
+    background: transparent;
+    position: relative;
+    transition: none;
+  }
+
+  .craft-dot::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    margin-top: -1px;
+    background: var(--border-neutral-subtle);
+    border-radius: 1px;
+    transition: background 0.2s ease, height 0.2s ease, margin-top 0.2s ease;
+  }
+
+  .craft-dot:hover {
+    background: transparent;
+  }
+
+  .craft-dot:hover::after {
+    background: var(--text-primary-muted);
+  }
+
+  .craft-dot.is-current {
+    width: 100%; /* override desktop's 40px override; flex handles width */
+    background: transparent;
+  }
+
+  .craft-dot.is-current::after {
+    background: var(--text-primary-muted);
+    height: 3px;
+    margin-top: -1.5px;
   }
 
   .craft-hint {
