@@ -115,11 +115,27 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) clamp(280px, 28%, 380px);
+  grid-template-areas:
+    "stage caption"
+    "dots dots";
   column-gap: clamp(24px, 4vw, 64px);
   align-items: stretch;
   /* Lock the whole viewer to a pleasant viewport-relative height so the image
      stage never jumps in size between slides of different aspect ratios. */
   min-height: calc(100vh - 220px);
+}
+
+.craft-stage {
+  grid-area: stage;
+}
+
+.craft-caption {
+  grid-area: caption;
+}
+
+.craft-viewer > .craft-dots {
+  grid-area: dots;
+  margin-top: var(--space-5);
 }
 
 /* ---- Stage ---- */
@@ -311,11 +327,11 @@
 .craft-footer {
   width: 100%;
   max-width: var(--layout-content-width);
-  margin: var(--space-5) auto 0;
+  margin: var(--space-4) auto 0;
   padding-bottom: clamp(24px, 4vw, 48px);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end; /* dots moved into viewer; only the hint lives here now */
   gap: var(--space-4);
   flex-wrap: wrap;
 }
@@ -390,11 +406,13 @@
     align-items: flex-start;
     gap: var(--space-3);
     /* Push the two header lines down (away from the top nav's Contact link)
-       while pulling them closer to the image — keep top + bottom margins
-       summing to the same ~36px so the image's vertical position is
-       unchanged. */
-    margin-top: 32px;
-    margin-bottom: 4px;
+       while pulling them closer to the image. */
+    margin-top: 48px;
+    margin-bottom: 16px;
+  }
+
+  .craft-eyebrow {
+    font-size: 13px;
   }
 
   .craft-chapters {
@@ -402,14 +420,27 @@
   }
 
   .craft-chapter-btn {
-    font-size: 13px;
+    font-size: 11px;
+  }
+
+  .craft-chapter-btn span {
+    font-size: 10px;
   }
 
   .craft-viewer {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    row-gap: var(--space-4);
+    grid-template-areas:
+      "stage"
+      "dots"
+      "caption";
+    grid-template-rows: auto auto auto;
+    row-gap: 0; /* control gaps per element below */
     min-height: auto;
+  }
+
+  .craft-viewer > .craft-dots {
+    margin-top: 12px; /* gap from image */
+    margin-bottom: var(--space-4); /* gap to caption (Previous/Next) */
   }
 
   .craft-stage {
@@ -452,9 +483,8 @@
   }
 
   .craft-footer {
-    margin-top: var(--space-4);
-    padding-bottom: 32px;
-    justify-content: center;
+    /* On mobile, the footer is empty (hint hidden, dots moved into viewer) */
+    display: none;
   }
 
   /* Mobile dots: fit edge-to-edge in a single row; each dash gets an equal
@@ -485,8 +515,8 @@
     left: 0;
     right: 0;
     top: 50%;
-    height: 2px;
-    margin-top: -1px;
+    height: 1.5px;
+    margin-top: -0.75px;
     background: var(--border-neutral-subtle);
     border-radius: 1px;
     transition: background 0.2s ease, height 0.2s ease, margin-top 0.2s ease;
@@ -507,8 +537,8 @@
 
   .craft-dot.is-current::after {
     background: var(--text-primary-muted);
-    height: 3px;
-    margin-top: -1.5px;
+    height: 2.5px;
+    margin-top: -1.25px;
   }
 
   .craft-hint {

@@ -84,29 +84,48 @@ a {
     padding-top: 24px;
   }
 
+  /* On the About view (mobile), let the resume button sit at the visual
+     midpoint between the bottom of the top nav and the bottom of the
+     viewport. Make about-main fill the available vertical space inside
+     hero-inner and center its child both axes; remove hero-inner's
+     bottom padding so true centering isn't biased upward. */
+  .portfolio-site.view-about .hero-inner {
+    padding-bottom: 0;
+  }
+
   .portfolio-site.view-about .about-main {
-    padding-top: min(24vh, 180px);
+    padding-top: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .resume-panel {
     display: flex;
     justify-content: center;
+    width: 100%;
   }
 
+  /* Skinnier button — tighter padding, slim pill-ish shape, with the
+     "Tomorrow" font borrowed from the Full Story CTA on project cards
+     so all CTA labels share one type voice. */
   .resume-mobile-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: min(100%, 280px);
-    min-height: 52px;
-    padding: 0 20px;
+    width: auto;
+    min-height: 0;
+    padding: 8px 24px;
     border: 1.5px solid var(--border-brand-subtle);
     border-radius: 8px;
     text-decoration: none;
-    font-family: "PT Serif", serif;
+    font-family: "Tomorrow", sans-serif;
     font-size: 16px;
+    font-weight: 400;
     line-height: 1.2;
-    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    color: var(--text-primary-muted);
     background: #ffffff;
   }
 

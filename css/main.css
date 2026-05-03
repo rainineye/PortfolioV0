@@ -1412,10 +1412,37 @@ body {
 @media (max-width: 768px) {
   html {
     background: var(--surface-page-default);
+
+    /* Snap-scroll between the hero and the chronological project list:
+       eliminates the empty middle "dead zone" that previously required
+       multiple swipes. With two snap points (hero start + chronological
+       start) and mandatory snap, a single scroll gesture lands directly
+       on either the hero or the project cards. The browser handles the
+       smooth animation natively. Within the chronological-bleed (cards
+       + footer) there are no further snap points, so scrolling through
+       the list stays free. About / Craft views hide chronological-bleed
+       entirely, so snap reduces to a no-op there. */
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+
+    /* Prevent rubber-band overscroll on iOS Safari — without this, scrolling
+       past the bottom of the green chronological section pulls the body's
+       white background into view, leaving an obvious white strip below the
+       last green block. With `none`, the page genuinely ends at the green. */
+    overscroll-behavior-y: none;
   }
 
   body {
     background: var(--surface-page-default);
+    overscroll-behavior-y: none;
+  }
+
+  .hero-section {
+    scroll-snap-align: start;
+  }
+
+  .chronological-bleed {
+    scroll-snap-align: start;
   }
 
   :root {

@@ -25,6 +25,7 @@
     "</header>",
     '<div class="craft-viewer">',
     '  <div class="craft-stage" role="region" aria-live="polite" aria-label="Slide image"></div>',
+    '  <ul class="craft-dots" role="tablist" aria-label="Slides"></ul>',
     '  <aside class="craft-caption" aria-label="Slide caption">',
     '    <div class="craft-caption__nav">',
     '      <button type="button" class="craft-nav-btn craft-nav-btn--prev" aria-label="Previous slide">',
@@ -47,7 +48,6 @@
     "  </aside>",
     "</div>",
     '<footer class="craft-footer">',
-    '  <ul class="craft-dots" role="tablist" aria-label="Slides"></ul>',
     '  <p class="craft-hint">Use <kbd>←</kbd> <kbd>→</kbd> to navigate</p>',
     "</footer>",
   ].join("\n");
