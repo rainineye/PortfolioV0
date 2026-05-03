@@ -445,7 +445,7 @@
   }
 
   .craft-caption {
-    padding: 0;
+    padding: 24px 0 0 0; /* 24px breathing room above the Previous/Next nav (i.e. between image and pagination) */
     gap: var(--space-3);
   }
 
