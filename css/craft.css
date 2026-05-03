@@ -146,11 +146,11 @@
   background: var(--surface-page-default);
   touch-action: pan-y;
   user-select: none;
-  /* Default aspect for first paint before JS runs. js/craft.js sets a
-     per-slide aspectRatio inline-style based on the current image's
-     natural dimensions, so each slide's stage exactly matches its
-     image (no letterbox / no cropping — portraits stay portrait,
-     landscapes stay landscape). */
+  /* Fixed 4:3 aspect ratio: the stage div has constant dimensions across
+     all slides, so the page layout never jumps when navigating between
+     images of different aspect ratios. Image inside uses object-fit:
+     contain so it's never cropped — it fits naturally within the box,
+     with letterbox / pillarbox filling the rest of the stage. */
   aspect-ratio: 4 / 3;
 }
 
@@ -160,11 +160,11 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  /* Cover (not contain) — the image fills the stage edge-to-edge. This
-     also crops out any white borders baked into source image files
-     (e.g. hand-drawn renders that have been exported with a white margin),
-     which previously read as a "shadow" effect against the white page bg. */
-  object-fit: cover;
+  /* Contain — preserve the image's natural aspect, never crop. Landscape
+     images > 4:3 fit by width (consistent width across landscape slides);
+     near-square or portrait images fit by height. The page layout is
+     stable because the surrounding stage box never changes size. */
+  object-fit: contain;
   /* Shown via .is-current; animate opacity + a tiny scale as it arrives */
   opacity: 0;
   transform: scale(0.995);
@@ -445,9 +445,11 @@
   }
 
   .craft-stage {
-    /* Mobile uses the same JS-driven adaptive aspect as desktop —
-       no max-height so the image always fills the stage at its natural
-       aspect (portraits stay portrait, landscapes stay landscape). */
+    /* Mobile uses 4/5 (slightly portrait) since the screen is portrait
+       — works better for the deck which has a mix of landscape and
+       portrait images. Same fixed-size + object-fit: contain principle
+       as desktop: stage size is constant, image fits naturally inside. */
+    aspect-ratio: 4 / 5;
     width: 100%;
   }
 
