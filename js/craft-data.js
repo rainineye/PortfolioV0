@@ -118,7 +118,7 @@ window.CRAFT_SLIDES = [
     subtitle: "Cruiseship · White Clay Rendering",
     caption:
       "A French restaurant aboard a cruiseship, designed during my time at Studio Jouin Manku in Paris. Translucent screens — drawn from the studio's vocabulary and shaped after underwater portholes — give each seating area its own pocket of privacy; digital walls run continuous undersea footage to keep the meal immersive. The axonometric came last, distilled from several rounds of plan iteration and 3D study.",
-    meta: "Axonometric View · modelled, rendered by Mian",
+    meta: "Axonometric View · Modelled, rendered by Mian",
   },
   {
     id: "a1a2-main-lobby",

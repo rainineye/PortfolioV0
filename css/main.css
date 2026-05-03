@@ -1858,6 +1858,12 @@ body {
     line-height: 0;
   }
 
+  .project-card-mobile-detail-link__icon img {
+    display: block;
+    height: 18px;
+    width: auto;
+  }
+
   .project-card-mobile-detail-link__text {
     font-family: "Tomorrow", sans-serif;
     font-size: 15.13px;
