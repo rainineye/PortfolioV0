@@ -39,6 +39,10 @@
   var scrollEndTimer = null;
   var lastScrollY = window.scrollY;
   var lastTime = performance.now();
+  // Hysteresis state: are we currently "in" the main content zone (free scroll)?
+  // Toggled by pickSnap based on scroll position with a 50px buffer in each
+  // direction so small overshoot doesn't ping-pong us in and out.
+  var inMain = false;
 
   // Velocity history — sampled from scroll events. We can't read the user's
   // touch velocity directly (the OS owns the gesture), but we can recover a
@@ -51,8 +55,10 @@
     if (dt <= 0) return;
     var v = dy / dt;
     velocitySamples.push({ time: now, v: v });
-    // Keep only the last ~250ms of samples
-    while (velocitySamples.length > 0 && now - velocitySamples[0].time > 250) {
+    // Keep ~1000ms of samples — long enough that the user's initial swipe
+    // velocity is still in the buffer after the browser's natural momentum
+    // scroll has played out (swipe + iOS momentum can total ~700-900ms).
+    while (velocitySamples.length > 0 && now - velocitySamples[0].time > 1000) {
       velocitySamples.shift();
     }
   }
@@ -105,45 +111,43 @@
     var main = getMainTarget();
     if (!main) return null;
 
-    var targets = [
-      { y: 0, name: "top" },
-      { y: main.offsetTop, name: "main" },
-    ];
     var y = window.scrollY;
-    var viewport = window.innerHeight;
+    var mainY = main.offsetTop;
 
-    // Once the user has scrolled meaningfully past the main content start
-    // (into the cards list / slide caption), let them scroll freely.
-    if (y > targets[1].y + viewport * 0.4) return null;
+    // Hysteresis state machine — prevents ping-pong AND recovers from small
+    // momentum overshoot:
+    //   - Enter "in main" zone only when scrolled clearly past mainY (50px
+    //     buffer). User has committed to browsing main content.
+    //   - Exit "in main" zone only when scrolled clearly back above mainY
+    //     (50px buffer). User is heading back to hero.
+    // While "in main" → free scroll (return null). Otherwise → snap based
+    // on swipe direction. This handles the Craft view case where a gentle
+    // swipe can momentum-overshoot a small mainY by 30-40px; the user
+    // still gets a clean one-time landing at the craft start.
+    if (!inMain && y >= mainY + 50) {
+      inMain = true;
+    } else if (inMain && y < mainY - 50) {
+      inMain = false;
+    }
 
-    // Velocity-biased pick: a hard swipe carries the snap target along with
-    // the gesture's direction, even if natural momentum didn't quite reach it.
+    if (inMain) return null;
+
     var v = getSwipeVelocity();
-    var SWIPE_THRESHOLD = 0.4; // px/ms — anything above this counts as a deliberate swipe
+    var DIRECTION_EPSILON = 0.05;
 
-    if (v > SWIPE_THRESHOLD) {
-      // Swiping down (positive v in scroll-Y terms) — prefer next target below.
-      for (var i = 0; i < targets.length; i++) {
-        if (targets[i].y > y + 30) return targets[i];
-      }
-    } else if (v < -SWIPE_THRESHOLD) {
-      // Swiping up — prefer next target above.
-      for (var j = targets.length - 1; j >= 0; j--) {
-        if (targets[j].y < y - 30) return targets[j];
-      }
+    if (v > DIRECTION_EPSILON) {
+      // Swiped down → snap to main start.
+      return { y: mainY, name: "main" };
+    }
+    if (v < -DIRECTION_EPSILON) {
+      // Swiped up → snap to top.
+      return { y: 0, name: "top" };
     }
 
-    // Low velocity (or no clear direction) — snap to the nearest target.
-    var nearest = targets[0];
-    var minDist = Infinity;
-    for (var k = 0; k < targets.length; k++) {
-      var d = Math.abs(targets[k].y - y);
-      if (d < minDist) {
-        minDist = d;
-        nearest = targets[k];
-      }
-    }
-    return nearest;
+    // No clear direction — pick the nearer of the two targets.
+    return Math.abs(y) < Math.abs(mainY - y)
+      ? { y: 0, name: "top" }
+      : { y: mainY, name: "main" };
   }
 
   // ---------------------------------------------------------------------------

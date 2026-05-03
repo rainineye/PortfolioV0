@@ -411,9 +411,7 @@
     margin-bottom: 24px;
   }
 
-  .craft-eyebrow {
-    font-size: 13px;
-  }
+  /* Eyebrow size left at the desktop default (15px) — original look */
 
   .craft-chapters {
     gap: var(--space-4);
@@ -428,16 +426,16 @@
     grid-template-columns: 1fr;
     grid-template-areas:
       "stage"
-      "dots"
-      "caption";
+      "caption"
+      "dots";
     grid-template-rows: auto auto auto;
     row-gap: 0; /* control gaps per element below */
     min-height: auto;
   }
 
   .craft-viewer > .craft-dots {
-    margin-top: 12px; /* gap from image */
-    margin-bottom: var(--space-4); /* gap to caption (Previous/Next) */
+    margin-top: var(--space-5); /* gap from caption above */
+    margin-bottom: 24px; /* breathing room at the bottom of the page */
   }
 
   .craft-stage {
@@ -451,27 +449,13 @@
     gap: var(--space-3);
   }
 
-  /* Reorder caption children on mobile: content → meta → nav.
-     The Previous/Counter/Next nav lives at the bottom under the meta line
-     (Staging by..., © Mian, etc.) so the user reads the slide first and
-     hits the navigation last. */
-  .craft-caption__content {
-    order: 1;
+  /* Caption keeps its default DOM order on mobile: nav (Previous · counter
+     · Next) at the top, then content, then meta. */
+  .craft-caption__nav {
+    padding-bottom: var(--space-3);
   }
 
   .craft-caption__meta {
-    order: 2;
-    margin-top: var(--space-3);
-  }
-
-  .craft-caption__nav {
-    order: 3;
-    /* Border swaps from bottom to top so it separates the nav from the
-       meta line above it instead of from content below. */
-    border-bottom: 0;
-    padding-bottom: 0;
-    border-top: 1px solid var(--border-neutral-subtle);
-    padding-top: var(--space-4);
     margin-top: var(--space-3);
   }
 
