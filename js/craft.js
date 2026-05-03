@@ -126,6 +126,24 @@
   var current = -1;
   var pad2 = function (n) { return String(n).padStart(2, "0"); };
 
+  // Adaptive stage aspect-ratio. Each slide's stage takes its image's
+  // natural aspect, so portraits stay portrait, landscapes stay landscape,
+  // and the image always fills the stage edge-to-edge (no letterboxing,
+  // no cropping). Stage WIDTH is constant (= grid column width); HEIGHT
+  // adapts per slide.
+  function setStageAspectFromImage(img) {
+    var apply = function () {
+      if (img && img.naturalWidth > 0 && img.naturalHeight > 0) {
+        stage.style.aspectRatio = img.naturalWidth + " / " + img.naturalHeight;
+      }
+    };
+    if (img.complete && img.naturalWidth) {
+      apply();
+    } else {
+      img.addEventListener("load", apply, { once: true });
+    }
+  }
+
   function currentChapterFor(index) {
     var chapter = slides[index].chapter;
     // Highlight the chapter button whose span covers this slide (i.e. the
@@ -163,6 +181,9 @@
     imageEls.forEach(function (img, i) {
       img.classList.toggle("is-current", i === current);
     });
+
+    // Adapt stage to the new image's aspect so it fills edge-to-edge.
+    setStageAspectFromImage(imageEls[current]);
 
     // Update dots
     dotEls.forEach(function (dot, i) {

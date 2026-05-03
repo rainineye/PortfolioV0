@@ -146,11 +146,11 @@
   background: var(--surface-page-default);
   touch-action: pan-y;
   user-select: none;
-  /* Fixed aspect ratio so the stage size is constant across slides — every
-     image displays at exactly the same width and height, no more jumping
-     when navigating between landscape images of different aspect ratios.
-     4:3 fits most architectural and product imagery in this deck.
-     Mobile overrides to 4:5 in the @media block below. */
+  /* Default aspect for first paint before JS runs. js/craft.js sets a
+     per-slide aspectRatio inline-style based on the current image's
+     natural dimensions, so each slide's stage exactly matches its
+     image (no letterbox / no cropping — portraits stay portrait,
+     landscapes stay landscape). */
   aspect-ratio: 4 / 3;
 }
 
@@ -445,8 +445,9 @@
   }
 
   .craft-stage {
-    aspect-ratio: 4 / 5;
-    max-height: 70vh;
+    /* Mobile uses the same JS-driven adaptive aspect as desktop —
+       no max-height so the image always fills the stage at its natural
+       aspect (portraits stay portrait, landscapes stay landscape). */
     width: 100%;
   }
 
