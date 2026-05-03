@@ -120,9 +120,9 @@
     "dots dots";
   column-gap: clamp(24px, 4vw, 64px);
   align-items: stretch;
-  /* Lock the whole viewer to a pleasant viewport-relative height so the image
-     stage never jumps in size between slides of different aspect ratios. */
-  min-height: calc(100vh - 220px);
+  /* Stage carries its own aspect-ratio now (see .craft-stage) — the viewer
+     no longer needs to lock height to viewport, since the stage size stays
+     constant across slides regardless of the underlying image's aspect. */
 }
 
 .craft-stage {
@@ -142,23 +142,29 @@
 
 .craft-stage {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  /* Background is the page background — contain padding becomes invisible */
   background: var(--surface-page-default);
   touch-action: pan-y;
   user-select: none;
+  /* Fixed aspect ratio so the stage size is constant across slides — every
+     image displays at exactly the same width and height, no more jumping
+     when navigating between landscape images of different aspect ratios.
+     4:3 fits most architectural and product imagery in this deck.
+     Mobile overrides to 4:5 in the @media block below. */
+  aspect-ratio: 4 / 3;
 }
 
 .craft-stage__img {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Cover (not contain) — the image fills the stage edge-to-edge. This
+     also crops out any white borders baked into source image files
+     (e.g. hand-drawn renders that have been exported with a white margin),
+     which previously read as a "shadow" effect against the white page bg. */
+  object-fit: cover;
   /* Shown via .is-current; animate opacity + a tiny scale as it arrives */
   opacity: 0;
   transform: scale(0.995);
@@ -166,9 +172,6 @@
     opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
-  position: absolute;
-  inset: 0;
-  margin: auto;
   pointer-events: none;
 }
 
@@ -386,11 +389,14 @@
   font-family: "Roboto Flex", sans-serif;
   font-style: normal;
   font-size: 11px;
-  background: var(--surface-brand-badge);
+  /* Brand mint blended ~45/55 with white — saturation drops to roughly
+     40% of the original brand-badge token, reading as a quiet pale hint
+     of green rather than a saturated mint. Border same treatment. */
+  background: color-mix(in srgb, var(--surface-brand-badge) 45%, var(--surface-page-default));
   color: var(--text-primary-muted);
   padding: 1px 6px;
   border-radius: var(--radius-xs);
-  border: 1px solid var(--border-brand-subtle);
+  border: 1px solid color-mix(in srgb, var(--border-brand-subtle) 45%, var(--surface-page-default));
   margin: 0 2px;
 }
 
