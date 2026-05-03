@@ -26,6 +26,7 @@
     '<div class="craft-viewer">',
     '  <div class="craft-stage" role="region" aria-live="polite" aria-label="Slide image"></div>',
     '  <ul class="craft-dots" role="tablist" aria-label="Slides"></ul>',
+    '  <p class="craft-hint">Use <kbd>←</kbd> <kbd>→</kbd> to navigate</p>',
     '  <aside class="craft-caption" aria-label="Slide caption">',
     '    <div class="craft-caption__nav">',
     '      <button type="button" class="craft-nav-btn craft-nav-btn--prev" aria-label="Previous slide">',
@@ -47,9 +48,7 @@
     '    <p class="craft-caption__meta"></p>',
     "  </aside>",
     "</div>",
-    '<footer class="craft-footer">',
-    '  <p class="craft-hint">Use <kbd>←</kbd> <kbd>→</kbd> to navigate</p>',
-    "</footer>",
+    '<footer class="craft-footer" hidden></footer>',
   ].join("\n");
 
   var stage = root.querySelector(".craft-stage");

@@ -117,12 +117,11 @@
   grid-template-columns: minmax(0, 1fr) clamp(280px, 28%, 380px);
   grid-template-areas:
     "stage caption"
-    "dots dots";
+    "dots  hint";
   column-gap: clamp(24px, 4vw, 64px);
   align-items: stretch;
-  /* Stage carries its own aspect-ratio now (see .craft-stage) — the viewer
-     no longer needs to lock height to viewport, since the stage size stays
-     constant across slides regardless of the underlying image's aspect. */
+  /* Stage carries its own aspect-ratio (see .craft-stage), so the viewer
+     no longer needs to lock height to viewport. */
 }
 
 .craft-stage {
@@ -136,6 +135,15 @@
 .craft-viewer > .craft-dots {
   grid-area: dots;
   margin-top: var(--space-5);
+  align-self: center;
+}
+
+.craft-viewer > .craft-hint {
+  grid-area: hint;
+  margin-top: var(--space-5);
+  align-self: center;
+  justify-self: end; /* push to right edge of the caption column */
+  text-align: right;
 }
 
 /* ---- Stage ---- */
@@ -386,18 +394,24 @@
 }
 
 .craft-hint kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Square buttons with slight rounded corners (4px). */
+  width: 18px;
+  height: 18px;
   font-family: "Roboto Flex", sans-serif;
   font-style: normal;
-  font-size: 11px;
-  /* Brand mint blended ~45/55 with white — saturation drops to roughly
-     40% of the original brand-badge token, reading as a quiet pale hint
-     of green rather than a saturated mint. Border same treatment. */
+  font-size: 12px;
+  line-height: 1;
+  /* Brand mint blended ~45/55 with white — quiet pale hint of green,
+     not a saturated mint. */
   background: color-mix(in srgb, var(--surface-brand-badge) 45%, var(--surface-page-default));
   color: var(--text-primary-muted);
-  padding: 1px 6px;
-  border-radius: var(--radius-xs);
+  border-radius: 4px;
   border: 1px solid color-mix(in srgb, var(--border-brand-subtle) 45%, var(--surface-page-default));
   margin: 0 2px;
+  vertical-align: middle;
 }
 
 /* -------------------------------------------------------------------------
