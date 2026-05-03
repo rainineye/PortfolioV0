@@ -127,14 +127,6 @@
   var overlay = document.getElementById("trillionOverlay");
   var closeZone = document.getElementById("trillionOverlayClose");
   var frame = document.getElementById("trillionFrame");
-  var projectItems = document.querySelectorAll(".project-item[data-project]");
-
-  projectItems.forEach(function (item) {
-    item.setAttribute("role", "link");
-    item.setAttribute("tabindex", "0");
-    item.setAttribute("aria-label", "Open project " + item.getAttribute("data-project"));
-  });
-
   function openOverlay(url) {
     frame.src = url;
     overlay.classList.add("active");
@@ -382,11 +374,17 @@
     var preview = card.querySelector("[data-mobile-preview]");
     if (!preview) return;
 
+    function detachMouseDragListeners() {
+      window.removeEventListener("mousemove", handleDragMove);
+      window.removeEventListener("mouseup", handleDragEnd);
+    }
+
     function clearDragState() {
       preview.classList.remove("is-dragging");
       preview.removeAttribute("data-drag-start-x");
       preview.removeAttribute("data-drag-current-x");
       preview.removeAttribute("data-dragging");
+      detachMouseDragListeners();
     }
 
     function handleDragStart(event) {
@@ -395,6 +393,11 @@
       preview.setAttribute("data-drag-start-x", String(pointX));
       preview.setAttribute("data-drag-current-x", String(pointX));
       preview.setAttribute("data-dragging", "true");
+
+      if (event.type === "mousedown") {
+        window.addEventListener("mousemove", handleDragMove);
+        window.addEventListener("mouseup", handleDragEnd);
+      }
     }
 
     function handleDragMove(event) {
@@ -440,7 +443,5 @@
     preview.addEventListener("touchmove", handleDragMove, { passive: true });
     preview.addEventListener("touchend", handleDragEnd, { passive: true });
     preview.addEventListener("mousedown", handleDragStart);
-    window.addEventListener("mousemove", handleDragMove);
-    window.addEventListener("mouseup", handleDragEnd);
   });
 })();
