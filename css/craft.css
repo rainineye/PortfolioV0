@@ -407,8 +407,8 @@
     gap: var(--space-3);
     /* Push the two header lines down (away from the top nav's Contact link)
        while pulling them closer to the image. */
-    margin-top: 48px;
-    margin-bottom: 16px;
+    margin-top: 64px;
+    margin-bottom: 24px;
   }
 
   .craft-eyebrow {
@@ -420,12 +420,9 @@
   }
 
   .craft-chapter-btn {
-    font-size: 11px;
+    font-size: 13px;
   }
-
-  .craft-chapter-btn span {
-    font-size: 10px;
-  }
+  /* span size left at the desktop default (12px) — original mobile look */
 
   .craft-viewer {
     grid-template-columns: 1fr;
@@ -454,16 +451,32 @@
     gap: var(--space-3);
   }
 
+  /* Reorder caption children on mobile: content → meta → nav.
+     The Previous/Counter/Next nav lives at the bottom under the meta line
+     (Staging by..., © Mian, etc.) so the user reads the slide first and
+     hits the navigation last. */
+  .craft-caption__content {
+    order: 1;
+  }
+
+  .craft-caption__meta {
+    order: 2;
+    margin-top: var(--space-3);
+  }
+
   .craft-caption__nav {
-    padding-bottom: var(--space-3);
+    order: 3;
+    /* Border swaps from bottom to top so it separates the nav from the
+       meta line above it instead of from content below. */
+    border-bottom: 0;
+    padding-bottom: 0;
+    border-top: 1px solid var(--border-neutral-subtle);
+    padding-top: var(--space-4);
+    margin-top: var(--space-3);
   }
 
   .craft-nav-btn {
     font-size: 13px;
-  }
-
-  .craft-nav-btn__label {
-    /* On very narrow screens, hide the "Previous"/"Next" labels and keep just arrows */
   }
 
   .craft-caption__counter {
@@ -476,10 +489,6 @@
 
   .craft-caption__body {
     font-size: 14.5px;
-  }
-
-  .craft-caption__meta {
-    margin-top: var(--space-3);
   }
 
   .craft-footer {

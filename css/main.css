@@ -1417,11 +1417,16 @@ body {
        eliminates the empty middle "dead zone" that previously required
        multiple swipes. With two snap points (hero start + chronological
        start) and mandatory snap, a single scroll gesture lands directly
-       on either the hero or the project cards. The browser handles the
-       smooth animation natively. Within the chronological-bleed (cards
-       + footer) there are no further snap points, so scrolling through
-       the list stays free. About / Craft views hide chronological-bleed
-       entirely, so snap reduces to a no-op there. */
+       on either the hero or the project cards. Within the
+       chronological-bleed (cards + footer) there are no further snap
+       points, so scrolling through the list stays free. About / Craft
+       views hide chronological-bleed entirely, so snap reduces to a
+       no-op there.
+
+       NOTE: js/mobile-snap.js takes over from this CSS at runtime to
+       drive the animation with a custom bouncy easing (easeOutBack)
+       — the CSS rules below are the fallback for when JS is disabled
+       or fails to load. */
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
 
@@ -1441,7 +1446,8 @@ body {
     scroll-snap-align: start;
   }
 
-  .chronological-bleed {
+  .chronological-bleed,
+  .craft-inline {
     scroll-snap-align: start;
   }
 
