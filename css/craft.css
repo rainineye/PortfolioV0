@@ -355,8 +355,8 @@
  * without needing brand color. */
 .craft-dot {
   width: 22px;
-  height: 2px;
-  border-radius: 1px;
+  height: 1.5px;
+  border-radius: 999px; /* fully-rounded ends rather than square */
   background: var(--border-neutral-subtle);
   border: 0;
   padding: 0;
